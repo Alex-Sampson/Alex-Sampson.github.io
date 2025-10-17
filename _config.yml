@@ -21,7 +21,7 @@ navigation:                     # accepts {file, title, url, icon, sidebaricon}
   - {file: "Alex.pdf", title: "CV", sidebaricon: suitcase}
   - {file: "archive.html", title: "Home Change", sidebaricon: home}
   - {file: "README.md", title: "About Me", sidebaricon: address-card}
-  - {file: "/blog.md", title: "Blog", sidebaricon: book}
+  - {file: "/blog.md", title: "Blog", sidebaricon: newspaper}
 
 external:                       # accepts {file, title, url, icon, sidebaricon}
   - {title: Mail, icon: envelope, url: "ajsampson@fsu.edu"}
