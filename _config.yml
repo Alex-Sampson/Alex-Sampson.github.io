@@ -22,7 +22,7 @@ navigation:                     # accepts {file, title, url, icon, sidebaricon}
   
   - {file: "archive.html", title: "Archive", sidebaricon: box}
   - {file: "README.md", title: "About Me", sidebaricon: address-card}
-  - {file: "/blog.md", title: "Blog", sidebaricon: pen-nib}
+  - {file: "blog.html", title: "Blog", sidebaricon: pen-nib}
   - {file: "Alex.pdf", title: "CV", sidebaricon: suitcase}
 
 external:                       # accepts {file, title, url, icon, sidebaricon}
