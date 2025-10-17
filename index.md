@@ -3,10 +3,10 @@ layout: page
 title: ""
 ---
 
-<div style="float:left; margin:0 1rem 1rem 0;">
+<div style="float:left; margin:0 1rem 1rem 0; display:inline-block;">
   <img src="assets/images/Banner1.png" alt="Banner 1" style="display:block; height:auto; max-width:100%;">
   <small style="display:block; margin-top:0.25rem; color:#666; text-align:right;">
-    Photo: Photographer / Source
+    Photo © Your Source
   </small>
 </div>
 <br><br><br><br><br>
