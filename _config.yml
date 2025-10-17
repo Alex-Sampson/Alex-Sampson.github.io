@@ -20,11 +20,11 @@ mathjax: true                   # allows renderable LaTeX. Uses: $$ inline math 
 
 navigation:                     # accepts {file, title, url, icon, sidebaricon}
 
-  - {file: "index.md", title: "About Me", sidebaricon: fa-user}
-  - {file: "archive.html", title: "Archive", sidebaricon: fa-archive}
+  - {file: "index.md", title: "About Me"}
+  - {file: "archive.html", title: "Archive"}
   - {file: "README.md", title: "README.md"}
-  - {file: "blog.html", title: "Blog", sidebaricon: pen-nib}
-  - {file: "Alex.pdf", title: "CV", sidebaricon: suitcase}
+  - {file: "blog.html", title: "Blog"}
+  - {file: "Alex.pdf", title: "CV"}
 
 external:                       # accepts {file, title, url, icon, sidebaricon}
   - {title: E-Mail Me!, icon: envelope, url: "ajsampson@fsu.edu"}
