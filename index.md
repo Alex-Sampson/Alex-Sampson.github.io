@@ -11,7 +11,7 @@ title: ""
 
 
 
-<strong><span style="font-size: 36px;>Alex Sampson</span></strong>
+**Alex Sampson**{: .big-bold}
 
 ### Education:
 * B.A. Applied Mathematics with a minor in Physics -- University of Montana
