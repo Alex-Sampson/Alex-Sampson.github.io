@@ -20,7 +20,7 @@ mathjax: true                   # allows renderable LaTeX. Uses: $$ inline math 
 
 navigation:                     # accepts {file, title, url, icon, sidebaricon}
   
-  - {file: "archive.html", title: "Home", sidebaricon: home}
+  - {file: "archive.html", title: "Archive", sidebaricon: box-archive}
   - {file: "README.md", title: "About Me", sidebaricon: address-card}
   - {file: "/blog.md", title: "Blog", sidebaricon: pen-nib}
   - {file: "Alex.pdf", title: "CV", sidebaricon: suitcase}
