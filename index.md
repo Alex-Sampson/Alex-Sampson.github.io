@@ -39,3 +39,8 @@ title: ""
    * Qualitative dynamics in nonlinear systems supporting the themes above <br>
 
 While I have not secured a specific research direction, work in any of these fields excites me.
+
+### Teaching
+
+Teaching has been one of the most meaningful parts of my graduate experience. I wasn’t always a “math person”, I struggled with math anxiety in high school and advanced slowly at first, so I’m especially committed to helping students build confidence. In my classes, I emphasize clear structure, multiple solution pathways, and low-stakes practice that de-stigmatizes mistakes. My goal is to make rigorous mathematics **approachable, honest, and useful**, meeting students where they are and helping them get where they want to go.
+
