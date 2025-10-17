@@ -24,7 +24,7 @@ navigation:                     # accepts {file, title, url, icon, sidebaricon}
   - {file: "/blog.md", title: "Blog", sidebaricon: newspaper}
 
 external:                       # accepts {file, title, url, icon, sidebaricon}
-  - {title: Mail, icon: envelope, url: "ajsampson@fsu.edu"}
+  - {title: E-Mail Me!, icon: envelope, url: "ajsampson@fsu.edu"}
   - {title: Github, icon: github, url: "https://github.com/alex-sampson"}
   #- {title: Subscribe, icon: rss, url: "/feed.xml"}
 
