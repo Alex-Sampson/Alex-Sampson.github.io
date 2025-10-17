@@ -1,5 +1,5 @@
 ---
-title: "Welcome to Jekyll Does this change anyting"
+title: "Welcome to Jekyll"
 layout: post
 ---
 
