@@ -35,7 +35,7 @@ title: ""
   * Modeling and analysis for problems arising in physics and biology; particualrly in regards to qualitative properties of solutions  <br>
 * **Variational and topological methods:**
    * Weak solution frameworks, energy methods, and degree theory <br> 
-* **Stability and bifurcation theory:** \
+* **Stability and bifurcation theory:** 
    * Qualitative dynamics in nonlinear systems supporting the themes above <br>
 
 While I have not secured a specific research direction, work in any of these fields excites me.
