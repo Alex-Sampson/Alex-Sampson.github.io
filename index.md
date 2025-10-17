@@ -3,12 +3,12 @@ layout: page
 title: ""
 ---
 
-<div style="float:left; margin:0 1rem 1rem 0; display:inline-block;">
-  <img src="assets/images/Banner1.png" alt="Banner 1" style="display:block; height:auto; max-width:100%;">
-  <small style="display:block; margin-top:0.25rem; color:#666; text-align:right;">
+<figure class="img-with-credit" style="position:static;">
+  <img src="assets/images/Banner1.png" alt="Banner 1">
+  <figcaption style="position:static; text-align:right; margin-top:0.25rem;">
     Photo © Your Source
-  </small>
-</div>
+  </figcaption>
+</figure>
 <br><br><br><br><br>
 
 
