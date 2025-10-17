@@ -10,7 +10,11 @@ title: ""
   <figcaption
        style="position:static; display:block; text-align:right; margin-top:0.25rem;
               font-size:0.8rem; color:#aaa; line-height:1.2;">
-    Photo © Your Source
+    <a href="https://unsplash.com/photos/brown-and-white-concrete-building-9VR1g6vU1R0"
+       style="color:inherit; text-decoration:none; border-bottom:1px solid currentColor;">
+       Westcott Building © 
+Ernie A. Stephens
+    </a>
   </figcaption>
 </figure>
 
