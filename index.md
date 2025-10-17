@@ -2,13 +2,18 @@
 layout: page
 title: ""
 ---
-
-<figure class="img-with-credit" style="position:static;">
-  <img src="assets/images/Banner1.png" alt="Banner 1">
-  <figcaption style="position:static; text-align:right; margin-top:0.25rem;">
-    Wesscot Image at FSU © credit here
+<figure class="img-with-credit"
+        style="position:static; float:left; margin:0 1rem 1rem 0;
+               display:inline-block; width:auto; line-height:0;">
+  <img src="assets/images/Banner1.png" alt="Banner 1"
+       style="display:block; height:auto; max-width:100%;">
+  <figcaption
+       style="position:static; display:block; text-align:right; margin-top:0.25rem;
+              font-size:0.8rem; color:#aaa; line-height:1.2;">
+    Photo © Your Source
   </figcaption>
 </figure>
+
 <br><br><br><br><br>
 
 
