@@ -12,7 +12,7 @@ show_excerpts: true             # show article excerpts instead of archive list 
 show_frame: true                # display a grey frame on large screens
 show_sidebar: true             # show a sidebar instead of the usual header
 show_minimal: false             # remove all clutter
-mathjax: true                   # allows renderable LaTeX.
+mathjax: true                   # allows renderable LaTeX. Uses: $$ inline math $$
 
 #show_frame: "/assets/images/background.svg"
 
