@@ -3,7 +3,7 @@ layout: page
 title: ""
 ---
 
-<img align="left" src="assets/images/ProfilePick1.png" alt="My Image" style="width:140px; height:auto; float:left; margin:0 1rem 1rem 0;"> <img align="right" src="assets/images/RaiyWescott.jpg" alt="Wescott" style="width:140px; height:auto; float:right; margin:0 1rem 1rem 0;">
+<img align="left" src="assets/images/ProfilePick1.png" alt="Profile Pic 1" style="width:140px; height:auto; float:left; margin:0 1rem 1rem 0;"> <img align="right" src="assets/images/RainyWescott.png" alt="Wescott" style="width:420px; height:auto; float:right; margin:0 1rem 1rem 0;">
 
 
 <br><br><br><br>
