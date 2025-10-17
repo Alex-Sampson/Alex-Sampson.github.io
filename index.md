@@ -3,8 +3,12 @@ layout: page
 title: ""
 ---
 
- <img align="left" src="assets/images/Banner1.png" alt="Banner 1" style="width:auto; height:auto; float:left; margin:0 1rem 1rem 0;"> 
-
+<div style="float:left; margin:0 1rem 1rem 0;">
+  <img src="assets/images/Banner1.png" alt="Banner 1" style="display:block; height:auto; max-width:100%;">
+  <small style="display:block; margin-top:0.25rem; color:#666; text-align:right;">
+    Photo: Photographer / Source
+  </small>
+</div>
 <br><br><br><br><br>
 
 
