@@ -21,13 +21,16 @@ title: ""
 * PhD Student in Applied and Computational Mathematics -- Florida State University
   * 2025-current
  
-### About Me:
-My path through academia has been non-standard to say the least. I was born and raised in Missoula, MT where I completed my undergraduate degree in applied mathematics at the University of Montana (UM). While I left UM with a degree in applied mathematics, the vast majority of my time there was spent in the Physics Department. In my senior years at UM I began taking graduate courses in Applied Mathematical Methods and Dynamical Systems Theory. It was these course, and my deep interest in the mathematical formalisms that underpinned fascinating fields like Quantum Mechanics and General Relativity that lead me to decide to pursue my graduat degree in Applied Mathematics.
+### About Me
+I grew up in Missoula, Montana, and completed a B.A. in Applied Mathematics (minor in Physics) at the University of Montana. Taking graduate courses in applied mathematical methods and dynamical systems in my senior years at UM solidified my desire to pursue a graduate degree. I entered the graduate program at the University of Nevada, Las Vegas in 2021, where I completed advanced sequences in analysis and differential equations (nonlinear analysis, variational methods, numerical methods, complex analysis, ODEs, and PDEs). In 2025 I transferred to Florida State University to better align my long-term interests with available research opportunities.
 
-In 2021 I would become a part of University of Nevada, Las Vegas's (UNLV's) graduate program and would take courses ranging from Numerical Methods to Non-linear Analysis and Variational Calculus. While I enjoyed my coursework at UNLV I was unfortunately unable to find any research opportunities that aligned with my academic goals.
+My **primary interests lie at the intersection of pure and applied mathematics**, using **analysis and geometry** to study applied topics such as **shape analysis**, **geometric PDEs on infinite-dimensional manifolds**, **optimal transport and Wasserstein geometry**, and **PDE models motivated by physics and biology**. I am particularly motivated by **analytical techniques**, including: functional analysis (Sobolev spaces and operator theory), variational methods (direct method and energy minimization), topological degree and fixed-point frameworks (e.g., Leray–Schauder), energy and a-priori estimate methods, maximum/comparison principles, spectral and semigroup methods for linearization and stability, and elliptic/parabolic regularity theory for qualitative properties of solutions.
 
-In 2025 I would make the move across the country to Tallahassee Florida to join Florida State University's (FSU's) Program in Applied and Computational Mathematics as a PhD Student. While I have not yet secured a formal research topic I hope to continue my tradition of exploring uniquely applied fields where the tools of Analysis, Algebra and Geometry can provide effective tools for deepining our understanding of these applied systems.
+**Current interests (not comprehensive):**
+- **Shape analysis & geometric methods:** infinite-dimensional Riemannian geometry of shape spaces; geometric PDEs on spaces of curves and surfaces  
+- **Optimal transport & Wasserstein geometry:** analytical and geometric perspectives for shapes, signals, and distributions  
+- **PDEs in applications:** modeling and analysis for problems arising in physics and biology; particualrly in regards to qualitative properties of solutions  
+- **Variational and topological methods:** weak solution frameworks, energy methods, and degree theory  
+- **Stability and bifurcation theory:** qualitative dynamics in nonlinear systems supporting the themes above
 
-### Teaching:
-Teaching has been one of the most impactful parts of my graduate career thus far. While I was able to get to where I am today through alot of hard work and stubbornness, I was not always a 'Math Person'. In highschool I failed or barely passed nearly all math courses, and because of this my undergraduate career saw significantly slow progression. Having struggled with math anxiety my whole life, I enjoy as an educator being able to help others in a similar situation overcome these struggles. As someone who overcame these difficulties I feel I have a somewhat unique insight into the challenges many of my students face and I feel it is my duty to help them through those. 
-
+While I have not secured a specific research direction, work in any of these fields excites me.
