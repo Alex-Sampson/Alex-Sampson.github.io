@@ -1,6 +1,6 @@
-title: "Personal and Academic Webpage"
+title: "Personal and Academic Webpage Editing"
 author: "Alex Sampson"
-description: "I am a PhD Student at Florida State University in the Applied and Computational Math program. I am largely interested in Analysis, Variational Methods, PDE's and Geometry."
+description: "Florida State University"
 permalink: /:title/
 lang: "en"
 excerpt_separator: "\n\n\n"
@@ -10,7 +10,7 @@ date_format: "%B %d, %Y"
 
 show_excerpts: true             # show article excerpts instead of archive list on the home page
 show_frame: true                # display a grey frame on large screens
-show_sidebar: false             # show a sidebar instead of the usual header
+show_sidebar: true             # show a sidebar instead of the usual header
 show_minimal: false             # remove all clutter
 
 #show_frame: "/assets/images/background.svg"
