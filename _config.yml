@@ -19,10 +19,11 @@ mathjax: true                   # allows renderable LaTeX. Uses: $$ inline math 
 # Menu                          # for available icons see https://fontawesome.com/v5/icons/
 
 navigation:                     # accepts {file, title, url, icon, sidebaricon}
-  - {file: "Alex.pdf", title: "CV", sidebaricon: suitcase}
+  
   - {file: "archive.html", title: "Home Change", sidebaricon: home}
   - {file: "README.md", title: "About Me", sidebaricon: address-card}
   - {file: "/blog.md", title: "Blog", sidebaricon: pen-nib}
+  - {file: "Alex.pdf", title: "CV", sidebaricon: suitcase}
 
 external:                       # accepts {file, title, url, icon, sidebaricon}
   - {title: E-Mail Me!, icon: envelope, url: "ajsampson@fsu.edu"}
