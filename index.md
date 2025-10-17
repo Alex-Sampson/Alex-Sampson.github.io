@@ -3,7 +3,7 @@ layout: page
 title: ""
 ---
 
- <img align="left" src="assets/images/Banner.png" alt="Banner 1" style="width:auto; height:auto; float:left; margin:0 1rem 1rem 0;"> <img 
+ <img align="left" src="assets/images/Banner1.png" alt="Banner 1" style="width:auto; height:auto; float:left; margin:0 1rem 1rem 0;"> 
 
 <br><br><br><br><br>
 
