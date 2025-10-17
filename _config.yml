@@ -22,7 +22,7 @@ navigation:                     # accepts {file, title, url, icon, sidebaricon}
 
   - {file: "index.md", title: "About Me", sidebaricon: user}
   - {file: "archive.html", title: "Archive", sidebaricon: box}
-  - {file: "README.md", title: "README.mdkfjkf"}
+  - {file: "README.md", title: "README.md"}
   - {file: "blog.html", title: "Blog", sidebaricon: pen-nib}
   - {file: "Alex.pdf", title: "CV", sidebaricon: suitcase}
 
