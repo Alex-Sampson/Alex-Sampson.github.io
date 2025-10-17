@@ -6,7 +6,7 @@ title: ""
 <figure class="img-with-credit" style="position:static;">
   <img src="assets/images/Banner1.png" alt="Banner 1">
   <figcaption style="position:static; text-align:right; margin-top:0.25rem;">
-    Photo © Your Source
+    Wesscot Image at FSU © credit here
   </figcaption>
 </figure>
 <br><br><br><br><br>
