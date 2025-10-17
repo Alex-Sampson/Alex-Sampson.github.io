@@ -3,7 +3,13 @@ layout: page
 title: ""
 ---
 
-<img align="left" src="assets/images/ProfilePick1.png" alt="My Image" style="width:140px; height:auto; float:left; margin:0 1rem 1rem 0;"> ## Alex Sampson 
+<img align="left" src="assets/images/ProfilePick1.png" alt="My Image" style="width:140px; height:auto; float:left; margin:0 1rem 1rem 0;"> 
+
+
+
+
+
+## Alex Sampson 
 
 ### Education:
 * B.A. Applied Mathematics with a minor in Physics -- University of Montana
