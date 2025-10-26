@@ -23,7 +23,7 @@ Ernie A. Stephens
 
 
 
-## Alex Sampson
+## Alex Sampson (Under Construction)
 
 ### Education:
 * B.A. Applied Mathematics with a minor in Physics -- University of Montana
