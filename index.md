@@ -41,7 +41,7 @@ My primary interests lie at the intersection of pure and applied mathematics, us
 
 ## Research
 
-I am currently a first-year PhD student and have not yet settled into a formal research project. I am informally working under the supervision of [Prof. Martin Bauer](https://www.math.fsu.edu/~bauer/) and am currently reading towards a project in shape analysis and infinite-dimensional Riemannian geometry. My current reading focuses on the paper:
+I am currently a first-year PhD student at FSU and have not yet settled into a formal research project. I am informally working under the supervision of [Prof. Martin Bauer](https://www.math.fsu.edu/~bauer/) and am currently reading towards a project in shape analysis and infinite-dimensional Riemannian geometry. My current reading focuses on the paper:
 
 > M. Bauer, C. Maor, B. Wirth, *Completeness of reparametrization-invariant Sobolev metrics on the space of surfaces*, arXiv:2512.01566 (2025).
 
@@ -53,10 +53,10 @@ This work establishes metric and geodesic completeness for Sobolev-type Riemanni
 
 My primary interests span several interconnected areas:
 
-- **Shape analysis & geometric methods:** infinite-dimensional Riemannian geometry of shape spaces; geometric PDEs on spaces of curves and surfaces
-- **Optimal transport & Wasserstein geometry:** analytical and geometric perspectives for shapes, signals, and distributions
-- **PDEs in applications:** modeling and analysis for problems arising in physics and biology, particularly qualitative properties of solutions
-- **Variational and topological methods:** weak solution frameworks, energy methods, and degree theory
+- **Shape analysis & geometric methods:** Infinite-dimensional Riemannian geometry of shape spaces; geometric PDEs on spaces of curves and surfaces.
+- **Optimal transport & Wasserstein geometry:** Analytical and geometric perspectives for shapes, signals, and distributions.
+- **PDEs in applications:** Modeling and analysis for problems arising in physics and biology, particularly qualitative properties of solutions.
+- **Variational and topological methods:** Weak solution frameworks, energy methods, and degree theory.
 
 I am particularly motivated by analytical techniques including functional analysis (Sobolev spaces, operator theory), variational methods, and elliptic/parabolic regularity theory.
 
@@ -64,4 +64,9 @@ I am particularly motivated by analytical techniques including functional analys
 
 ## Teaching
 
-Teaching has been one of the most meaningful parts of my graduate experience. I wasn't always a "math person" — I struggled with math anxiety in high school and advanced slowly at first, so I'm especially committed to helping students build confidence. In my classes, I emphasize clear structure, multiple solution pathways, and low-stakes practice that de-stigmatizes mistakes. My goal is to make rigorous mathematics approachable, honest, and useful — meeting students where they are and helping them get where they want to go.
+Teaching has been one of the most meaningful parts of my graduate experience. I was not always a "math person": I struggled with math anxiety in high school and progressed only gradually at first as an undergraduate. Because of that experience, I care deeply about helping students see that mathematical ability is not something fixed, reserved for the few, or something that is revealed all at once. In my teaching, I emphasize clear mathematical structure, multiple solution pathways, and low-stakes practice that destigmatizes mistakes and encourages genuine problem solving and productive struggle. I want students to experience mathematics as a pursuit that is both rigorous and accessible, and to leave my classroom with greater confidence, stronger habits of thought, and a clearer sense of the beauty and power of the subject.
+
+
+> “To miss out on mathematics is to live without experiencing some of humanity’s most beautiful ideas.”
+— Francis Su, *Mathematics for Human Flourishing*
+
