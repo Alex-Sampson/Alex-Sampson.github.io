@@ -12,7 +12,7 @@ title: ""
               font-size:0.8rem; color:#aaa; line-height:1.2;">
     <a href="https://unsplash.com/photos/brown-and-white-concrete-building-9VR1g6vU1R0"
        style="color:inherit; text-decoration:none; border-bottom:1px solid currentColor;">
-      Westcott Building ©
+      Westcott Building 
     Ernie A. Stephens
     </a>
   </figcaption>
@@ -24,7 +24,7 @@ title: ""
 
 **Education:**
 - B.A. Applied Mathematics with a minor in Physics -- University of Montana 2014--2021
-- PhD Student in Applied Mathematics -- University of Nevada, Las Vegas 2021--2024 (transferred to pursue other research opportunities)
+- PhD Student in Applied Mathematics -- University of Nevada, Las Vegas 2021--2024 (transferred to better align with research interests and available opportunities)
 - PhD Student in Applied and Computational Mathematics -- Florida State University 2025--current
 
 ---
@@ -69,4 +69,10 @@ Teaching has been one of the most meaningful parts of my graduate experience. I 
 
 > “To miss out on mathematics is to live without experiencing some of humanity’s most beautiful ideas.”
 — Francis Su, *Mathematics for Human Flourishing*
+
+---
+
+## Contact
+
+Feel free to reach out by email at [as25n@fsu.edu](mailto:as25n@fsu.edu). I am happy to discuss mathematics, potential collaborations, or anything else on this page.
 
