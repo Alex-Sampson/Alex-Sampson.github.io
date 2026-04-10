@@ -74,5 +74,5 @@ Teaching has been one of the most meaningful parts of my graduate experience. I 
 
 ## Contact
 
-Feel free to reach out by email at [as25n@fsu.edu](mailto:as25n@fsu.edu). I am happy to discuss mathematics, potential collaborations, or anything else on this page.
+Feel free to reach out by email at [ajsampson@fsu.edu](mailto:ajsampson@fsu.edu). I am happy to discuss mathematics, potential collaborations, or anything else on this page.
 
