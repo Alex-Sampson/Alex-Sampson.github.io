@@ -23,7 +23,8 @@ navigation: # accepts {file, title, url, icon, sidebaricon}
   - {file: "index.md", title: "About Me"}
   - {file: "archive.html", title: "Archive"}
   - {file: "blog.html", title: "Blog"}
-  - {file: "Alex.pdf", title: "CV"}
+  - {file: "teaching.md", title: "Teaching"}
+  - {file: "cv.md", title: "CV"}
 
 external: # accepts {file, title, url, icon, sidebaricon}
   - {title: E-Mail Me!, icon: envelope, url: "mailto:ajsampson@fsu.edu"}
