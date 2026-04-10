@@ -1,4 +1,4 @@
-title: "Personal and Academic Webpage Editing"
+title: "Alex Sampson"
 author: "Alex Sampson"
 description: "Florida State University"
 permalink: /:title/
@@ -8,32 +8,31 @@ date_format: "%B %d, %Y"
 
 # Layout
 
-show_excerpts: true             # show article excerpts instead of archive list on the home page
-show_frame: true                # display a grey frame on large screens
-show_sidebar: true             # show a sidebar instead of the usual header
-show_minimal: false             # remove all clutter
-mathjax: true                   # allows renderable LaTeX. Uses: $$ inline math $$
+show_excerpts: true # show article excerpts instead of archive list on the home page
+show_frame: true # display a grey frame on large screens
+show_sidebar: true # show a sidebar instead of the usual header
+show_minimal: false # remove all clutter
+mathjax: true # allows renderable LaTeX. Uses: $$ inline math $$
 
 #show_frame: "/assets/images/background.svg"
 
-# Menu                          # for available icons see https://fontawesome.com/v5/icons/
+# Menu # for available icons see https://fontawesome.com/v5/icons/
 
-navigation:                     # accepts {file, title, url, icon, sidebaricon}
+navigation: # accepts {file, title, url, icon, sidebaricon}
 
   - {file: "index.md", title: "About Me"}
   - {file: "archive.html", title: "Archive"}
-  - {file: "README.md", title: "README.md"}
   - {file: "blog.html", title: "Blog"}
   - {file: "Alex.pdf", title: "CV"}
 
-external:                       # accepts {file, title, url, icon, sidebaricon}
-  - {title: E-Mail Me!, icon: envelope, url: "ajsampson@fsu.edu"}
+external: # accepts {file, title, url, icon, sidebaricon}
+  - {title: E-Mail Me!, icon: envelope, url: "mailto:ajsampson@fsu.edu"}
   - {title: Github, icon: github, url: "https://github.com/alex-sampson"}
   #- {title: Subscribe, icon: rss, url: "/feed.xml"}
 
 comments:
-#  disqus_shortname: ""         # see https://disqus.com
-#  isso_domain: ""              # see https://isso-comments.de
+# disqus_shortname: "" # see https://disqus.com
+# isso_domain: "" # see https://isso-comments.de
 
 plugins:
- - jekyll-feed
+  - jekyll-feed
