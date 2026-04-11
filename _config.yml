@@ -20,20 +20,21 @@ mathjax: true # allows renderable LaTeX. Uses: $$ inline math $$
 
 navigation: # accepts {file, title, url, icon, sidebaricon}
 
-  - {file: "index.md", title: "About Me", sidebaricon: user}
-  - {file: "archive.html", title: "Archive", sidebaricon: archive}
-  - {file: "blog.html", title: "Blog", sidebaricon: pen}
-  - {file: "teaching.md", title: "Teaching", sidebaricon: chalkboard-teacher}
-  - {file: "cv.md", title: "CV", sidebaricon: file-alt}
+ - {file: "index.md", title: "About Me", sidebaricon: user}
+ - {file: "archive.html", title: "Archive", sidebaricon: archive}
+ - {file: "blog.html", title: "Blog", sidebaricon: pen}
+ - {file: "teaching.md", title: "Teaching", sidebaricon: chalkboard-teacher}
+ - {file: "projects.md", title: "Projects", sidebaricon: code}
+ - {file: "cv.md", title: "CV", sidebaricon: file-alt}
 
 external: # accepts {file, title, url, icon, sidebaricon}
-  - {title: E-Mail Me!, icon: envelope, url: "mailto:ajsampson@fsu.edu"}
-  - {title: Github, icon: github, url: "https://github.com/alex-sampson"}
-  #- {title: Subscribe, icon: rss, url: "/feed.xml"}
+ - {title: E-Mail Me!, icon: envelope, url: "mailto:ajsampson@fsu.edu"}
+ - {title: Github, icon: github, url: "https://github.com/alex-sampson"}
+ #- {title: Subscribe, icon: rss, url: "/feed.xml"}
 
 comments:
 # disqus_shortname: "" # see https://disqus.com
 # isso_domain: "" # see https://isso-comments.de
 
 plugins:
-  - jekyll-feed
+ - jekyll-feed
