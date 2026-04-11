@@ -12,7 +12,7 @@ Teaching has been one of the most meaningful parts of my graduate experience. Be
 ### Laboratory Proctor & Lecture Assistant | Pre-Calculus and College Algebra
 *(2025--current)*
 
-In my first year at FSU, I served as a lab proctor for both Pre-Calculus and College Algebra, supporting students through problem sessions and proctoring computer lab quizzes and practice sessions. These duties did not necessitate the development of teaching material.
+In my first year at FSU, I served as a lab proctor for both Pre-Calculus and College Algebra, supporting students both in lecture through problem sessions as well as outside of lecture while proctoring computer lab quizzes and practice sessions. These duties did not necessitate the development of teaching material.
 
 ---
 
@@ -26,7 +26,7 @@ I served as the sole instructor for Pre-Calculus II during three summer sessions
 ### Online Course Developer | Pre-Calculus II & Finite Mathematics
 *(2021--2024)*
 
-Working under the Office of Online Education, I helped develop and maintain fully online versions of Pre-Calculus II and Finite Mathematics. Responsibilities included producing lecture notes, study guides, and instructor manuals to support future instructors of these courses. Additionally, as an experimental asset, I developed a guide for instructors to generate a Discord server for their online classroom in order to better foster engagement in the asynchronous setting of an online course.
+Working under the Office of Online Education, I helped develop and maintain fully online versions of Pre-Calculus II and Finite Mathematics. Responsibilities included producing and refining lecture notes for the instructor of reccord as well as develping study guides, and instructor manuals to support future instructors of these courses. Additionally, as an experimental asset, I developed a guide for instructors to generate a Discord server for their online classroom in order to better foster engagement in the asynchronous setting of an online course.
 
 ### Ordinary Differential Equations for Engineers *(TA)*
 
