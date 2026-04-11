@@ -9,48 +9,34 @@ Teaching has been one of the most meaningful parts of my graduate experience. Be
 
 ## Florida State University
 
-### Laboratory Proctor & Lecture Assistant | Pre-Calculus and College Algebra *(2025--current)*
+### Laboratory Proctor & Lecture Assistant | Pre-Calculus and College Algebra
+*(2025--current)*
 
-In my first year at FSU, I served as a lab proctor for both Pre-calculus and College Algebra, supporting students through problem sessions and proctoring computer lab quizes and practice sessions. These duties did not necessitate the development of teaching material. 
+In my first year at FSU, I served as a lab proctor for both Pre-Calculus and College Algebra, supporting students through problem sessions and proctoring computer lab quizzes and practice sessions. These duties did not necessitate the development of teaching material.
 
 ---
 
 ## University of Nevada, Las Vegas
 
-### Ordinary Differential Equations for Engineers *(TA)*
+### Instructor of Record | Pre-Calculus II
+*(Summer 2023, Summer 2024)*
 
-An applied ODE course for engineering students, covering first- and second-order equations, linear and nonlinear systems, topics from linear algebra and Laplace transforms.
+I served as the sole instructor for Pre-Calculus II during two summer sessions, with full responsibility for course design, lecture delivery, assessment, and grading. Notes and materials coming soon.
 
-*Notes and materials coming soon.*
+### Online Course Developer | Pre-Calculus II & Finite Mathematics
+*(2021--2024)*
 
----
+Working under the Office of Online Education, I developed and maintained fully online versions of Pre-Calculus II and Finite Mathematics. Responsibilities included producing lecture notes, study guides, and instructor manuals to support future instructors of these courses.
 
-### Introduction to Proofs *(TA)*
+### Discussion Instructor *(TA)*
+*(2021--2024)*
 
-A transition course introducing students to formal mathematical reasoning, including logic, set theory, induction, and proof techniques.
+I taught weekly discussion sections and developed supplementary materials for the following courses:
 
-*Notes and materials coming soon.*
+- **Ordinary Differential Equations for Engineers** — first- and second-order equations, linear systems, Laplace transforms
+- **Introduction to Proofs** — logic, set theory, induction, and proof techniques
+- **Calculus III** — partial derivatives, multiple integrals, vector fields, Green's, Stokes', and Gauss' theorems
+- **Calculus II** — techniques of integration, sequences and series, introductory differential equations
+- **Calculus I** — limits, continuity, derivatives, optimization, and related rates
 
----
-
-### Calculus III *(TA)*
-
-Multivariable calculus covering partial derivatives, multiple integrals, vector fields, and the theorems of Green, Stokes, and Gauss.
-
-*Notes and materials coming soon.*
-
----
-
-### Calculus II *(TA)*
-
-Integral calculus and its applications, including techniques of integration, sequences and series, and an introduction to differential equations.
-
-*Notes and materials coming soon.*
-
----
-
-### Calculus I *(TA)*
-
-Differential calculus covering limits, continuity, derivatives, and applications including optimization and related rates.
-
-*Notes and materials coming soon.*
+*Notes and materials from these courses will be added on a rolling basis.*
