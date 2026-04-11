@@ -26,17 +26,42 @@ I served as the sole instructor for Pre-Calculus II during three summer sessions
 ### Online Course Developer | Pre-Calculus II & Finite Mathematics
 *(2021--2024)*
 
-Working under the Office of Online Education, I helped develope and maintaine fully online versions of Pre-Calculus II and Finite Mathematics. Responsibilities included producing lecture notes, study guides, and instructor manuals to support future instructors of these courses. Additionally as an experimental asset, I developed a guide for instructors to generate a Discord server for their online classroom in order to better foster engagement in the asynchronous setting of an online course.
+Working under the Office of Online Education, I helped develop and maintain fully online versions of Pre-Calculus II and Finite Mathematics. Responsibilities included producing lecture notes, study guides, and instructor manuals to support future instructors of these courses. Additionally, as an experimental asset, I developed a guide for instructors to generate a Discord server for their online classroom in order to better foster engagement in the asynchronous setting of an online course.
 
-### Discussion Instructor *(TA)*
-*(2021--2024)*
+### Ordinary Differential Equations for Engineers *(TA)*
 
-I taught weekly discussion sections and developed supplementary materials for the following courses:
+An applied ODE course for engineering students, covering first- and second-order equations, linear and nonlinear systems, topics from linear algebra and Laplace transforms.
 
-- **Ordinary Differential Equations for Engineers** — first- and second-order equations, linear systems, Laplace transforms
-- **Introduction to Proofs** — logic, set theory, induction, and proof techniques
-- **Calculus III** — partial derivatives, multiple integrals, vector fields, Green's, Stokes', and Gauss' theorems
-- **Calculus II** — techniques of integration, sequences and series, introductory differential equations
-- **Calculus I** — limits, continuity, derivatives, optimization, and related rates
+*Notes and materials coming soon.*
 
-*Notes and materials from these courses will be added on a rolling basis.*
+---
+
+### Introduction to Proofs *(TA)*
+
+A transition course introducing students to formal mathematical reasoning, including logic, set theory, induction, and proof techniques.
+
+*Notes and materials coming soon.*
+
+---
+
+### Calculus III *(TA)*
+
+Multivariable calculus covering partial derivatives, multiple integrals, vector fields, and the theorems of Green, Stokes, and Gauss.
+
+*Notes and materials coming soon.*
+
+---
+
+### Calculus II *(TA)*
+
+Integral calculus and its applications, including techniques of integration, sequences and series, and an introduction to differential equations.
+
+*Notes and materials coming soon.*
+
+---
+
+### Calculus I *(TA)*
+
+Differential calculus covering limits, continuity, derivatives, and applications including optimization and related rates.
+
+*Notes and materials coming soon.*
