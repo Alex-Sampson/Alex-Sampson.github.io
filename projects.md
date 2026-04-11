@@ -3,7 +3,9 @@ layout: page
 title: Projects
 ---
 
-This page collects computational projects completed as part of graduate coursework at Florida State University. Each project includes a written report and the associated MATLAB source code.
+This page collects projects completed as part of graduate coursework at Florida State University. Each project, when appropriate, includes a written report and the associated MATLAB/Python source code. 
+
+[Last Updated: 04.11.2026]
 
 ---
 
