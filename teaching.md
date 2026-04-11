@@ -19,14 +19,14 @@ In my first year at FSU, I served as a lab proctor for both Pre-Calculus and Col
 ## University of Nevada, Las Vegas
 
 ### Instructor of Record | Pre-Calculus II
-*(Summer 2023, Summer 2024)*
+*(Summer 2023, Summer 2024, Summer 2025)*
 
-I served as the sole instructor for Pre-Calculus II during two summer sessions, with full responsibility for course design, lecture delivery, assessment, and grading. Notes and materials coming soon.
+I served as the sole instructor for Pre-Calculus II during three summer sessions, with full responsibility for course design, lecture delivery, assessment, and grading. Associated notes and materials coming soon.
 
 ### Online Course Developer | Pre-Calculus II & Finite Mathematics
 *(2021--2024)*
 
-Working under the Office of Online Education, I developed and maintained fully online versions of Pre-Calculus II and Finite Mathematics. Responsibilities included producing lecture notes, study guides, and instructor manuals to support future instructors of these courses.
+Working under the Office of Online Education, I helped develope and maintaine fully online versions of Pre-Calculus II and Finite Mathematics. Responsibilities included producing lecture notes, study guides, and instructor manuals to support future instructors of these courses. Additionally as an experimental asset, I developed a guide for instructors to generate a Discord server for their online classroom in order to better foster engagement in the asynchronous setting of an online course.
 
 ### Discussion Instructor *(TA)*
 *(2021--2024)*
