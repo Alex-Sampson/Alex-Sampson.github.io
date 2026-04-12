@@ -1,6 +1,7 @@
 ---
 layout: page
-title: ""
+title: "Alex Sampson | Applied Mathematics PhD Student at FSU"
+description: "Alex Sampson is a PhD student in Applied and Computational Mathematics at Florida State University, researching shape analysis, geometric PDEs, and optimal transport."
 ---
 
 <figure class="img-with-credit" style="position:static; float:left; margin:0 1rem 1rem 0; display:inline-block; width:auto; line-height:0;">
