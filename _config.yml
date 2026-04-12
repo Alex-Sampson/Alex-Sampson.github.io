@@ -36,4 +36,19 @@ comments:
 # isso_domain: "" # see https://isso-comments.de
 
 plugins:
- - jekyll-feed
+  - jekyll-feed
+  - jekyll-sitemap
+```
+Then submit the sitemap URL (`https://alex-sampson.github.io/sitemap.xml`) in Google Search Console.
+
+---
+
+### 4. No `robots.txt`
+There's no `robots.txt` file, which means Google gets no guidance on what to crawl (and also signals a less well-configured site).
+
+**Fix:** Create a `robots.txt` file in the root of your repo:
+```
+User-agent: *
+Allow: /
+
+Sitemap: https://alex-sampson.github.io/sitemap.xml
