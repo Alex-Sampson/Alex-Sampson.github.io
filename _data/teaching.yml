@@ -1,0 +1,86 @@
+# Teaching record — grouped by institution.
+# Each group: school, items[].
+# Each item: when, title, role, body (text), materials[].
+# materials[] each: label, url (optional — if omitted, renders as placeholder).
+
+groups:
+  - school: "Florida State University"
+    items:
+      - when: "2025 — current"
+        title: "Pre-Calculus & College Algebra"
+        role: "Laboratory Proctor & Lecture Assistant"
+        body: >
+          In my first year at FSU, I serve as a lab proctor for both Pre-Calculus and
+          College Algebra. I support students in lecture through problem sessions and
+          outside of lecture while proctoring computer-lab quizzes and practice sessions.
+          These duties have not (yet) involved developing standalone teaching materials.
+
+  - school: "University of Nevada, Las Vegas"
+    items:
+      - when: "Summers · 2023, '24, '25"
+        title: "Pre-Calculus II"
+        role: "Instructor of Record"
+        body: >
+          Sole instructor across three summer sessions, with full responsibility for
+          course design, lecture delivery, assessment, and grading. A consolidated set
+          of notes and worked-problem materials is being prepared from these three
+          iterations.
+        materials:
+          - label: "Lecture notes — coming soon"
+          - label: "Past Exams — coming soon"
+
+      - when: "2021 — 2024"
+        title: "Pre-Calculus II & Finite Mathematics — Online Course Development"
+        role: "Online Course Developer · Office of Online Education"
+        body: >
+          Helped develop and maintain fully online versions of Pre-Calculus II and Finite
+          Mathematics. Produced and refined lecture notes for the instructor of record,
+          and developed study guides and instructor manuals to support future instructors.
+          As an experimental asset, I developed a guide for instructors on using Discord
+          to foster engagement in asynchronous online courses.
+
+      - when: "UNLV · TA"
+        title: "Ordinary Differential Equations for Engineers"
+        role: "Teaching Assistant"
+        body: >
+          An applied ODE course for engineering students, covering first- and
+          second-order equations, linear and nonlinear systems, topics from linear
+          algebra, and Laplace transforms.
+        materials:
+          - label: "Notes & materials — coming soon"
+
+      - when: "UNLV · TA"
+        title: "Introduction to Proofs"
+        role: "Teaching Assistant"
+        body: >
+          A transition course introducing students to formal mathematical reasoning:
+          logic, set theory, induction, and proof techniques.
+        materials:
+          - label: "Notes & materials — coming soon"
+
+      - when: "UNLV · TA"
+        title: "Calculus III"
+        role: "Teaching Assistant"
+        body: >
+          Multivariable calculus: partial derivatives, multiple integrals, vector fields,
+          and the theorems of Green, Stokes, and Gauss.
+        materials:
+          - label: "Notes & materials — coming soon"
+
+      - when: "UNLV · TA"
+        title: "Calculus II"
+        role: "Teaching Assistant"
+        body: >
+          Integral calculus and applications: techniques of integration, sequences and
+          series, and an introduction to differential equations.
+        materials:
+          - label: "Notes & materials — coming soon"
+
+      - when: "UNLV · TA"
+        title: "Calculus I"
+        role: "Teaching Assistant"
+        body: >
+          Differential calculus: limits, continuity, derivatives, and applications
+          including optimization and related rates.
+        materials:
+          - label: "Notes & materials — coming soon"

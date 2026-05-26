@@ -1,0 +1,23 @@
+# Navigation — drives the topbar.
+# Each item has: title, url. The `section` field lets a page (e.g. a post)
+# claim a different parent for "current" highlighting.
+
+- title: "Home"
+  url: "/"
+  section: "home"
+
+- title: "Projects"
+  url: "/projects/"
+  section: "projects"
+
+- title: "Teaching"
+  url: "/teaching/"
+  section: "teaching"
+
+- title: "Notes"
+  url: "/notes/"
+  section: "notes"
+
+- title: "CV"
+  url: "/cv/"
+  section: "cv"

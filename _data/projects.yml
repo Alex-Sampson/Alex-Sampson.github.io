@@ -1,0 +1,84 @@
+# Projects — grouped by course series.
+# Each group: title, period, instructor, topics, count (auto if omitted), items[].
+# Each item: ix, lang, title, desc, tags[], code_url, report_url, (optional) in_progress.
+
+last_updated: "04 · 11 · 2026"
+
+groups:
+  - series: "FCM-I"
+    title: "Foundations of Computational Mathematics I"
+    period: "Fall 2025"
+    instructor: "Prof. Kyle Gallivan"
+    topics: "Numerical linear algebra, direct solvers, orthogonal factorizations"
+    count: "4 projects"
+    items:
+      - ix: "FCM-I · 01"
+        lang: "MATLAB"
+        title: "Lower-triangular matvec & outer-product LU"
+        desc: "Dense, compressed-column, and banded storage; flop and storage complexity for outer-product LU multiplication."
+        tags: ["BLAS-1/2", "Banded", "Storage"]
+        code_url:   "https://github.com/Alex-Sampson/Alex-Sampson.github.io/tree/master/assets/project-assets/project-code-files/FCM1-Code/Program01-Code"
+        report_url: "https://alex-sampson.github.io/assets/pdf-documents/FCM1-Reports/FCM1Project01-Report.pdf"
+
+      - ix: "FCM-I · 02"
+        lang: "MATLAB"
+        title: "Sparse SpMV across storage formats"
+        desc: "COO → CSR / modCSR / ELLPACK, elbow-room CSR with dynamic insertion, symmetric CSR, and DIA band format."
+        tags: ["Sparse", "CSR", "ELLPACK"]
+        code_url:   "https://github.com/Alex-Sampson/Alex-Sampson.github.io/tree/master/assets/project-assets/project-code-files/FCM1-Code/Program02-Code"
+        report_url: "https://alex-sampson.github.io/assets/pdf-documents/FCM1-Reports/FCM1Project02-Report.pdf"
+
+      - ix: "FCM-I · 03"
+        lang: "MATLAB"
+        title: "In-place LU with pivoting & stability"
+        desc: "No / partial / complete pivoting; triangular solvers; growth factor and numerical stability analysis."
+        tags: ["LU", "Pivoting", "Stability"]
+        code_url:   "https://github.com/Alex-Sampson/Alex-Sampson.github.io/tree/master/assets/project-assets/project-code-files/FCM1-Code/Program03-Code"
+        report_url: "https://alex-sampson.github.io/assets/pdf-documents/FCM1-Reports/FCM1Project03-Report.pdf"
+
+      - ix: "FCM-I · 04"
+        lang: "MATLAB"
+        title: "Householder QR & least squares"
+        desc: "Packed-storage Householder QR; full and incremental least-squares solvers; polynomial regression, monomial vs. Chebyshev conditioning."
+        tags: ["QR", "Least Sq.", "Chebyshev"]
+        code_url:   "https://github.com/Alex-Sampson/Alex-Sampson.github.io/tree/master/assets/project-assets/project-code-files/FCM1-Code/Program04-Code"
+        report_url: "https://alex-sampson.github.io/assets/pdf-documents/FCM1-Reports/FCM1Project04-Report.pdf"
+
+  - series: "FCM-II"
+    title: "Foundations of Computational Mathematics II"
+    period: "Spring 2026"
+    instructor: "Prof. Kyle Gallivan"
+    topics: "Nonlinear equations, approximation, spline methods"
+    count: "3 of 4"
+    items:
+      - ix: "FCM-II · 01"
+        lang: "MATLAB"
+        title: "Nonlinear root-finding & convergence"
+        desc: "Newton, secant, regula falsi, Steffensen, fixed-point iteration; convergence rates, multiplicity effects, basins of attraction."
+        tags: ["Newton", "Steffensen", "Basins"]
+        code_url:   "https://github.com/Alex-Sampson/Alex-Sampson.github.io/tree/master/assets/project-assets/project-code-files/FCM2-Code/Program01-Code"
+        report_url: "https://alex-sampson.github.io/assets/pdf-documents/FCM2-Reports/FCM2_Program01.pdf"
+
+      - ix: "FCM-II · 02"
+        lang: "MATLAB"
+        title: "Polynomial interpolation & stability"
+        desc: "Barycentric forms, Newton form with Leja ordering, Lebesgue constants, uniform vs. Chebyshev nodes, floating-point stability."
+        tags: ["Barycentric", "Leja", "Lebesgue"]
+        code_url:   "https://github.com/Alex-Sampson/Alex-Sampson.github.io/tree/master/assets/project-assets/project-code-files/FCM2-Code/Program02-Code"
+        report_url: "https://alex-sampson.github.io/assets/pdf-documents/FCM2-Reports/FCM2_Program02.pdf"
+
+      - ix: "FCM-II · 03"
+        lang: "MATLAB"
+        title: "Piecewise polynomial & cubic splines"
+        desc: "Tridiagonal solvers, B-spline basis, convergence rates, real-data application."
+        tags: ["Splines", "B-spline", "Tridiagonal"]
+        code_url:   "https://github.com/Alex-Sampson/Alex-Sampson.github.io/tree/master/assets/project-assets/project-code-files/FCM2-Code/Program03-Code"
+        report_url: "https://alex-sampson.github.io/assets/pdf-documents/FCM2-Reports/FCM2_Program03.pdf"
+
+      - ix: "FCM-II · 04"
+        lang: "In progress"
+        in_progress: true
+        title: "Project 4 — forthcoming"
+        desc: "Numerical quadrature & differentiation (provisional). Report and code will appear here once the project closes."
+        tags: ["Quadrature", "TBD"]
+        forthcoming_note: "Spring 2026"
