@@ -1,0 +1,108 @@
+---
+layout: default
+section: teaching
+permalink: /teaching/
+title: "Teaching"
+description: "Courses taught and assisted, with materials, notes, and study guides for current and former students."
+---
+
+<main class="page" data-screen-label="03 Teaching">
+
+  <div class="content">
+
+    <header class="page-head">
+      <div class="title-block">
+        <div class="eyebrow">03 · Teaching</div>
+        <h1>A record of teaching — and a place to keep the materials.</h1>
+        <p class="lede">
+          Teaching has been one of the most meaningful parts of my graduate experience. Below
+          is a record of the courses I've taught or assisted with, with notes and materials
+          linked where they exist. Currently-enrolled students: this is the page you want.
+        </p>
+      </div>
+    </header>
+
+    <article class="article wide">
+
+      {% for g in site.data.teaching.groups %}
+      <section>
+        <h3 class="section-label">{{ g.school }}</h3>
+        <ol class="timeline">
+          {% for c in g.items %}
+          <li>
+            <div class="when">{{ c.when }}</div>
+            <div>
+              <h3>{{ c.title }}</h3>
+              <div class="role">{{ c.role }}</div>
+              <p class="body">{{ c.body | strip_newlines }}</p>
+              {% if c.materials %}
+              <div class="materials">
+                {% for m in c.materials %}
+                  {% if m.url %}
+                    <a href="{{ m.url }}">{{ m.label }}</a>
+                  {% else %}
+                    <span class="placeholder">{{ m.label }}</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          </li>
+          {% endfor %}
+        </ol>
+      </section>
+      {% endfor %}
+
+      <section>
+        <h3 class="section-label">Philosophy, in one paragraph</h3>
+        <p>
+          I want students to leave my classroom with stronger habits of thought, more
+          confidence, and a clearer sense of mathematics as a discipline that is both rigorous
+          and accessible. I emphasize clear mathematical structure, multiple solution
+          pathways, and low-stakes practice that destigmatizes mistakes and normalizes
+          useful struggle. <a href="{{ '/' | relative_url }}">More on the home page →</a>
+        </p>
+      </section>
+
+      <footer class="foot">
+        <span>Teaching · § 03</span>
+        <span><a href="{{ '/projects/' | relative_url }}">← Projects</a> · <a href="{{ '/notes/' | relative_url }}">Notes →</a></span>
+      </footer>
+
+    </article>
+  </div>
+
+  <aside class="meta-side">
+    <section>
+      <h4>FSU</h4>
+      <ul>
+        <li>
+          Pre-Calculus / College Algebra
+          <span class="date">Lab proctor · 2025 — current</span>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h4>UNLV — Instructor</h4>
+      <ul>
+        <li>
+          Pre-Calculus II
+          <span class="date">Summers '23 · '24 · '25</span>
+        </li>
+        <li>
+          Online course development
+          <span class="date">2021 — 2024</span>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h4>UNLV — TA</h4>
+      <ul>
+        <li>Calculus I · II · III</li>
+        <li>Intro to Proofs</li>
+        <li>ODEs for Engineers</li>
+      </ul>
+    </section>
+  </aside>
+
+</main>

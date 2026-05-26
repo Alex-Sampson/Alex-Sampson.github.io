@@ -1,41 +1,56 @@
+# =====================================================================
+# Site
+# =====================================================================
 title: "Alex Sampson"
 author: "Alex Sampson"
-description: "Florida State University"
+description: "Alex Sampson is a PhD student in Applied and Computational Mathematics at Florida State University, researching shape analysis, geometric PDEs, and optimal transport."
 url: "https://alex-sampson.github.io"
-permalink: /:title/
 lang: "en"
-excerpt_separator: "\n\n\n"
-date_format: "%B %d, %Y"
+encoding: "utf-8"
+date_format: "%B %-d, %Y"
+date_format_dotted: "%Y · %m · %d"
 
-# Layout
+# Permalinks: posts at /notes/<slug>/
+permalink: /notes/:slug/
 
-show_excerpts: true # show article excerpts instead of archive list on the home page
-show_frame: true # display a grey frame on large screens
-show_sidebar: true # show a sidebar instead of the usual header
-show_minimal: false # remove all clutter
-mathjax: true # allows renderable LaTeX. Uses: $$ inline math $$
+# Defaults — set the post layout + section once
+defaults:
+  - scope: { path: "", type: "posts" }
+    values:
+      layout: post
+      section: notes        # keeps the Notes nav item active on post pages
 
-#show_frame: "/assets/images/background.svg"
+# =====================================================================
+# Analytics
+# =====================================================================
+umami:
+  website_id: "ff37b074-f0e9-472b-9c3c-b3c5193bd75c"
+  script: "https://cloud.umami.is/script.js"
 
-# Menu # for available icons see https://fontawesome.com/v5/icons/
+# =====================================================================
+# CV
+# =====================================================================
+cv:
+  pdf: "/assets/pdf-documents/cv-updates/AlexSampson-CV.pdf"
+  pages: 2
+  updated: "May 2026"
 
-navigation: # accepts {file, title, url, icon, sidebaricon}
-
- - {file: "index.md", title: "About Me", sidebaricon: user}
- - {file: "blog.html", title: "Blog", sidebaricon: pen}
- - {file: "teaching.md", title: "Teaching", sidebaricon: chalkboard-teacher}
- - {file: "projects.md", title: "Projects", sidebaricon: code}
- - {file: "cv.md", title: "CV", sidebaricon: file-alt}
-
-external: # accepts {file, title, url, icon, sidebaricon}
- - {title: E-Mail Me!, icon: envelope, url: "mailto:ajsampson@fsu.edu"}
- - {title: Github, icon: github, url: "https://github.com/alex-sampson"}
- #- {title: Subscribe, icon: rss, url: "/feed.xml"}
-
-comments:
-# disqus_shortname: "" # see https://disqus.com
-# isso_domain: "" # see https://isso-comments.de
-
+# =====================================================================
+# Plugins
+# =====================================================================
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+
+# =====================================================================
+# Build
+# =====================================================================
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
+
+sass:
+  style: compressed

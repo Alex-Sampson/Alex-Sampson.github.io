@@ -1,0 +1,97 @@
+---
+layout: default
+section: projects
+permalink: /projects/
+title: "Projects"
+description: "Graduate coursework projects in computational mathematics. Reports and source code linked to GitHub."
+---
+
+<main class="page" data-screen-label="02 Projects">
+
+  <div class="content">
+
+    <header class="page-head">
+      <div class="title-block">
+        <div class="eyebrow">02 · Projects</div>
+        <h1>Coursework projects, written up.</h1>
+        <p class="lede">
+          Each project has a written report and a linked repository with the MATLAB or Python
+          source. I update this page whenever a new report is finalised — most recent first.
+        </p>
+      </div>
+    </header>
+
+    <article class="article wide">
+
+      {% for g in site.data.projects.groups %}
+      <section class="project-group">
+        <header>
+          <div>
+            <h2>{{ g.title }}</h2>
+            <div class="meta-line">{{ g.period }} · {{ g.instructor }} · {{ g.topics }}</div>
+          </div>
+          <div class="count">{{ g.count }}</div>
+        </header>
+
+        <ol class="project-list">
+          {% for p in g.items %}
+          <li{% if p.in_progress %} style="opacity:0.55;"{% endif %}>
+            <span class="ix">{{ p.ix }}</span>
+            <div>
+              <h3>{{ p.title }}</h3>
+              <p class="desc">{{ p.desc }}</p>
+              <div class="tags">{% for t in p.tags %}<span>{{ t }}</span>{% endfor %}</div>
+            </div>
+            <div class="links">
+              {% if p.code_url %}<a href="{{ p.code_url }}" data-umami-event="Project code">Code ↗</a>{% endif %}
+              {% if p.report_url %}<a href="{{ p.report_url }}" data-umami-event="Project report">Report (PDF)</a>{% endif %}
+              {% if p.forthcoming_note %}<span style="color:var(--ink-faint);">{{ p.forthcoming_note }}</span>{% endif %}
+            </div>
+          </li>
+          {% endfor %}
+        </ol>
+      </section>
+      {% endfor %}
+
+      <p style="font-family:var(--sans);font-size:0.9rem;color:var(--ink-soft);margin-top:var(--s-6);">
+        New project groups appear here as I take additional computational coursework and
+        begin independent research projects. Each entry is one row in
+        <code>_data/projects.yml</code>.
+      </p>
+
+      <footer class="foot">
+        <span>Projects · § 02</span>
+        <span><a href="{{ '/' | relative_url }}">← Home</a> · <a href="{{ '/teaching/' | relative_url }}">Teaching →</a></span>
+      </footer>
+
+    </article>
+  </div>
+
+  <aside class="meta-side">
+    <section>
+      <h4>Course series</h4>
+      <ul>
+        {% for g in site.data.projects.groups %}
+        <li>
+          {{ g.title }}
+          <span class="date">{{ g.series }} · {{ g.period }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    <section>
+      <h4>Tools</h4>
+      <ul>
+        <li>MATLAB</li>
+        <li>LaTeX for reports</li>
+      </ul>
+    </section>
+    <section>
+      <h4>Last updated</h4>
+      <ul>
+        <li><span class="date" style="margin-top:0;">{{ site.data.projects.last_updated }}</span></li>
+      </ul>
+    </section>
+  </aside>
+
+</main>

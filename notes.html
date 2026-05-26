@@ -1,0 +1,109 @@
+---
+layout: default
+section: notes
+permalink: /notes/
+title: "Notes"
+description: "Working notes on papers and ideas, plus a current reading list."
+---
+
+<main class="page" data-screen-label="04 Notes">
+
+  <div class="content">
+
+    <header class="page-head">
+      <div class="title-block">
+        <div class="eyebrow">04 · Notes</div>
+        <h1>Working notes &amp; what's on my desk.</h1>
+        <p class="lede">
+          Short essays on papers I'm reading, half-formed ideas I want to come back to, and a
+          running list of what's currently open on my desk. Updated irregularly — useful
+          mostly to me, but you're welcome to read along.
+        </p>
+      </div>
+    </header>
+
+    <article class="article">
+
+      <section>
+        <h3 class="section-label">Currently reading</h3>
+        <ul class="reading">
+          <li>
+            <span class="status active">Active</span>
+            <span class="title">Completeness of reparametrization-invariant Sobolev metrics on the space of surfaces</span>
+            <span class="author">Bauer, Maor, Wirth · 2025</span>
+          </li>
+          <li>
+            <span class="status">Queued</span>
+            <span class="title">A Numerical Framework for Sobolev Metrics on the Space of Curves</span>
+            <span class="author">Bauer et al.</span>
+          </li>
+          <li>
+            <span class="status">Queued</span>
+            <span class="title">Optimal Transport: Old and New</span>
+            <span class="author">C. Villani</span>
+          </li>
+          <li>
+            <span class="status">Background</span>
+            <span class="title">Riemannian Geometry of Shape Spaces</span>
+            <span class="author">Younes, Michor, Mumford</span>
+          </li>
+          <li>
+            <span class="status">Finished</span>
+            <span class="title">Mathematics for Human Flourishing</span>
+            <span class="author">F. Su</span>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="section-label">Recent notes</h3>
+        <ol class="notes-list">
+          {% for post in site.posts %}
+          <li>
+            <div class="when">{{ post.date | date: site.date_format_dotted }}</div>
+            <div>
+              <h3><a href="{{ post.url | relative_url }}" data-umami-event="Open note: {{ post.title | escape }}">{{ post.title }}</a></h3>
+              <p class="desc">{{ post.description }}</p>
+            </div>
+          </li>
+          {% endfor %}
+        </ol>
+      </section>
+
+      <footer class="foot">
+        <span>Notes · § 04</span>
+        <span><a href="{{ '/teaching/' | relative_url }}">← Teaching</a> · <a href="{{ '/cv/' | relative_url }}">CV →</a></span>
+      </footer>
+
+    </article>
+  </div>
+
+  <aside class="meta-side">
+    <section>
+      <h4>On my desk</h4>
+      <ul>
+        <li>
+          Bauer, Maor, Wirth — surfaces completeness
+          <span class="date">arXiv 2512.01566 · 2025</span>
+        </li>
+        <li>
+          Villani — <em>Optimal Transport: Old &amp; New</em>
+          <span class="date">queued</span>
+        </li>
+        <li>
+          Younes, Michor, Mumford — shape spaces
+          <span class="date">background</span>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h4>How this is run</h4>
+      <ul>
+        <li>Each note is a Markdown file in <code>_posts/</code></li>
+        <li>Auto-sorted by date</li>
+        <li>RSS at <a href="{{ '/feed.xml' | relative_url }}">/feed.xml</a></li>
+      </ul>
+    </section>
+  </aside>
+
+</main>

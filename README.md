@@ -1,87 +1,171 @@
+# Jekyll port — deployment guide
+
+This folder is a complete Jekyll site that produces the same HTML as the
+`site/` static mockup. Drop the contents into a branch of your existing
+GitHub Pages repo, push, and you're live.
+
 ---
-title: "About"
-permalink: "/about/"
-layout: page
----
 
-## Github Pages
-
-Just fork this [repository](https://github.com/niklasbuschmann/contrast) to `your_username.github.io` and adjust the `_config.yml` to use with [Github Pages](https://pages.github.com/) and your page is done.
-
-## Features
-
- - dark mode
- - [KaTeX](https://katex.org) included
- - no external ressources
- - optional sidebar
- - archive page
- - syntax highlighting
- - supports comments via [disqus](https://disqus.com/) or [isso](http://posativ.org/isso/)
-
-## Installation
-
-To run locally [install Ruby](https://www.ruby-lang.org/en/documentation/installation/) and then run:
+## What's here
 
 ```
-git clone https://github.com/niklasbuschmann/contrast.git
-cd contrast
-gem install bundler jekyll jekyll-feed
+jekyll-site/
+├── _config.yml                 site config + analytics + CV metadata
+├── Gemfile                     gem dependencies (github-pages bundle)
+├── _layouts/
+│   ├── default.html            <html>…<body> shell + topbar + scripts
+│   └── post.html               full post structure (back link, lede, sidebar)
+├── _includes/
+│   ├── head.html               <head> tags + meta + OG + Umami + favicon
+│   ├── topbar.html             sticky nav, driven by _data/nav.yml
+│   ├── jsonld-person.html      Person schema (homepage only)
+│   └── katex.html              KaTeX render bootstrap
+├── _data/
+│   ├── nav.yml                 the five nav items
+│   ├── projects.yml            project rows (FCM I & II)
+│   └── teaching.yml            teaching record
+├── _posts/
+│   ├── 2026-05-25-welcome.md
+│   ├── 2026-05-24-jekyll.md
+│   └── 2026-05-23-markdown-patterns.md
+├── assets/
+│   ├── css/site.css            full stylesheet
+│   ├── js/site.js              live Tweaks panel (accent swap)
+│   ├── images/                 banner, portrait, surface figure
+│   └── pdf-documents/cv-updates/AlexSampson-CV.pdf
+├── index.html                  homepage (layout: default, includes math)
+├── projects.html               loops over _data/projects.yml
+├── teaching.html               loops over _data/teaching.yml
+├── notes.html                  loops over site.posts
+└── cv.html                     CV summary + PDF download
+```
+
+The CSS and JS are byte-identical to `site/assets/`. The rendered HTML
+will match the static mockup essentially exactly (same DOM, same classes,
+same content) — Jekyll just *generates* it from the Markdown / YAML
+sources instead of you hand-writing each page.
+
+---
+
+## Deploying to your GitHub repo
+
+You said your existing repo is `Alex-Sampson/Alex-Sampson.github.io`.
+Here's the cleanest path:
+
+### 1. Create a new branch on your local clone
+
+```bash
+cd /path/to/Alex-Sampson.github.io
+git checkout master
+git pull
+git checkout -b redesign
+```
+
+### 2. Remove the old Jekyll content from this branch
+
+```bash
+git rm -rf _layouts _includes _sass _posts assets _Private-Notes \
+          index.md cv.md projects.md teaching.md blog.html archive.html 404.html
+```
+
+(Leave `.github/`, `.gitignore`, `Gemfile`, `_config.yml`,
+`google77d6ea25d4901736.html`, `robots.txt`, `README.md`, and
+`UNLICENSE.txt` in place — we'll overwrite the config and gemfile.)
+
+### 3. Copy this folder's contents into the repo root
+
+Everything inside `jekyll-site/` (not the folder itself) goes at the repo
+root:
+
+```bash
+cp -r /path/to/jekyll-site/. .
+```
+
+After this, `index.html`, `_config.yml`, `_layouts/`, `_posts/`, `assets/`,
+etc. should all be at the repo root.
+
+### 4. Test locally
+
+```bash
+bundle install
 bundle exec jekyll serve
 ```
 
-## Config
+Visit `http://127.0.0.1:4000/`. You should see the same site you've been
+reviewing.
 
-Your `_config.yml` could for example look like this:
+### 5. Push and switch GitHub Pages source
 
-```yaml
-title: "Blog Title"
-author: "Blog Author"
-description: "My blog"
-permalink: /:title/
-lang: "en"
-excerpt_separator: "\n\n\n"
-date_format: "%B %d, %Y"
-
-# Layout
-
-show_excerpts: true             # show article excerpts instead of archive list on the home page
-show_frame: true                # display a grey frame on large screens
-show_sidebar: false             # show a sidebar instead of the usual header
-show_minimal: false             # remove all clutter
-
-# Menu                          # for available icons see https://fontawesome.com/v5/icons/
-
-navigation:                     # accepts {file, title, url, icon, sidebaricon}
-  - {file: "archive.html", sidebaricon: home}
-  - {file: "README.md", sidebaricon: address-card}
-
-external:                       # accepts {file, title, url, icon, sidebaricon}
-  - {title: Mail, icon: envelope, url: "mailto:author@example.com"}
-  - {title: Github, icon: github, url: "https://github.com/"}
-  - {title: Subscribe, icon: rss, url: "/feed.xml"}
-
-comments:
-#  disqus_shortname: ""         # see https://disqus.com
-#  isso_domain: ""              # see https://isso-comments.de
-
-plugins:
- - jekyll-feed
+```bash
+git add -A
+git commit -m "Redesign: warm scholarly site"
+git push -u origin redesign
 ```
 
-## Math
+In your repo on github.com → **Settings → Pages → Build and deployment**:
+- **Source**: Deploy from a branch
+- **Branch**: `redesign` / `(root)`
+- Save
 
-Contrast comes preinstalled with a leightweight alternative to MathJax called [KaTeX](https://katex.org/). To display equations in a post simply set `mathjax: true` in the article's front matter. [Jektex](https://github.com/yagarea/jektex) can be used to pre-render math on the server side.
+GitHub will rebuild and serve the new site at `alex-sampson.github.io`
+within a minute or two.
 
-## License
+When you're happy with it, you can either keep deploying from `redesign`
+or merge `redesign` into `master` and switch the Pages source back.
 
-[public domain](http://unlicense.org/)
+---
 
-## Screenshots
+## Day-to-day updates
 
-![screenshot](https://github.com/user-attachments/assets/8f0ef4bc-f079-495e-8c31-5867b8ccd25c)
+| You want to … | Edit |
+|---|---|
+| Add a new project | append an item to `_data/projects.yml` |
+| Add a new course or teaching material | append an item to `_data/teaching.yml` |
+| Add a new note / blog post | drop a Markdown file in `_posts/` named `YYYY-MM-DD-slug.md` |
+| Edit homepage prose | edit `index.html` (the body, not the layout) |
+| Edit CV summary | edit `cv.html` |
+| Add a new top-level page | create `<name>.md` with `layout: default` and a permalink, then add a row to `_data/nav.yml` |
+| Update the PDF CV | replace `assets/pdf-documents/cv-updates/AlexSampson-CV.pdf` and bump `cv.updated` in `_config.yml` |
+| Change site title / description / Umami ID | edit `_config.yml` |
+| Change visual design (colors, type, spacing) | edit `assets/css/site.css` |
 
-![screenshot](https://github.com/user-attachments/assets/e5e6d189-3251-41f4-baba-ff42be65f666)
+---
 
-![screenshot](https://github.com/user-attachments/assets/d31879ae-7113-42be-b580-1e96a2aedd29)
+## Notes on the port
 
-![screenshot](https://github.com/user-attachments/assets/d524ce47-8d8c-473e-afc6-79b34fae63e8)
+- **Topbar** is now rendered by Liquid (`_includes/topbar.html`) from
+  `_data/nav.yml`, not by JS. The "current page" highlight uses the
+  `section:` value from each page's front-matter. Posts inherit
+  `section: notes` from the `defaults:` block in `_config.yml`, so the
+  Notes tab stays active on every post page.
+
+- **Meta tags + Umami** live in one place (`_includes/head.html`) and
+  pull title/description from each page's front-matter. To change the
+  global OG image, the Umami site ID, or the JSON-LD schema, edit there
+  once.
+
+- **KaTeX** is opt-in per page via `katex: true` front-matter. The
+  homepage and the markdown-patterns post are the two pages that
+  currently use it.
+
+- **Permalinks**: pages use the `permalink:` field in their front-matter
+  (e.g. `/projects/`). Posts use `/notes/<slug>/` from
+  `_config.yml`'s site-wide `permalink:` setting.
+
+- **Search engines**: `jekyll-sitemap` generates `sitemap.xml` at build
+  time. `jekyll-feed` generates `feed.xml` at `/feed.xml`. Both are
+  linked from the `<head>` via `{% feed_meta %}`.
+
+---
+
+## If anything breaks
+
+- **Liquid syntax error** while building: most often a `{% raw %}` block
+  in a post that wraps something Jekyll already wouldn't try to parse.
+  Run `bundle exec jekyll build --trace` to see the file + line.
+- **Layout not applied**: check that the page's front-matter `layout:`
+  value matches a file in `_layouts/`.
+- **Topbar not highlighting**: check that the page's `section:`
+  front-matter matches a `section:` value in `_data/nav.yml`.
+- **PDF link 404**: filename in `_config.yml` (`cv.pdf:`) must match the
+  actual file in `assets/pdf-documents/cv-updates/`.
