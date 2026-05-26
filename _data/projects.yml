@@ -2,7 +2,7 @@
 # Each group: title, period, instructor, topics, count (auto if omitted), items[].
 # Each item: ix, lang, title, desc, tags[], code_url, report_url, (optional) in_progress.
 
-last_updated: "04 · 11 · 2026"
+last_updated: "05 · 26 · 2026"
 
 groups:
   - series: "FCM-I"
@@ -49,7 +49,7 @@ groups:
     period: "Spring 2026"
     instructor: "Prof. Kyle Gallivan"
     topics: "Nonlinear equations, approximation, spline methods"
-    count: "3 of 4"
+    count: "4 projects"
     items:
       - ix: "FCM-II · 01"
         lang: "MATLAB"
@@ -76,9 +76,9 @@ groups:
         report_url: "https://alex-sampson.github.io/assets/pdf-documents/FCM2-Reports/FCM2_Program03.pdf"
 
       - ix: "FCM-II · 04"
-        lang: "In progress"
-        in_progress: true
-        title: "Project 4 — forthcoming"
-        desc: "Numerical quadrature & differentiation (provisional). Report and code will appear here once the project closes."
-        tags: ["Quadrature", "TBD"]
-        forthcoming_note: "Spring 2026"
+        lang: "MATLAB"
+        title: "Numerical quadrature & adaptive integration"
+        desc: "Composite trapezoid and Gauss-2 rules; adaptive trapezoid with error control; convergence rates and error analysis."
+        tags: ["Quadrature", "Trapezoid", "Gauss"]
+        code_url:   "https://github.com/Alex-Sampson/Alex-Sampson.github.io/tree/master/assets/project-assets/project-code-files/FCM2-Code/Program04-Code"
+        report_url: "https://alex-sampson.github.io/assets/pdf-documents/FCM2-Reports/FCM2_Program04.pdf"
