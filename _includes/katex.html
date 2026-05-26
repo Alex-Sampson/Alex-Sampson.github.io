@@ -1,0 +1,19 @@
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (!window.katex) return;
+  const R = (id, tex, display=false) => {
+    const el = document.getElementById(id);
+    if (el) katex.render(tex, el, { throwOnError: false, displayMode: display });
+  };
+  // Provide rendering data via a JSON script tag the page sets up.
+  const data = document.getElementById("katex-data");
+  if (!data) return;
+  try {
+    const items = JSON.parse(data.textContent);
+    items.forEach(([id, tex, display]) => R(id, tex, !!display));
+  } catch (e) {
+    console.warn("KaTeX data parse error:", e);
+  }
+});
+</script>

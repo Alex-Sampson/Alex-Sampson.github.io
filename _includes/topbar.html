@@ -1,0 +1,15 @@
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="{{ '/' | relative_url }}" class="mono-mark plain" aria-label="Alex Sampson — home">AS</a>
+    <nav class="topnav" aria-label="Primary">
+      {%- assign cur_section = page.section -%}
+      {%- if page.url == '/' -%}{%- assign cur_section = 'home' -%}{%- endif -%}
+      {%- for item in site.data.nav -%}
+        {%- assign is_current = false -%}
+        {%- if item.section == cur_section -%}{%- assign is_current = true -%}{%- endif -%}
+        {%- if item.url == page.url -%}{%- assign is_current = true -%}{%- endif -%}
+        <a href="{{ item.url | relative_url }}" class="plain{% if is_current %} current{% endif %}">{{ item.title }}</a>
+      {%- endfor -%}
+    </nav>
+  </div>
+</header>
