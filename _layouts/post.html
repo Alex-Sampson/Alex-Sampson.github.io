@@ -1,23 +1,61 @@
 ---
 layout: default
+katex: true
 ---
+{%- assign date_long = page.date | date: site.date_format -%}
 
-<article>
-  {% include meta.html post=page %}
-  {{ content }}
-  {% if site.comments.isso_domain or site.comments.disqus_shortname %}
-    <hr>
-    {% if site.comments.isso_domain %}<div id="isso-thread"></div>{% endif %}
-    {% if site.comments.disqus_shortname %}<div id="disqus_thread"></div>{% endif %}
-    <noscript>Please enable JavaScript to view comments.</noscript>
-  {% endif %}
-</article>
+<main class="page" data-screen-label="04 Notes · {{ page.title | escape }}">
 
-{% unless site.show_minimal or site.footer  %}
-{% if page.next.url or page.previous.url %}
-<footer class="nowrap {% if site.show_frame %}dark{% else %}smooth{% endif %}">
-  {% if page.next.url %}<a href="{{ page.next.url | relative_url }}">« {{ page.next.title }}</a> {% endif %}
-  {% if page.previous.url %} <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }} »</a>{% endif %}
-</footer>
-{% endif %}
-{% endunless %}
+  <div class="content">
+
+    <a href="{{ '/notes/' | relative_url }}" class="post-back plain">← All notes</a>
+
+    <header class="page-head">
+      <div class="title-block">
+        <div class="eyebrow">Notes · {{ date_long }}</div>
+        <h1>{{ page.title | escape }}{% unless page.title contains '.' or page.title contains '?' or page.title contains '!' %}.{% endunless %}</h1>
+        {%- if page.description %}<p class="lede">{{ page.description }}</p>{%- endif %}
+      </div>
+    </header>
+
+    <article class="article">
+      {%- if page.ai_placeholder %}
+      <aside class="callout" aria-label="Placeholder notice">
+        <p class="label">Placeholder · AI-generated</p>
+        <p class="gloss" style="margin:0;">
+          This note is a stand-in while the Notes section comes online. It was drafted by
+          an AI assistant to test the post layout. A real version, in my own voice, will
+          replace it as the page matures.
+        </p>
+      </aside>
+      {%- endif %}
+
+      {{ content }}
+
+      <footer class="foot">
+        <span>Notes · {{ date_long }}</span>
+        <span><a href="{{ '/notes/' | relative_url }}">← All notes</a> · <a href="{{ '/' | relative_url }}">Home</a></span>
+      </footer>
+    </article>
+  </div>
+
+  <aside class="meta-side">
+    <section>
+      <h4>Filed under</h4>
+      <ul>
+        <li>Notes</li>
+        <li><span class="date">{{ date_long }}</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <h4>Elsewhere</h4>
+      <ul>
+        <li><a href="{{ '/notes/' | relative_url }}">All notes</a></li>
+        <li><a href="{{ '/' | relative_url }}">Home</a></li>
+        <li><a href="mailto:ajsampson@fsu.edu" data-umami-event="Email">Email me</a></li>
+      </ul>
+    </section>
+  </aside>
+
+</main>

@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang }}">
+<!doctype html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+<head>
+  {%- include head.html -%}
+</head>
+<body>
 
-{% include head.html %}
-
-<header class="hover smooth">
-  {% unless site.show_minimal and site.navigation and site.external %}
-    <h1 {% if site.navigation and site.external %}class="full"{% endif %}><a href="{{ "/" | relative_url }}">{{ site.title | escape }}</a></h1>
-  {% endunless %}
-  {% include menu.html menu=site.navigation %}
-  {% include menu.html menu=site.external %}
-</header>
+{%- include topbar.html -%}
 
 {{ content }}
 
-{%- if site.footer -%}
-<footer class="hover">
-  <div>{{ site.description }}</div>
-  {% include menu.html menu=site.footer %}
-</footer>
+<script src="{{ '/assets/js/site.js' | relative_url }}"></script>
+{%- if page.katex -%}
+  {%- include katex.html -%}
 {%- endif -%}
 
+</body>
 </html>
