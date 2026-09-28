@@ -6,6 +6,21 @@
 groups:
   - school: "Florida State University"
     items:
+      - when: "Fall 2026"
+        title: "Calculus I (MAC2311)"
+        role: "Graduate Teaching Assistant"
+        body: >
+          Lead recurring class meetings and recitation activities for first-semester
+          calculus, with an emphasis on conceptual interpretation, collaborative problem
+          solving, and clear mathematical communication. Course materials will be added
+          here as they are developed and refined.
+        materials:
+          - label: "Derivative Jeopardy — interactive review"
+            url: "/assets/teaching-materials/mac2311/derivative-jeopardy/"
+          - label: "Derivative Jeopardy — facilitator guide"
+            url: "/assets/teaching-materials/mac2311/derivative-jeopardy/facilitator-guide.html"
+          - label: "Lecture notes — coming soon"
+
       - when: "2025 — current"
         title: "Pre-Calculus & College Algebra"
         role: "Laboratory Proctor & Lecture Assistant"
