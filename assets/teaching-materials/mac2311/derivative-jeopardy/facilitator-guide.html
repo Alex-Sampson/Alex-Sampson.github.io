@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MAC2311 Derivative Jeopardy — Facilitator Guide</title>
+  <style>
+    :root { --garnet:#782f40; --gold:#ceb888; --ink:#17151a; }
+    * { box-sizing:border-box; }
+    body { max-width: 8.25in; margin: 0 auto; padding: .45in; color:var(--ink); font: 11pt/1.38 Georgia, serif; }
+    h1 { margin:0; color:var(--garnet); font-size:24pt; }
+    h2 { margin:1.2rem 0 .5rem; padding-bottom:.2rem; border-bottom:2px solid var(--gold); color:var(--garnet); font-size:16pt; }
+    h3 { margin:.9rem 0 .25rem; font-size:12pt; }
+    .meta { margin:.15rem 0 1rem; color:#5b4d42; }
+    .clue { break-inside:avoid; margin:.55rem 0; padding:.55rem .7rem; border-left:4px solid var(--gold); background:#faf7f0; }
+    .value { color:var(--garnet); font-weight:bold; }
+    .answer { margin-top:.3rem; font-weight:bold; }
+    .solution { margin-top:.2rem; }
+    .note { margin-top:.25rem; color:#5a3b00; font-style:italic; }
+    .schedule { display:grid; grid-template-columns:auto 1fr; gap:.2rem .8rem; }
+    .screen-only { text-align:right; }
+    @media print { body { padding:0; } .screen-only { display:none; } h2 { break-after:avoid; } }
+  </style>
+</head>
+<body>
+  <div class="screen-only"><button onclick="window.print()">Print Guide</button></div>
+  <h1>MAC2311 Derivative Jeopardy</h1>
+  <p class="meta">Facilitator guide · Recitation 2 · Coverage through §4.1.3</p>
+
+  <h2>Run of Show</h2>
+  <div class="schedule">
+    <strong>0–5 min</strong><span>Use 4–6 teams (roughly 3–5 students each); distribute scratch/work sheets; assign recorder and spokesperson.</span>
+    <strong>5–10 min</strong><span>Explain rules and run an unscored practice clue.</span>
+    <strong>10–58 min</strong><span>Main board. Aim for 90 seconds per standard clue and 2 minutes for computations.</span>
+    <strong>58–68 min</strong><span>Final Jeopardy. Teams write wagers before the clue appears.</span>
+    <strong>68–75 min</strong><span>Debrief two frequently missed ideas and collect one work sheet per team.</span>
+  </div>
+
+  <h2>Suggested Rules</h2>
+  <ol>
+    <li>Build balanced teams when possible, spreading students with previous calculus experience across the room.</li>
+    <li>Every team writes a response and reveals it simultaneously when time is called. Every correct team earns full value.</li>
+    <li>Require a brief justification. Award half value for a substantially correct idea with incomplete justification; do not deduct points on ordinary clues.</li>
+    <li>The team marked NEXT PICK chooses the clue. The pick rotates automatically after every revealed clue, regardless of correctness.</li>
+    <li>Rotate spokespersons every four clues, with no repeats until everyone has spoken. Work sheets provide the attendance record.</li>
+    <li>On a Daily Double, the chooser wagers; other teams still play for the printed clue value.</li>
+  </ol>
+
+  <h2>Practice Clue</h2>
+  <section class="clue">
+    <h3>Unscored · 60 seconds</h3>
+    <div>A function approaches x=c while decreasing and leaves while increasing. Without calculating f(c), what can you conclude?</div>
+    <div class="answer">Answer: The function has a local minimum at x=c.</div>
+    <div class="solution">The sign of f′ changes from negative to positive. Use this clue to demonstrate the timer, reveal, and return-to-board controls; it does not rotate NEXT PICK.</div>
+  </section>
+
+  <h2>Sudden Death Bank</h2>
+  <p>Only tied teams respond. Correct teams survive and incorrect teams are eliminated. If all remaining teams are correct or all are incorrect, nobody is eliminated; use the next question. These questions are unscored and allow 45 seconds each.</p>
+  <ol>
+    <li><strong>True or false:</strong> If f′(c)=0, then f must have a local extremum at x=c. <em>Answer: False.</em></li>
+    <li>If f′&lt;0 and f″&lt;0 on an interval, describe the graph. <em>Answer: Decreasing and concave down.</em></li>
+    <li>c is a critical number and f″(c)&gt;0. What is the verdict? <em>Answer: A local minimum at x=c.</em></li>
+    <li>Can c be a critical number when f′(c) does not exist? <em>Answer: Yes, provided f(c) exists.</em></li>
+    <li>f is continuous at c, and f″ changes from positive to negative there. What happens? <em>Answer: An inflection point; concavity changes from up to down.</em></li>
+    <li>f′(c)=0, but f′ is positive immediately before and after c. Classify the point. <em>Answer: Neither a local maximum nor a local minimum.</em></li>
+  </ol>
+
+  <div id="guide"></div>
+
+  <script>
+    const questions = [
+      ["Critical Encounters", [
+        [100,"On calculus’s list of usual suspects, this is the name given to an input c in the domain of f where f′(c)=0 or f′(c) does not exist.","What is a critical number?","The input must be in the domain of f."],
+        [200,"A hole may look suspicious, but it cannot make the critical-number list unless this requirement is met.","What is ‘the input must be in the domain of f’?","First require that f(c) exists; then check whether f′(c)=0 or f′(c) does not exist."],
+        [300,"The derivative raises an alarm at x=0, but the original function gets the final say. Find every critical number of f(x)=x+4/x and decide whether 0 makes the list.","x=−2 and x=2; 0 is not critical.","f′(x)=1−4/x². The original function is undefined at 0.","Daily Double · Domain Trap"],
+        [400,"A removable hole at x=1 tries to sneak onto the critical-number list. How many critical numbers does f(x)=(x²−1)/(x−1) actually have?","None.","The function is x+1 for x≠1. Its derivative is 1 on its domain; the hole is not critical."]
+      ]],
+      ["On the Rise (and Fall)", [
+        [100,"This sign of the first derivative gives a function the green light to rise from left to right.","What is positive? f′(x)>0.","A positive derivative means the output rises as the input moves left to right."],
+        [200,"The derivative factors nicely: f′(x)=(x+2)(x−1). Map out every increasing and decreasing interval.","Increasing on (−∞,−2)∪(1,∞); decreasing on (−2,1).","Signs are +, −, +."],
+        [300,"Plot twist: multiplying a derivative by −1 reverses every sign. Use that idea to analyze f′(x)=−x(x−3).","Increasing on (0,3); decreasing on (−∞,0)∪(3,∞).","Signs are −, +, −."],
+        [400,"At x=1, the derivative touches zero and turns back around. For f′(x)=(x−1)²(x+3), describe the behavior.","Decreasing on (−∞,−3); increasing on (−3,1) and (1,∞).","No sign change occurs at the repeated zero x=1."]
+      ]],
+      ["Curve Appeal", [
+        [100,"A tangent line tries to predict nearby values. When the graph is concave up, that prediction generally lands on this side of the graph.","What is below the graph?","Tangent-line approximations tend to underestimate a concave-up function."],
+        [200,"Solving f″(c)=0 earns a point a nomination, not the title. The point receives this title only if the graph actually changes concavity.","What is an inflection point?","A zero or undefined f″ gives a candidate; concavity must actually change."],
+        [300,"This quartic changes its mind about bending twice. For f(x)=x⁴−4x³, locate both changes and determine every concavity interval.","Up on (−∞,0)∪(2,∞); down on (0,2); points (0,0) and (2,−16).","f″(x)=12x(x−2)."],
+        [400,"This shortcut sounds convenient enough to be suspicious: every zero of f″ is an inflection input. Test it on f″(x)=(x−1)²(x+2).","Only x=−2.","The sign does not change at the repeated zero x=1.","Daily Double · True or False"]
+      ]],
+      ["Peak, Valley, or Neither?", [
+        [100,"The function climbs into x=c and leaves going downhill. Give the critical point its proper classification.","Local maximum.","The function changes from increasing to decreasing."],
+        [200,"This derivative test classifies a critical point by checking the sign of f′ immediately to its left and right.","What is the First Derivative Test?","+ to − gives a maximum; − to + gives a minimum; no sign change gives neither."],
+        [300,"One critical number is a genuine turn; the other is only a brief pause. Classify x=−2 and x=1 for f′(x)=(x−1)²(x+2).","Minimum at −2; neither at 1.","The derivative changes − to + at −2 and does not change sign at 1."],
+        [400,"Use the Second Derivative Test for f(x)=x⁴−4x².","Minima at x=±√2; maximum at x=0.","f′=4x(x²−2), f″=12x²−8."]
+      ]],
+      ["Read Between the Curves", [
+        [100,"The graph is heading downhill, but its slopes are becoming less negative. Translate that story into monotonicity and concavity.","Decreasing and concave up.","Heading downhill means f′<0; slopes becoming less negative means f′ is increasing, so f″>0."],
+        [200,"The derivative tells a three-act story: positive, then negative, then positive across x=−1 and x=2. Classify both critical numbers.","Maximum at −1; minimum at 2.","Use the First Derivative Test."],
+        [300,"You are looking at f′, not f—so read one layer deeper. Its graph crosses from − to + at x=−2 and from + to − at x=1. Classify both.","Minimum at −2; maximum at 1.","Read the sign changes from the derivative graph."],
+        [400,"The Second Derivative Test gives two verdicts and refuses the third: f″(−2)=5, f″(1)=0, and f″(3)=−4. What can it conclude?","Minimum at −2; inconclusive at 1; maximum at 3.","A zero second derivative does not establish 'neither'."]
+      ]]
+    ];
+
+    const guide = document.getElementById("guide");
+    for (const [category, clues] of questions) {
+      const heading = document.createElement("h2");
+      heading.textContent = category;
+      guide.appendChild(heading);
+      for (const [value, prompt, answer, solution, note] of clues) {
+        const card = document.createElement("section");
+        card.className = "clue";
+        card.innerHTML = `<h3><span class="value">$${value}</span> ${prompt}</h3><div class="answer">Answer: ${answer}</div><div class="solution">${solution}</div>${note ? `<div class="note">${note}</div>` : ""}`;
+        guide.appendChild(card);
+      }
+    }
+
+    const final = document.createElement("section");
+    final.innerHTML = `<h2>Final Jeopardy</h2><div class="clue"><h3>For f(x)=⅓x³−x², determine increasing/decreasing intervals, local extrema, concavity, and the inflection point.</h3><div class="answer">Answer: Increasing on (−∞,0)∪(2,∞); decreasing on (0,2). Local maximum (0,0); local minimum (2,−4/3). Concave down on (−∞,1); concave up on (1,∞). Inflection point (1,−2/3).</div><div class="solution">f′(x)=x(x−2) and f″(x)=2x−2.</div></div>`;
+    guide.appendChild(final);
+  </script>
+</body>
+</html>

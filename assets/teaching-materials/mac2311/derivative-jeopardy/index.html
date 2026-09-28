@@ -1,0 +1,1175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MAC2311 Derivative Jeopardy</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+  <style>
+    :root {
+      --garnet: #782f40;
+      --garnet-dark: #4f1d2a;
+      --gold: #ceb888;
+      --cream: #f7f3ea;
+      --ink: #17151a;
+      --blue: #102a72;
+      --blue-light: #183b9b;
+      --green: #287d4f;
+      --red: #a52a2a;
+      --shadow: 0 14px 38px rgba(0, 0, 0, .25);
+    }
+
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html, body { min-height: 100%; }
+    body {
+      margin: 0;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at 50% -20%, #b25b70 0, transparent 42%),
+        linear-gradient(150deg, var(--garnet-dark), #21131b 72%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, input:focus-visible {
+      outline: 4px solid #fff;
+      outline-offset: 3px;
+    }
+
+    .app { min-height: 100vh; display: flex; flex-direction: column; }
+    header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      padding: .7rem 1rem;
+      background: rgba(40, 13, 24, .86);
+      border-bottom: 2px solid var(--gold);
+    }
+    .brand { min-width: 0; }
+    .brand h1 {
+      margin: 0;
+      color: #fff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.15rem, 2.2vw, 2rem);
+      letter-spacing: .045em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .brand p { margin: .15rem 0 0; color: var(--gold); font-size: .84rem; }
+
+    .toolbar { display: flex; justify-content: flex-end; gap: .45rem; flex-wrap: wrap; }
+    .toolbar button, .small-button {
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: .5rem;
+      padding: .55rem .75rem;
+      color: #fff;
+      background: rgba(255,255,255,.1);
+      font-weight: 750;
+    }
+    .toolbar button:hover, .small-button:hover { background: rgba(255,255,255,.2); }
+    .toolbar button:disabled { opacity: .4; cursor: not-allowed; }
+
+    .scoreboard {
+      display: grid;
+      grid-template-columns: repeat(var(--team-count, 4), minmax(110px, 1fr));
+      gap: .6rem;
+      width: min(1100px, 100%);
+      margin: .75rem auto;
+      padding: 0 1rem;
+    }
+    .team-card {
+      position: relative;
+      border: 2px solid rgba(206,184,136,.75);
+      border-radius: .75rem;
+      padding: .45rem .6rem .6rem;
+      text-align: center;
+      color: #fff;
+      background: rgba(20, 12, 18, .68);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .team-card.control {
+      transform: translateY(-2px);
+      border-color: #fff4b6;
+      background: rgba(120,47,64,.96);
+      box-shadow: 0 0 0 3px rgba(206,184,136,.34);
+    }
+    .team-card.control::before {
+      content: "NEXT PICK";
+      position: absolute;
+      top: -.65rem;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: .1rem .4rem;
+      border-radius: 999px;
+      color: #2d1a0b;
+      background: var(--gold);
+      font-size: .61rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+    .team-name {
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid rgba(255,255,255,.45);
+      padding: .15rem .25rem;
+      text-align: center;
+      color: #fff;
+      background: transparent;
+      font-weight: 800;
+    }
+    .team-score {
+      display: block;
+      margin-top: .2rem;
+      color: #ffe48f;
+      font: 800 clamp(1.35rem, 3vw, 2.2rem)/1 Georgia, serif;
+      font-variant-numeric: tabular-nums;
+    }
+    .team-adjust { display: flex; justify-content: center; gap: .25rem; margin-top: .35rem; }
+    .team-adjust button {
+      width: 2rem;
+      height: 1.55rem;
+      border: 0;
+      border-radius: .35rem;
+      color: #fff;
+      background: rgba(255,255,255,.15);
+      font-weight: 900;
+    }
+
+    main { flex: 1; display: flex; align-items: center; padding: 0 1rem 1rem; }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: .55rem;
+      width: min(1180px, 100%);
+      margin: auto;
+    }
+    .category {
+      display: grid;
+      place-items: center;
+      min-height: clamp(70px, 10vh, 105px);
+      border: 2px solid #e4d7b7;
+      border-radius: .55rem;
+      padding: .5rem;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(165deg, var(--garnet), var(--garnet-dark));
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(.8rem, 1.5vw, 1.25rem);
+      font-weight: 800;
+      line-height: 1.1;
+      text-transform: uppercase;
+      box-shadow: var(--shadow);
+    }
+    .clue-button {
+      min-height: clamp(72px, 11vh, 112px);
+      border: 2px solid #7d91d0;
+      border-radius: .55rem;
+      color: #ffe36e;
+      background: linear-gradient(145deg, var(--blue-light), var(--blue));
+      font: 900 clamp(1.4rem, 4vw, 3rem)/1 Georgia, serif;
+      text-shadow: 2px 3px 0 rgba(0,0,0,.5);
+      box-shadow: var(--shadow);
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .clue-button:hover { transform: translateY(-2px); filter: brightness(1.14); }
+    .clue-button.used {
+      color: transparent;
+      background: rgba(16,42,114,.3);
+      border-color: rgba(125,145,208,.28);
+      box-shadow: none;
+      pointer-events: none;
+      text-shadow: none;
+    }
+    .final-button {
+      grid-column: 1 / -1;
+      min-height: 58px;
+      border: 2px solid var(--gold);
+      border-radius: .55rem;
+      color: #25150b;
+      background: linear-gradient(120deg, #e8d6a7, #c7a75e);
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      box-shadow: var(--shadow);
+    }
+
+    dialog {
+      width: min(1050px, calc(100vw - 2rem));
+      max-height: calc(100vh - 2rem);
+      border: 3px solid var(--gold);
+      border-radius: 1rem;
+      padding: 0;
+      color: var(--ink);
+      background: var(--cream);
+      box-shadow: 0 20px 80px rgba(0,0,0,.55);
+    }
+    dialog::backdrop { background: rgba(8,5,10,.8); backdrop-filter: blur(4px); }
+    .modal-shell { display: flex; flex-direction: column; max-height: calc(100vh - 2.4rem); }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .75rem 1rem;
+      color: #fff;
+      background: var(--garnet);
+    }
+    .modal-title-group { display: flex; align-items: center; gap: .65rem; flex-wrap: wrap; }
+    .modal-header h2 { margin: 0; font: 800 1.15rem Georgia, serif; }
+    .clue-type {
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 999px;
+      padding: .2rem .55rem;
+      color: #2b170c;
+      background: var(--gold);
+      font-size: .72rem;
+      font-weight: 950;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .close-button {
+      border: 0;
+      border-radius: .4rem;
+      padding: .35rem .65rem;
+      color: #fff;
+      background: rgba(0,0,0,.2);
+      font-weight: 900;
+    }
+    .modal-body {
+      overflow-y: auto;
+      padding: clamp(1rem, 3vw, 2.2rem);
+      text-align: center;
+    }
+    .daily-double {
+      display: inline-block;
+      margin-bottom: .75rem;
+      padding: .3rem .7rem;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--garnet);
+      font-weight: 950;
+      letter-spacing: .09em;
+    }
+    .wager-panel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: .65rem;
+      margin: .8rem auto 1.3rem;
+    }
+    .wager-panel input {
+      width: 8rem;
+      border: 2px solid var(--garnet);
+      border-radius: .45rem;
+      padding: .55rem;
+      text-align: center;
+      font-weight: 850;
+    }
+    .prompt {
+      display: block;
+      min-height: 180px;
+      padding: 1.1rem .5rem .4rem;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.3rem, 2.75vw, 2.35rem);
+      line-height: 1.24;
+    }
+    .math, .intervals, .tex-math {
+      display: inline;
+      white-space: nowrap;
+      font-family: "STIX Two Math", "Cambria Math", "Times New Roman", serif;
+      font-style: italic;
+      font-weight: 500;
+      letter-spacing: .01em;
+    }
+    .tex-math { font-style: normal; letter-spacing: normal; }
+    .prompt .katex { font-size: 1.06em; }
+    .answer-panel .katex { font-size: 1.03em; }
+    .frac {
+      display: inline-grid;
+      grid-template-rows: auto auto;
+      align-items: center;
+      min-width: 1.05em;
+      margin: 0 .12em;
+      vertical-align: -.42em;
+      text-align: center;
+      font-size: .86em;
+      line-height: 1.02;
+    }
+    .frac > span:first-child { border-bottom: .075em solid currentColor; padding: 0 .12em .05em; }
+    .frac > span:last-child { padding: .04em .12em 0; }
+    .timer {
+      margin: .65rem auto;
+      color: var(--blue);
+      font: 900 clamp(2rem, 6vw, 4.25rem)/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-variant-numeric: tabular-nums;
+    }
+    .timer.warning { color: #a45b00; }
+    .timer.expired { color: var(--red); animation: pulse .65s infinite alternate; }
+    @keyframes pulse { to { transform: scale(1.04); } }
+    .timer-controls, .action-row, .award-grid {
+      display: flex;
+      justify-content: center;
+      gap: .55rem;
+      flex-wrap: wrap;
+      margin-top: .75rem;
+    }
+    .primary, .secondary, .positive, .negative {
+      border: 0;
+      border-radius: .55rem;
+      padding: .7rem 1rem;
+      color: #fff;
+      font-weight: 850;
+    }
+    .primary { background: var(--garnet); }
+    .secondary { background: var(--blue); }
+    .positive { background: var(--green); }
+    .negative { background: var(--red); }
+    .answer-panel {
+      margin-top: 1.2rem;
+      border: 2px solid #b8a274;
+      border-radius: .75rem;
+      padding: 1rem 1.2rem;
+      text-align: left;
+      background: #fffdf7;
+    }
+    .answer-panel[hidden] { display: none; }
+    .answer-panel h3 { margin: 0 0 .45rem; color: var(--garnet); font-family: Georgia, serif; }
+    .answer-panel .answer {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.15rem, 2.15vw, 1.6rem);
+      font-weight: 700;
+      line-height: 1.45;
+    }
+    .answer-panel .solution {
+      margin-top: .65rem;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.04rem;
+      line-height: 1.58;
+    }
+    .award-grid { margin-top: 1rem; }
+    .award-card {
+      min-width: 145px;
+      border: 1px solid #c9bea5;
+      border-radius: .6rem;
+      padding: .55rem;
+      background: #f6f0e4;
+    }
+    .award-card strong { display: block; margin-bottom: .4rem; }
+    .award-card button { margin: .12rem; padding: .42rem .55rem; }
+    .unscored-note {
+      grid-column: 1 / -1;
+      padding: .8rem 1rem;
+      border: 1px solid #c9b174;
+      border-radius: .65rem;
+      background: #fff8df;
+      color: #4b3511;
+      font-weight: 700;
+      text-align: center;
+    }
+    .teacher-note {
+      margin-top: 1rem;
+      border-left: 5px solid var(--gold);
+      padding: .65rem .85rem;
+      text-align: left;
+      background: #f1eadb;
+      font-size: .94rem;
+    }
+    .svg-graph { width: min(560px, 92vw); height: auto; margin: .6rem auto; }
+    .footer-note { padding: .25rem 1rem .75rem; text-align: center; color: #d9cdb6; font-size: .75rem; }
+
+    @media (max-width: 760px) {
+      header { grid-template-columns: 1fr auto; }
+      .brand p { display: none; }
+      .scoreboard { grid-template-columns: repeat(2, minmax(110px, 1fr)); }
+      .board { gap: .3rem; }
+      .category { min-height: 68px; padding: .25rem; font-size: .67rem; }
+      .clue-button { min-height: 64px; font-size: 1.25rem; }
+      .toolbar .optional { display: none; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      header, .scoreboard, .board, .footer-note { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="brand">
+        <h1>MAC2311 Derivative Jeopardy</h1>
+        <p>Recitation 2 · Sections 4.1.1–4.1.3</p>
+      </div>
+      <div></div>
+      <div class="toolbar">
+        <button id="removeTeamButton" class="optional" title="Remove the last team">− Team</button>
+        <button id="addTeamButton" class="optional" title="Add another team">+ Team</button>
+        <button id="practiceButton">Practice</button>
+        <button id="suddenDeathButton">Sudden Death</button>
+        <button id="rulesButton" class="optional">Rules</button>
+        <button id="fullscreenButton">Full Screen</button>
+        <button id="resetButton" class="optional">Reset</button>
+      </div>
+    </header>
+
+    <section id="scoreboard" class="scoreboard" aria-label="Team scores"></section>
+    <main>
+      <section id="board" class="board" aria-label="Jeopardy game board"></section>
+    </main>
+    <div class="footer-note">Every team answers every clue. The next pick rotates after each revealed answer.</div>
+  </div>
+
+  <dialog id="clueDialog">
+    <div class="modal-shell">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h2 id="clueHeading">Clue</h2>
+          <span id="clueType" class="clue-type">Concept Check</span>
+        </div>
+        <button class="close-button" data-close-dialog aria-label="Return to game board">Board</button>
+      </div>
+      <div class="modal-body">
+        <div id="dailyBadge" class="daily-double" hidden>DAILY DOUBLE</div>
+        <div id="wagerPanel" class="wager-panel" hidden>
+          <label for="wagerInput"><strong>Wager:</strong></label>
+          <input id="wagerInput" type="number" min="0" step="100" value="400">
+          <button id="lockWagerButton" class="primary">Lock Wager &amp; Show Clue</button>
+        </div>
+        <div id="clueContent">
+          <div id="prompt" class="prompt"></div>
+          <div id="timer" class="timer" aria-live="polite">01:30</div>
+          <div class="timer-controls">
+            <button id="timerToggle" class="secondary">Start Timer</button>
+            <button id="addTime" class="secondary">+30 Seconds</button>
+            <button id="resetTimer" class="secondary">Reset Timer</button>
+          </div>
+          <div class="action-row">
+            <button id="revealButton" class="primary">Reveal Answer</button>
+          </div>
+          <section id="answerPanel" class="answer-panel" hidden>
+            <h3>Answer</h3>
+            <div id="answer" class="answer"></div>
+            <div id="solution" class="solution"></div>
+            <div id="teacherNote" class="teacher-note" hidden></div>
+            <div id="awardGrid" class="award-grid"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="rulesDialog">
+    <div class="modal-shell">
+      <div class="modal-header">
+        <h2>Suggested Classroom Rules</h2>
+        <button class="close-button" data-close-rules>Close</button>
+      </div>
+      <div class="modal-body" style="text-align:left; font-size:1.05rem; line-height:1.55">
+        <ol>
+          <li>Use 2–6 balanced teams (roughly 3–5 students each). Spread students with previous calculus experience across the teams when possible.</li>
+          <li>Every team writes a response. When time is called, teams reveal simultaneously; every correct team earns the displayed value.</li>
+          <li>The team marked <strong>NEXT PICK</strong> chooses the clue. The pick rotates automatically after each revealed clue, regardless of the scores.</li>
+          <li>Use half value for a substantially correct idea with incomplete justification. Do not deduct points on ordinary clues.</li>
+          <li>Rotate each team’s spokesperson after four clues; do not repeat a spokesperson until everyone on that team has had a turn.</li>
+          <li>On a Daily Double, the chooser wagers before seeing the clue. Other teams still answer and may earn the clue’s printed value. Final Jeopardy wagers should be written on paper.</li>
+          <li>The Practice clue is unscored. For Sudden Death, only tied teams respond: correct teams survive, incorrect teams are eliminated, and an all-correct or all-incorrect result sends everyone to the next tie-breaker.</li>
+          <li>Collect one work sheet per team for attendance.</li>
+        </ol>
+        <p><strong>Suggested timing:</strong> 5 minutes for setup, 5 for a practice clue, 45–50 for the board, 10 for Final Jeopardy, and 5 for debrief.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+  <script>
+    const signGraph = `
+      <svg class="svg-graph" viewBox="0 0 620 260" role="img" aria-label="Graph of f prime crossing the x-axis at negative two and one">
+        <rect x="0" y="0" width="620" height="260" rx="16" fill="#fffdf8"/>
+        <line x1="55" y1="132" x2="580" y2="132" stroke="#222" stroke-width="3"/>
+        <line x1="310" y1="30" x2="310" y2="228" stroke="#222" stroke-width="3"/>
+        <polygon points="580,132 568,125 568,139" fill="#222"/>
+        <polygon points="310,30 303,42 317,42" fill="#222"/>
+        <g stroke="#777" stroke-width="2">
+          <line x1="180" y1="125" x2="180" y2="139"/><line x1="440" y1="125" x2="440" y2="139"/>
+        </g>
+        <text x="168" y="158" font-size="22" font-family="Georgia">−2</text>
+        <text x="435" y="158" font-size="22" font-family="Georgia">1</text>
+        <text x="565" y="118" font-size="22" font-family="Georgia">x</text>
+        <text x="322" y="46" font-size="22" font-family="Georgia">f′(x)</text>
+        <path d="M72 202 C120 200, 145 165, 180 132 C225 88, 260 74, 310 78 C360 82, 405 96, 440 132 C482 174, 520 196, 565 202" fill="none" stroke="#782f40" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="180" cy="132" r="6" fill="#102a72"/><circle cx="440" cy="132" r="6" fill="#102a72"/>
+      </svg>`;
+
+    function tex(source) {
+      const escaped = source
+        .replaceAll("&", "&amp;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;");
+      return `<span class="tex-math" data-tex="${escaped}">${escaped}</span>`;
+    }
+
+    const gameData = [
+      {
+        category: "Critical Encounters",
+        clues: [
+          {
+            value: 100,
+            type: "Name That Idea",
+            prompt: `On calculus’s list of usual suspects, this is the name given to an input ${tex(String.raw`c`)} in the domain of ${tex(String.raw`f`)} where ${tex(String.raw`f'(c)=0`)} or ${tex(String.raw`f'(c)`)} does not exist.`,
+            answer: `What is a critical number?`,
+            solution: `The domain condition matters: ${tex(String.raw`f(c)`)} must exist before ${tex(String.raw`c`)} can be a critical number.`
+          },
+          {
+            value: 200,
+            type: "The Fine Print",
+            prompt: `A hole may look suspicious, but it cannot make the critical-number list unless this requirement is met.`,
+            answer: `What is “the input must be in the domain of ${tex(String.raw`f`)}”?`,
+            solution: `A critical number ${tex(String.raw`c`)} must satisfy ${tex(String.raw`f(c)`)} exists. Only then do we check whether ${tex(String.raw`f'(c)=0`)} or ${tex(String.raw`f'(c)`)} does not exist.`
+          },
+          {
+            value: 300,
+            type: "Domain Check",
+            dailyDouble: true,
+            prompt: `The derivative raises an alarm at ${tex(String.raw`x=0`)}, but the original function gets the final say. Find every critical number of ${tex(String.raw`f(x)=x+\frac{4}{x}`)} and decide whether 0 makes the list.`,
+            answer: `${tex(String.raw`x=-2`)} and ${tex(String.raw`x=2`)}. The input 0 is not a critical number.`,
+            solution: `${tex(String.raw`f'(x)=1-\frac{4}{x^2}`)}, so ${tex(String.raw`f'(x)=0`)} at ${tex(String.raw`x=\pm2`)}. The original function is undefined at 0, so 0 is not in its domain.`
+          },
+          {
+            value: 400,
+            type: "Error Analysis",
+            prompt: `A removable hole at ${tex(String.raw`x=1`)} tries to sneak onto the critical-number list. How many critical numbers does ${tex(String.raw`f(x)=\frac{x^2-1}{x-1}`)} actually have? Defend your answer using the domain.`,
+            answer: `None.`,
+            solution: `The expression simplifies to ${tex(String.raw`x+1`)} only when ${tex(String.raw`x\ne1`)}. Its derivative is 1 throughout its domain, and the hole at 1 is not a critical number.`,
+            note: `Require the domain justification. Saying only that the derivative is undefined at 1 is not sufficient.`
+          }
+        ]
+      },
+      {
+        category: "On the Rise (and Fall)",
+        clues: [
+          {
+            value: 100,
+            type: "Good Sign",
+            prompt: `This sign of the first derivative gives a function the green light to rise from left to right.`,
+            answer: `What is positive? In symbols, ${tex(String.raw`f'(x)>0`)}.`,
+            solution: `A positive derivative means the function’s output rises as the input moves from left to right.`
+          },
+          {
+            value: 200,
+            type: "Sign Analysis",
+            prompt: `The derivative factors nicely: ${tex(String.raw`f'(x)=(x+2)(x-1)`)}. Map out every increasing and decreasing interval.`,
+            answer: `Increasing on ${tex(String.raw`(-\infty,-2)\cup(1,\infty)`)}; decreasing on ${tex(String.raw`(-2,1)`)}.`,
+            solution: `The signs of ${tex(String.raw`f'`)} are ${tex(String.raw`+,-,+`)} across the critical numbers ${tex(String.raw`-2`)} and ${tex(String.raw`1`)}.`
+          },
+          {
+            value: 300,
+            type: "Sign Analysis",
+            prompt: `Plot twist: multiplying a derivative by ${tex(String.raw`-1`)} reverses every sign. Use that idea—not a fresh start—to find the increasing and decreasing intervals when ${tex(String.raw`f'(x)=-x(x-3)`)}.`,
+            answer: `Increasing on ${tex(String.raw`(0,3)`)}; decreasing on ${tex(String.raw`(-\infty,0)\cup(3,\infty)`)}.`,
+            solution: `Testing the intervals determined by 0 and 3 gives the sign pattern ${tex(String.raw`-,+,-`)} for ${tex(String.raw`f'`)}.`
+          },
+          {
+            value: 400,
+            type: "Repeated Root",
+            prompt: `At ${tex(String.raw`x=1`)}, the derivative touches zero and turns back around. For ${tex(String.raw`f'(x)=(x-1)^2(x+3)`)}, describe the function’s behavior on every interval determined by its critical numbers.`,
+            answer: `Decreasing on ${tex(String.raw`(-\infty,-3)`)}; increasing on ${tex(String.raw`(-3,1)`)} and ${tex(String.raw`(1,\infty)`)}.`,
+            solution: `The squared factor does not change sign at 1. The derivative changes from negative to positive at ${tex(String.raw`x=-3`)}, but remains positive on both sides of ${tex(String.raw`x=1`)}.`,
+            note: `It is also correct to summarize the increasing behavior as (-3,∞). The split form keeps both critical numbers visible.`
+          }
+        ]
+      },
+      {
+        category: "Curve Appeal",
+        clues: [
+          {
+            value: 100,
+            type: "Tangent-Line Trivia",
+            prompt: `A tangent line tries to predict nearby values. When the graph is concave up, that prediction generally lands on this side of the graph.`,
+            answer: `What is below the graph?`,
+            solution: `Nearby tangent-line approximations tend to underestimate a concave-up function.`
+          },
+          {
+            value: 200,
+            type: "Name That Idea",
+            prompt: `Solving ${tex(String.raw`f''(c)=0`)} earns a point a nomination, not the title. The point receives this title only if the graph actually changes concavity.`,
+            answer: `What is an inflection point?`,
+            solution: `A zero or undefined value of ${tex(String.raw`f''`)} gives a candidate. The concavity must change across the point.`
+          },
+          {
+            value: 300,
+            type: "Full Analysis",
+            prompt: `This quartic changes its mind about bending twice. For ${tex(String.raw`f(x)=x^4-4x^3`)}, locate both changes and determine every concavity interval.`,
+            answer: `Concave up on ${tex(String.raw`(-\infty,0)\cup(2,\infty)`)}; concave down on ${tex(String.raw`(0,2)`)}. Inflection points: ${tex(String.raw`(0,0)`)} and ${tex(String.raw`(2,-16)`)}.`,
+            solution: `${tex(String.raw`f''(x)=12x^2-24x=12x(x-2)`)}. Its sign changes at both 0 and 2.`
+          },
+          {
+            value: 400,
+            type: "True or False",
+            dailyDouble: true,
+            prompt: `This shortcut sounds convenient enough to be suspicious: “Every zero of ${tex(String.raw`f''`)} is an inflection input.” Decide whether it survives the test ${tex(String.raw`f''(x)=(x-1)^2(x+2)`)}.`,
+            answer: `False. Only ${tex(String.raw`x=-2`)} is an inflection input.`,
+            solution: `The sign of ${tex(String.raw`f''`)} changes at ${tex(String.raw`x=-2`)}. It does not change at the repeated zero ${tex(String.raw`x=1`)}.`,
+            note: `This targets the common misconception that f''(c)=0 automatically guarantees an inflection point.`
+          }
+        ]
+      },
+      {
+        category: "Peak, Valley, or Neither?",
+        clues: [
+          {
+            value: 100,
+            type: "Concept",
+            prompt: `The function climbs into ${tex(String.raw`x=c`)} and leaves going downhill. Give the critical point its proper classification.`,
+            answer: `A local maximum at ${tex(String.raw`x=c`)}.`,
+            solution: `The function changes from increasing to decreasing.`
+          },
+          {
+            value: 200,
+            type: "Name That Test",
+            prompt: `This derivative test classifies a critical point by checking the sign of ${tex(String.raw`f'`)} immediately to its left and right.`,
+            answer: `What is the First Derivative Test?`,
+            solution: `A change from ${tex(String.raw`+`)} to ${tex(String.raw`-`)} gives a local maximum; ${tex(String.raw`-`)} to ${tex(String.raw`+`)} gives a local minimum; no sign change gives neither.`
+          },
+          {
+            value: 300,
+            type: "Repeated Root",
+            prompt: `One of these critical numbers is a genuine turn; the other is only a brief pause. For ${tex(String.raw`f'(x)=(x-1)^2(x+2)`)}, classify ${tex(String.raw`x=-2`)} and ${tex(String.raw`x=1`)}.`,
+            answer: `Local minimum at ${tex(String.raw`x=-2`)}; neither a maximum nor a minimum at ${tex(String.raw`x=1`)}.`,
+            solution: `${tex(String.raw`f'`)} changes from negative to positive at ${tex(String.raw`x=-2`)} and stays positive through ${tex(String.raw`x=1`)}.`
+          },
+          {
+            value: 400,
+            type: "Second Derivative Test",
+            prompt: `Use the Second Derivative Test to classify every critical number of ${tex(String.raw`f(x)=x^4-4x^2`)}.`,
+            answer: `Local minima at ${tex(String.raw`x=\pm\sqrt{2}`)}; local maximum at ${tex(String.raw`x=0`)}.`,
+            solution: `${tex(String.raw`f'(x)=4x(x^2-2)`)} and ${tex(String.raw`f''(x)=12x^2-8`)}. Thus ${tex(String.raw`f''(0)<0`)}, while ${tex(String.raw`f''(\pm\sqrt{2})>0`)}.`
+          }
+        ]
+      },
+      {
+        category: "Read Between the Curves",
+        clues: [
+          {
+            value: 100,
+            type: "Concept",
+            prompt: `The graph is heading downhill, but its slopes are becoming less negative. Translate that story into monotonicity and concavity.`,
+            answer: `The graph is decreasing and concave up.`,
+            solution: `Heading downhill means ${tex(String.raw`f'(x)<0`)}. Slopes becoming less negative means ${tex(String.raw`f'`)} is increasing, so ${tex(String.raw`f''(x)>0`)}.`
+          },
+          {
+            value: 200,
+            type: "Sign Interpretation",
+            prompt: `The derivative tells a three-act story: positive, then negative, then positive across ${tex(String.raw`x=-1`)} and ${tex(String.raw`x=2`)}. How does each act change classify the two critical numbers?`,
+            answer: `Local maximum at ${tex(String.raw`x=-1`)}; local minimum at ${tex(String.raw`x=2`)}.`,
+            solution: `At ${tex(String.raw`x=-1`)}, ${tex(String.raw`f'`)} changes from positive to negative. At ${tex(String.raw`x=2`)}, it changes from negative to positive.`
+          },
+          {
+            value: 300,
+            type: "Graph Reading",
+            prompt: `<div>You are looking at ${tex(String.raw`f'(x)`)}, not ${tex(String.raw`f(x)`)}—so read one layer deeper. Identify the original function’s critical numbers and classify each.</div>${signGraph}`,
+            answer: `Critical numbers: ${tex(String.raw`x=-2`)} and ${tex(String.raw`x=1`)}. Local minimum at ${tex(String.raw`x=-2`)}; local maximum at ${tex(String.raw`x=1`)}.`,
+            solution: `The graph of ${tex(String.raw`f'`)} crosses from negative to positive at ${tex(String.raw`x=-2`)}, then from positive to negative at ${tex(String.raw`x=1`)}.`
+          },
+          {
+            value: 400,
+            type: "Test Selection",
+            prompt: `The Second Derivative Test gives two verdicts and refuses the third: ${tex(String.raw`f''(-2)=5`)}, ${tex(String.raw`f''(1)=0`)}, and ${tex(String.raw`f''(3)=-4`)}. What can it conclude at each critical number?`,
+            answer: `Local minimum at ${tex(String.raw`x=-2`)}; inconclusive at ${tex(String.raw`x=1`)}; local maximum at ${tex(String.raw`x=3`)}.`,
+            solution: `A positive second derivative gives a local minimum, a negative value gives a local maximum, and zero gives no conclusion. A different test is needed at 1.`,
+            note: `Do not accept “neither” at x=1. The Second Derivative Test is inconclusive there.`
+          }
+        ]
+      }
+    ];
+
+    const practiceClue = {
+      category: "Practice Round",
+      value: 0,
+      type: "No Points — Learn the Buttons",
+      unscored: true,
+      seconds: 60,
+      prompt: `A function approaches ${tex(String.raw`x=c`)} while decreasing and leaves while increasing. Without calculating ${tex(String.raw`f(c)`)}, what can you conclude?`,
+      answer: `The function has a local minimum at ${tex(String.raw`x=c`)}.`,
+      solution: `${tex(String.raw`f'`)} changes from negative to positive, which is the First Derivative Test pattern for a local minimum.`
+    };
+
+    const suddenDeathClues = [
+      {
+        category: "Sudden Death",
+        value: 0,
+        type: "True or False",
+        unscored: true,
+        suddenDeath: true,
+        seconds: 45,
+        prompt: `True or false: if ${tex(String.raw`f'(c)=0`)}, then ${tex(String.raw`f`)} must have a local extremum at ${tex(String.raw`x=c`)}.`,
+        answer: `False.`,
+        solution: `A critical point can be neither a maximum nor a minimum; ${tex(String.raw`f'`)} may keep the same sign on both sides of ${tex(String.raw`c`)}.`
+      },
+      {
+        category: "Sudden Death",
+        value: 0,
+        type: "Shape in a Flash",
+        unscored: true,
+        suddenDeath: true,
+        seconds: 45,
+        prompt: `On an interval, ${tex(String.raw`f'(x)<0`)} and ${tex(String.raw`f''(x)<0`)}. Describe the graph in four words or fewer.`,
+        answer: `Decreasing and concave down.`,
+        solution: `${tex(String.raw`f'<0`)} gives decreasing; ${tex(String.raw`f''<0`)} gives concave down.`
+      },
+      {
+        category: "Sudden Death",
+        value: 0,
+        type: "Instant Classification",
+        unscored: true,
+        suddenDeath: true,
+        seconds: 45,
+        prompt: `${tex(String.raw`c`)} is a critical number and ${tex(String.raw`f''(c)>0`)}. What is the verdict?`,
+        answer: `A local minimum at ${tex(String.raw`x=c`)}.`,
+        solution: `The graph is concave up at the critical point, so the Second Derivative Test gives a local minimum.`
+      },
+      {
+        category: "Sudden Death",
+        value: 0,
+        type: "Definition Check",
+        unscored: true,
+        suddenDeath: true,
+        seconds: 45,
+        prompt: `Yes or no: can ${tex(String.raw`c`)} be a critical number when ${tex(String.raw`f'(c)`)} does not exist?`,
+        answer: `Yes—provided ${tex(String.raw`f(c)`)} exists.`,
+        solution: `A critical number lies in the domain of ${tex(String.raw`f`)} and makes ${tex(String.raw`f'`)} zero or undefined.`
+      },
+      {
+        category: "Sudden Death",
+        value: 0,
+        type: "Read the Change",
+        unscored: true,
+        suddenDeath: true,
+        seconds: 45,
+        prompt: `${tex(String.raw`f`)} is continuous at ${tex(String.raw`c`)}, and ${tex(String.raw`f''`)} changes from positive to negative there. What happens at ${tex(String.raw`x=c`)}?`,
+        answer: `There is an inflection point; the graph changes from concave up to concave down.`,
+        solution: `A change in the sign of ${tex(String.raw`f''`)} signals a change in concavity.`
+      },
+      {
+        category: "Sudden Death",
+        value: 0,
+        type: "Turn or Pause?",
+        unscored: true,
+        suddenDeath: true,
+        seconds: 45,
+        prompt: `${tex(String.raw`f'(c)=0`)}, but ${tex(String.raw`f'`)} is positive immediately before and after ${tex(String.raw`c`)}. Classify the critical point.`,
+        answer: `Neither a local maximum nor a local minimum.`,
+        solution: `The function is increasing on both sides, so it does not turn at ${tex(String.raw`c`)}.`
+      }
+    ];
+
+    const finalClue = {
+      category: "Final Jeopardy — Complete Derivative Analysis",
+      value: 0,
+      type: "Synthesis",
+      final: true,
+      prompt: `Put everything together. For ${tex(String.raw`f(x)=\frac{1}{3}x^3-x^2`)}, determine:<br><br>increasing and decreasing intervals, all local extrema, concavity intervals, and the inflection point.`,
+      answer: `Increasing on ${tex(String.raw`(-\infty,0)\cup(2,\infty)`)}; decreasing on ${tex(String.raw`(0,2)`)}.<br>Local maximum: ${tex(String.raw`(0,0)`)}. Local minimum: ${tex(String.raw`(2,-\frac{4}{3})`)}.<br>Concave down on ${tex(String.raw`(-\infty,1)`)}; concave up on ${tex(String.raw`(1,\infty)`)}.<br>Inflection point: ${tex(String.raw`(1,-\frac{2}{3})`)}.`,
+      solution: `${tex(String.raw`f'(x)=x(x-2)`)} and ${tex(String.raw`f''(x)=2x-2`)}. Use their signs, then evaluate ${tex(String.raw`f`)} at 0, 1, and 2.`
+    };
+
+    const defaultTeams = [
+      { name: "Team 1", score: 0 },
+      { name: "Team 2", score: 0 },
+      { name: "Team 3", score: 0 },
+      { name: "Team 4", score: 0 }
+    ];
+
+    const state = loadState();
+    let currentClue = null;
+    let currentKey = null;
+    let activeSeconds = 90;
+    let defaultSeconds = 90;
+    let timerHandle = null;
+    let isDailyWagerLocked = false;
+    let activeWager = 0;
+    let activeChooser = 0;
+
+    const board = document.getElementById("board");
+    const scoreboard = document.getElementById("scoreboard");
+    const clueDialog = document.getElementById("clueDialog");
+    const rulesDialog = document.getElementById("rulesDialog");
+    const clueHeading = document.getElementById("clueHeading");
+    const clueTypeElement = document.getElementById("clueType");
+    const promptElement = document.getElementById("prompt");
+    const answerPanel = document.getElementById("answerPanel");
+    const answerElement = document.getElementById("answer");
+    const solutionElement = document.getElementById("solution");
+    const teacherNote = document.getElementById("teacherNote");
+    const awardGrid = document.getElementById("awardGrid");
+    const dailyBadge = document.getElementById("dailyBadge");
+    const wagerPanel = document.getElementById("wagerPanel");
+    const wagerInput = document.getElementById("wagerInput");
+    const clueContent = document.getElementById("clueContent");
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem("mac2311JeopardyState"));
+        if (saved && Array.isArray(saved.teams) && saved.teams.length >= 2 && saved.teams.length <= 6) {
+          const savedControl = Number.isInteger(saved.control) && saved.control >= 0 && saved.control < saved.teams.length
+            ? saved.control
+            : 0;
+          return {
+            teams: saved.teams,
+            control: savedControl,
+            used: saved.used || {},
+            suddenUsed: saved.suddenUsed || {},
+            finalUsed: Boolean(saved.finalUsed)
+          };
+        }
+      } catch (_) {}
+      return { teams: structuredClone(defaultTeams), control: 0, used: {}, suddenUsed: {}, finalUsed: false };
+    }
+
+    function saveState() {
+      localStorage.setItem("mac2311JeopardyState", JSON.stringify(state));
+    }
+
+    function renderScoreboard() {
+      scoreboard.innerHTML = "";
+      scoreboard.style.setProperty("--team-count", state.teams.length);
+      state.teams.forEach((team, index) => {
+        const card = document.createElement("article");
+        card.className = `team-card${state.control === index ? " control" : ""}`;
+        card.addEventListener("click", event => {
+          if (event.target.matches("input, button")) return;
+          state.control = index;
+          saveState();
+          renderScoreboard();
+        });
+
+        const name = document.createElement("input");
+        name.className = "team-name";
+        name.value = team.name;
+        name.setAttribute("aria-label", `Name for team ${index + 1}`);
+        name.addEventListener("change", () => {
+          team.name = name.value.trim() || `Team ${index + 1}`;
+          saveState();
+          renderScoreboard();
+        });
+
+        const score = document.createElement("span");
+        score.className = "team-score";
+        score.textContent = formatScore(team.score);
+
+        const adjust = document.createElement("div");
+        adjust.className = "team-adjust";
+        [-100, 100].forEach(amount => {
+          const button = document.createElement("button");
+          button.textContent = amount > 0 ? "+" : "−";
+          button.title = `${amount > 0 ? "Add" : "Subtract"} 100 points`;
+          button.addEventListener("click", () => adjustScore(index, amount));
+          adjust.appendChild(button);
+        });
+
+        card.append(name, score, adjust);
+        scoreboard.appendChild(card);
+      });
+      document.getElementById("removeTeamButton").disabled = state.teams.length <= 2;
+      document.getElementById("addTeamButton").disabled = state.teams.length >= 6;
+    }
+
+    function addTeam() {
+      if (state.teams.length >= 6) return;
+      state.teams.push({ name: `Team ${state.teams.length + 1}`, score: 0 });
+      saveState();
+      renderScoreboard();
+    }
+
+    function removeTeam() {
+      if (state.teams.length <= 2) return;
+      state.teams.pop();
+      if (state.control >= state.teams.length) state.control = state.teams.length - 1;
+      saveState();
+      renderScoreboard();
+    }
+
+    function renderBoard() {
+      board.innerHTML = "";
+      gameData.forEach(column => {
+        const header = document.createElement("div");
+        header.className = "category";
+        header.textContent = column.category;
+        board.appendChild(header);
+      });
+
+      for (let row = 0; row < 4; row += 1) {
+        gameData.forEach((column, columnIndex) => {
+          const clue = column.clues[row];
+          const key = `${columnIndex}-${row}`;
+          const button = document.createElement("button");
+          button.className = `clue-button${state.used[key] ? " used" : ""}`;
+          button.textContent = `$${clue.value}`;
+          button.setAttribute("aria-label", `${column.category} for ${clue.value} points`);
+          button.addEventListener("click", () => openClue(clue, column.category, key));
+          board.appendChild(button);
+        });
+      }
+
+      const finalButton = document.createElement("button");
+      finalButton.className = "final-button";
+      finalButton.textContent = state.finalUsed ? "Final Jeopardy — Completed" : "Final Jeopardy";
+      finalButton.addEventListener("click", () => openClue(finalClue, finalClue.category, "final"));
+      board.appendChild(finalButton);
+
+      const suddenRemaining = suddenDeathClues.filter((_, index) => !state.suddenUsed[`sudden-${index}`]).length;
+      const suddenButton = document.getElementById("suddenDeathButton");
+      suddenButton.textContent = `Sudden Death (${suddenRemaining})`;
+      suddenButton.disabled = suddenRemaining === 0;
+    }
+
+    function openClue(clue, category, key) {
+      stopTimer();
+      currentClue = clue;
+      currentKey = key;
+      activeChooser = state.control;
+      activeSeconds = clue.seconds || (clue.final ? 180 : 90);
+      defaultSeconds = activeSeconds;
+      isDailyWagerLocked = !clue.dailyDouble;
+      activeWager = clue.value;
+      clueHeading.textContent = clue.final ? category : `${category} · $${clue.value}`;
+      clueTypeElement.textContent = clue.type || "Mixed Practice";
+      promptElement.innerHTML = clue.prompt;
+      answerElement.innerHTML = clue.answer;
+      solutionElement.innerHTML = clue.solution;
+      renderMath(promptElement);
+      renderMath(answerElement);
+      renderMath(solutionElement);
+      attachTrailingPunctuation(promptElement);
+      attachTrailingPunctuation(answerElement);
+      attachTrailingPunctuation(solutionElement);
+      teacherNote.hidden = !clue.note;
+      teacherNote.innerHTML = clue.note ? `<strong>Facilitator note:</strong> ${clue.note}` : "";
+      answerPanel.hidden = true;
+      document.getElementById("revealButton").textContent = "Reveal Answer";
+      dailyBadge.hidden = !clue.dailyDouble;
+      wagerPanel.hidden = !clue.dailyDouble;
+      clueContent.hidden = clue.dailyDouble;
+      wagerInput.value = Math.max(clue.value, Math.min(Math.max(state.teams[activeChooser].score, 0), 1000));
+      renderTimer();
+      renderAwards();
+      clueDialog.showModal();
+    }
+
+    function renderMath(root) {
+      root.querySelectorAll(".tex-math").forEach(element => {
+        katex.render(element.dataset.tex, element, {
+          throwOnError: false,
+          strict: "ignore",
+          output: "htmlAndMathml"
+        });
+      });
+    }
+
+    function attachTrailingPunctuation(root) {
+      root.querySelectorAll(".math, .intervals, .tex-math").forEach(element => {
+        const next = element.nextSibling;
+        if (!next || next.nodeType !== Node.TEXT_NODE) return;
+        const match = next.textContent.match(/^([.,;:!?]+)/);
+        if (!match) return;
+        element.append(document.createTextNode(match[1]));
+        next.textContent = next.textContent.slice(match[1].length);
+      });
+    }
+
+    function renderAwards() {
+      awardGrid.innerHTML = "";
+      if (currentClue?.unscored) {
+        const note = document.createElement("div");
+        note.className = "unscored-note";
+        note.textContent = currentClue.suddenDeath
+          ? "No points: correct tied teams survive; incorrect tied teams are eliminated. Continue if more than one team remains."
+          : "Practice only: no points are awarded, and the next-pick team does not change.";
+        awardGrid.appendChild(note);
+        return;
+      }
+      state.teams.forEach((team, index) => {
+        const base = currentClue?.dailyDouble && index === activeChooser
+          ? activeWager
+          : currentClue?.value || 0;
+        const card = document.createElement("div");
+        card.className = "award-card";
+        const label = document.createElement("strong");
+        label.textContent = team.name;
+        card.appendChild(label);
+
+        if (currentClue?.final) {
+          const input = document.createElement("input");
+          input.type = "number";
+          input.min = "0";
+          input.step = "100";
+          input.value = "0";
+          input.style.width = "90px";
+          input.style.padding = ".4rem";
+          input.setAttribute("aria-label", `${team.name} final wager`);
+          const plus = makeAwardButton("Correct", "positive", () => adjustScore(index, Math.abs(Number(input.value) || 0)));
+          const minus = makeAwardButton("Wrong", "negative", () => adjustScore(index, -Math.abs(Number(input.value) || 0)));
+          card.append(input, plus, minus);
+        } else {
+          const plus = makeAwardButton(`+${base}`, "positive", () => adjustScore(index, base));
+          const partial = makeAwardButton(`+${Math.round(base / 2)}`, "secondary", () => adjustScore(index, Math.round(base / 2)));
+          const minus = makeAwardButton(`−${base}`, "negative", () => adjustScore(index, -base));
+          plus.title = "Full-value correct response";
+          partial.title = "Half value for a substantially correct explanation";
+          minus.title = currentClue?.dailyDouble && index === activeChooser
+            ? "Incorrect Daily Double wager"
+            : "Optional manual correction";
+          card.append(plus, partial, minus);
+        }
+        awardGrid.appendChild(card);
+      });
+    }
+
+    function makeAwardButton(text, className, handler) {
+      const button = document.createElement("button");
+      button.className = className;
+      button.textContent = text;
+      button.addEventListener("click", handler);
+      return button;
+    }
+
+    function adjustScore(index, amount) {
+      state.teams[index].score += amount;
+      saveState();
+      renderScoreboard();
+      renderAwards();
+    }
+
+    function advanceChooser() {
+      state.control = (state.control + 1) % state.teams.length;
+      saveState();
+      renderScoreboard();
+    }
+
+    function openPractice() {
+      openClue(practiceClue, practiceClue.category, "practice");
+    }
+
+    function openNextSuddenDeath() {
+      const index = suddenDeathClues.findIndex((_, clueIndex) => !state.suddenUsed[`sudden-${clueIndex}`]);
+      if (index < 0) return;
+      openClue(suddenDeathClues[index], `Sudden Death · ${index + 1} of ${suddenDeathClues.length}`, `sudden-${index}`);
+    }
+
+    function formatScore(score) {
+      return score < 0 ? `−$${Math.abs(score).toLocaleString()}` : `$${score.toLocaleString()}`;
+    }
+
+    function revealAnswer() {
+      answerPanel.hidden = false;
+      stopTimer();
+      if (currentKey === "final") state.finalUsed = true;
+      else if (currentKey === "practice") {
+        // Practice is deliberately unscored and does not affect the board or chooser.
+      }
+      else if (currentKey?.startsWith("sudden-")) state.suddenUsed[currentKey] = true;
+      else if (currentKey) {
+        const firstReveal = !state.used[currentKey];
+        state.used[currentKey] = true;
+        if (firstReveal) advanceChooser();
+      }
+      saveState();
+      renderBoard();
+      document.getElementById("revealButton").textContent = "Answer Revealed";
+      answerPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function renderTimer() {
+      const timer = document.getElementById("timer");
+      const minutes = Math.floor(activeSeconds / 60);
+      const seconds = activeSeconds % 60;
+      timer.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+      timer.classList.toggle("warning", activeSeconds > 0 && activeSeconds <= 20);
+      timer.classList.toggle("expired", activeSeconds === 0);
+      document.getElementById("timerToggle").textContent = timerHandle ? "Pause Timer" : "Start Timer";
+    }
+
+    function toggleTimer() {
+      if (timerHandle) {
+        stopTimer();
+        return;
+      }
+      timerHandle = window.setInterval(() => {
+        activeSeconds = Math.max(0, activeSeconds - 1);
+        renderTimer();
+        if (activeSeconds === 0) stopTimer();
+      }, 1000);
+      renderTimer();
+    }
+
+    function stopTimer() {
+      if (timerHandle) window.clearInterval(timerHandle);
+      timerHandle = null;
+      renderTimer();
+    }
+
+    function resetGame() {
+      if (!window.confirm("Reset every score and restore every clue?")) return;
+      state.teams = state.teams.map((team, index) => ({
+        name: team.name || `Team ${index + 1}`,
+        score: 0
+      }));
+      state.control = 0;
+      state.used = {};
+      state.suddenUsed = {};
+      state.finalUsed = false;
+      saveState();
+      renderScoreboard();
+      renderBoard();
+    }
+
+    document.getElementById("timerToggle").addEventListener("click", toggleTimer);
+    document.getElementById("addTime").addEventListener("click", () => { activeSeconds += 30; renderTimer(); });
+    document.getElementById("resetTimer").addEventListener("click", () => { stopTimer(); activeSeconds = defaultSeconds; renderTimer(); });
+    document.getElementById("revealButton").addEventListener("click", revealAnswer);
+    document.getElementById("lockWagerButton").addEventListener("click", () => {
+      activeWager = Math.max(0, Number(wagerInput.value) || 0);
+      isDailyWagerLocked = true;
+      wagerPanel.hidden = true;
+      clueContent.hidden = false;
+      renderAwards();
+    });
+    document.getElementById("rulesButton").addEventListener("click", () => rulesDialog.showModal());
+    document.getElementById("practiceButton").addEventListener("click", openPractice);
+    document.getElementById("suddenDeathButton").addEventListener("click", openNextSuddenDeath);
+    document.getElementById("addTeamButton").addEventListener("click", addTeam);
+    document.getElementById("removeTeamButton").addEventListener("click", removeTeam);
+    document.querySelectorAll("[data-close-dialog]").forEach(button => button.addEventListener("click", () => clueDialog.close()));
+    document.querySelectorAll("[data-close-rules]").forEach(button => button.addEventListener("click", () => rulesDialog.close()));
+    document.getElementById("resetButton").addEventListener("click", resetGame);
+    document.getElementById("fullscreenButton").addEventListener("click", async () => {
+      if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
+      else await document.exitFullscreen();
+    });
+
+    clueDialog.addEventListener("cancel", event => {
+      if (currentClue?.dailyDouble && !isDailyWagerLocked) {
+        event.preventDefault();
+        return;
+      }
+      stopTimer();
+    });
+
+    clueDialog.addEventListener("close", stopTimer);
+
+    document.addEventListener("keydown", event => {
+      if (!clueDialog.open || event.target.matches("input")) return;
+      if (event.code === "Space") { event.preventDefault(); toggleTimer(); }
+      if (event.key.toLowerCase() === "r") revealAnswer();
+      if (event.key.toLowerCase() === "b") clueDialog.close();
+    });
+
+    renderScoreboard();
+    renderBoard();
+    renderTimer();
+  </script>
+</body>
+</html>
