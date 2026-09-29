@@ -39,7 +39,9 @@ description: "Courses taught and assisted, with materials, notes, and study guid
               <div class="materials">
                 {% for m in c.materials %}
                   {% if m.url %}
-                    <a href="{{ m.url }}">{{ m.label }}</a>
+                    <a href="{{ m.url }}"
+                       data-umami-event="Open teaching material"
+                       data-umami-event-material="{{ m.label | escape }}">{{ m.label }}</a>
                   {% else %}
                     <span class="placeholder">{{ m.label }}</span>
                   {% endif %}
