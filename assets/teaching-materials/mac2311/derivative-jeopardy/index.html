@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MAC2311 Derivative Jeopardy</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+  <script defer src="https://cloud.umami.is/script.js"
+          data-website-id="ff37b074-f0e9-472b-9c3c-b3c5193bd75c"
+          data-tag="teaching-materials"></script>
   <style>
     :root {
       --garnet: #782f40;
@@ -405,13 +408,13 @@
       </div>
       <div></div>
       <div class="toolbar">
-        <button id="removeTeamButton" class="optional" title="Remove the last team">− Team</button>
-        <button id="addTeamButton" class="optional" title="Add another team">+ Team</button>
-        <button id="practiceButton">Practice</button>
-        <button id="suddenDeathButton">Sudden Death</button>
-        <button id="rulesButton" class="optional">Rules</button>
-        <button id="fullscreenButton">Full Screen</button>
-        <button id="resetButton" class="optional">Reset</button>
+        <button id="removeTeamButton" class="optional" title="Remove the last team" data-umami-event="Jeopardy team removed">− Team</button>
+        <button id="addTeamButton" class="optional" title="Add another team" data-umami-event="Jeopardy team added">+ Team</button>
+        <button id="practiceButton" data-umami-event="Jeopardy practice opened">Practice</button>
+        <button id="suddenDeathButton" data-umami-event="Jeopardy sudden death opened">Sudden Death</button>
+        <button id="rulesButton" class="optional" data-umami-event="Jeopardy rules opened">Rules</button>
+        <button id="fullscreenButton" data-umami-event="Jeopardy fullscreen toggled">Full Screen</button>
+        <button id="resetButton" class="optional" data-umami-event="Jeopardy game reset">Reset</button>
       </div>
     </header>
 
@@ -447,7 +450,7 @@
             <button id="resetTimer" class="secondary">Reset Timer</button>
           </div>
           <div class="action-row">
-            <button id="revealButton" class="primary">Reveal Answer</button>
+            <button id="revealButton" class="primary" data-umami-event="Jeopardy answer revealed">Reveal Answer</button>
           </div>
           <section id="answerPanel" class="answer-panel" hidden>
             <h3>Answer</h3>
@@ -909,6 +912,10 @@
           button.className = `clue-button${state.used[key] ? " used" : ""}`;
           button.textContent = `$${clue.value}`;
           button.setAttribute("aria-label", `${column.category} for ${clue.value} points`);
+          button.dataset.umamiEvent = "Jeopardy clue opened";
+          button.dataset.umamiEventCategory = column.category;
+          button.dataset.umamiEventValue = String(clue.value);
+          button.dataset.umamiEventType = clue.type;
           button.addEventListener("click", () => openClue(clue, column.category, key));
           board.appendChild(button);
         });
@@ -917,6 +924,7 @@
       const finalButton = document.createElement("button");
       finalButton.className = "final-button";
       finalButton.textContent = state.finalUsed ? "Final Jeopardy — Completed" : "Final Jeopardy";
+      finalButton.dataset.umamiEvent = "Jeopardy final opened";
       finalButton.addEventListener("click", () => openClue(finalClue, finalClue.category, "final"));
       board.appendChild(finalButton);
 
