@@ -4,6 +4,7 @@ description: "Footnotes, definitions, KaTeX equations, callouts. A small style g
 date: 2026-05-23
 katex: true
 ai_placeholder: true
+published: false
 ---
 
 <section>

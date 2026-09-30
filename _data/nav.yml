@@ -14,10 +14,6 @@
   url: "/teaching/"
   section: "teaching"
 
-- title: "Notes"
-  url: "/notes/"
-  section: "notes"
-
 - title: "CV"
   url: "/cv/"
   section: "cv"
