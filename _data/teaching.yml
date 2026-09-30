@@ -8,7 +8,7 @@ groups:
     items:
       - when: "Fall 2026"
         title: "Calculus I (MAC2311)"
-        role: "Graduate Teaching Assistant"
+        role: "Graduate Assistant"
         body: >
           Lead recurring class meetings and recitation activities for first-semester
           calculus, with an emphasis on conceptual interpretation, collaborative problem
