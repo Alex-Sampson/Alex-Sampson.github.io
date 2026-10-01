@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MAC2311 Derivative Jeopardy</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+  <link rel="stylesheet" href="katex/katex.min.css">
   <script defer src="https://cloud.umami.is/script.js"
           data-website-id="ff37b074-f0e9-472b-9c3c-b3c5193bd75c"
           data-tag="teaching-materials"></script>
@@ -257,14 +257,46 @@
       letter-spacing: .09em;
     }
     .wager-panel {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: .65rem;
       margin: .8rem auto 1.3rem;
+      padding: 1rem;
+      border: 2px solid #b8a274;
+      border-radius: .75rem;
+      background: #fffdf7;
     }
-    .wager-panel input {
-      width: 8rem;
+    .wager-panel h3 { margin: 0 0 .35rem; color: var(--garnet); }
+    .wager-panel p { margin: 0 0 .8rem; }
+    .wager-scoreboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: .55rem;
+      margin: .9rem 0 1.15rem;
+    }
+    .wager-score-card {
+      border: 2px solid var(--gold);
+      border-radius: .65rem;
+      padding: .6rem .45rem;
+      color: #fff;
+      background: linear-gradient(145deg, var(--blue-light), var(--blue));
+      text-align: center;
+    }
+    .wager-score-card.control { border-color: var(--garnet); box-shadow: 0 0 0 3px rgba(120,47,64,.2); }
+    .wager-score-card strong { display: block; font-size: .9rem; }
+    .wager-score-card span { display: block; margin-top: .2rem; color: #ffe36e; font: 800 1.55rem/1 Georgia, serif; }
+    .wager-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: .65rem;
+      margin-bottom: .9rem;
+    }
+    .wager-card {
+      border: 1px solid #c9bea5;
+      border-radius: .6rem;
+      padding: .65rem;
+      background: #f6f0e4;
+    }
+    .wager-card label { display: block; margin-bottom: .35rem; font-weight: 800; }
+    .wager-card input {
+      width: 100%;
       border: 2px solid var(--garnet);
       border-radius: .45rem;
       padding: .55rem;
@@ -290,6 +322,16 @@
     .tex-math { font-style: normal; letter-spacing: normal; }
     .prompt .katex { font-size: 1.06em; }
     .answer-panel .katex { font-size: 1.03em; }
+    .display-math {
+      display: block;
+      width: 100%;
+      margin: .8rem auto;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: .2rem 0;
+      text-align: center;
+    }
+    .display-math .katex-display { margin: 0; }
     .frac {
       display: inline-grid;
       grid-template-rows: auto auto;
@@ -340,28 +382,35 @@
     }
     .answer-panel[hidden] { display: none; }
     .answer-panel h3 { margin: 0 0 .45rem; color: var(--garnet); font-family: Georgia, serif; }
-    .answer-panel .answer {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(1.15rem, 2.15vw, 1.6rem);
-      font-weight: 700;
-      line-height: 1.45;
-    }
     .answer-panel .solution {
-      margin-top: .65rem;
+      margin-top: .25rem;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.04rem;
-      line-height: 1.58;
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      line-height: 1.62;
+    }
+    .answer-panel .solution ol { padding-left: 1.45rem; }
+    .answer-panel .solution li + li { margin-top: .55rem; }
+    .solution-result {
+      margin-top: 1rem;
+      border: 2px solid var(--garnet);
+      border-radius: .6rem;
+      padding: .8rem 1rem;
+      background: #f8eef1;
+      font-weight: 700;
     }
     .award-grid { margin-top: 1rem; }
     .award-card {
-      min-width: 145px;
+      min-width: 170px;
       border: 1px solid #c9bea5;
       border-radius: .6rem;
       padding: .55rem;
       background: #f6f0e4;
     }
     .award-card strong { display: block; margin-bottom: .4rem; }
-    .award-card button { margin: .12rem; padding: .42rem .55rem; }
+    .award-card input { width: 100%; padding: .45rem; border: 2px solid #8e7d58; border-radius: .4rem; text-align:center; font-weight:800; }
+    .award-card button { width: 100%; margin-top: .4rem; padding: .48rem .55rem; }
+    .score-suggestion { min-height: 1.4em; margin-top: .35rem; color: #5b4d42; font-size: .82rem; line-height: 1.3; }
+    .submit-scores { flex-basis: 100%; max-width: 360px; margin-top: .85rem; }
     .unscored-note {
       grid-column: 1 / -1;
       padding: .8rem 1rem;
@@ -371,14 +420,6 @@
       color: #4b3511;
       font-weight: 700;
       text-align: center;
-    }
-    .teacher-note {
-      margin-top: 1rem;
-      border-left: 5px solid var(--gold);
-      padding: .65rem .85rem;
-      text-align: left;
-      background: #f1eadb;
-      font-size: .94rem;
     }
     .svg-graph { width: min(560px, 92vw); height: auto; margin: .6rem auto; }
     .footer-note { padding: .25rem 1rem .75rem; text-align: center; color: #d9cdb6; font-size: .75rem; }
@@ -414,7 +455,7 @@
         <button id="suddenDeathButton" data-umami-event="Jeopardy sudden death opened">Sudden Death</button>
         <button id="rulesButton" class="optional" data-umami-event="Jeopardy rules opened">Rules</button>
         <button id="fullscreenButton" data-umami-event="Jeopardy fullscreen toggled">Full Screen</button>
-        <button id="resetButton" class="optional" data-umami-event="Jeopardy game reset">Reset</button>
+        <button id="resetButton" title="Clear scores and restore all problems" data-umami-event="Jeopardy game reset">Reset Game</button>
       </div>
     </header>
 
@@ -435,11 +476,13 @@
         <button class="close-button" data-close-dialog aria-label="Return to game board">Board</button>
       </div>
       <div class="modal-body">
-        <div id="dailyBadge" class="daily-double" hidden>DAILY DOUBLE</div>
+        <div id="dailyBadge" class="daily-double" hidden>DAILY DOUBLE — ONE WAGER APPLIES TO ALL TEAMS</div>
         <div id="wagerPanel" class="wager-panel" hidden>
-          <label for="wagerInput"><strong>Wager:</strong></label>
-          <input id="wagerInput" type="number" min="0" step="100" value="400">
-          <button id="lockWagerButton" class="primary">Lock Wager &amp; Show Clue</button>
+          <h3 id="wagerHeading">Enter Each Team's Wager</h3>
+          <p id="wagerInstructions">Record every wager before showing the problem.</p>
+          <div id="wagerScoreboard" class="wager-scoreboard" aria-label="Current scores"></div>
+          <div id="wagerGrid" class="wager-grid"></div>
+          <button id="lockWagerButton" class="primary">Lock All Wagers &amp; Show Problem</button>
         </div>
         <div id="clueContent">
           <div id="prompt" class="prompt"></div>
@@ -450,13 +493,11 @@
             <button id="resetTimer" class="secondary">Reset Timer</button>
           </div>
           <div class="action-row">
-            <button id="revealButton" class="primary" data-umami-event="Jeopardy answer revealed">Reveal Answer</button>
+            <button id="revealButton" class="primary" data-umami-event="Jeopardy solution revealed">Reveal Worked Solution</button>
           </div>
           <section id="answerPanel" class="answer-panel" hidden>
-            <h3>Answer</h3>
-            <div id="answer" class="answer"></div>
+            <h3>Worked Solution</h3>
             <div id="solution" class="solution"></div>
-            <div id="teacherNote" class="teacher-note" hidden></div>
             <div id="awardGrid" class="award-grid"></div>
           </section>
         </div>
@@ -475,9 +516,11 @@
           <li>Use 2–6 balanced teams (roughly 3–5 students each). Spread students with previous calculus experience across the teams when possible.</li>
           <li>Every team writes a response. When time is called, teams reveal simultaneously; every correct team earns the displayed value.</li>
           <li>The team marked <strong>NEXT PICK</strong> chooses the clue. The pick rotates automatically after each revealed clue, regardless of the scores.</li>
-          <li>Use half value for a substantially correct idea with incomplete justification. Do not deduct points on ordinary clues.</li>
+          <li>After revealing the worked solution, enter all new team totals and click <strong>Submit All Scores</strong> once.</li>
           <li>Rotate each team’s spokesperson after four clues; do not repeat a spokesperson until everyone on that team has had a turn.</li>
-          <li>On a Daily Double, the chooser wagers before seeing the clue. Other teams still answer and may earn the clue’s printed value. Final Jeopardy wagers should be written on paper.</li>
+          <li>Every wager screen displays the current scoreboard so teams can evaluate the risk before wagering.</li>
+          <li>On a Daily Double, the NEXT PICK team chooses one wager before seeing the problem. That wager applies equally to every team.</li>
+          <li>Final Jeopardy begins with a wager screen for every team. Every trailing team may wager enough to finish $50 above the current leader.</li>
           <li>The Practice clue is unscored. For Sudden Death, only tied teams respond: correct teams survive, incorrect teams are eliminated, and an all-correct or all-incorrect result sends everyone to the next tie-breaker.</li>
           <li>Collect one work sheet per team for attendance.</li>
         </ol>
@@ -486,7 +529,7 @@
     </div>
   </dialog>
 
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+  <script src="katex/katex.min.js"></script>
   <script>
     const signGraph = `
       <svg class="svg-graph" viewBox="0 0 620 260" role="img" aria-label="Graph of f prime crossing the x-axis at negative two and one">
@@ -506,14 +549,18 @@
         <circle cx="180" cy="132" r="6" fill="#102a72"/><circle cx="440" cy="132" r="6" fill="#102a72"/>
       </svg>`;
 
-    function tex(source) {
+    function mathMarkup(source, display = false) {
       const escaped = source
         .replaceAll("&", "&amp;")
         .replaceAll('"', "&quot;")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;");
-      return `<span class="tex-math" data-tex="${escaped}">${escaped}</span>`;
+      const className = display ? "tex-math display-math" : "tex-math";
+      return `<span class="${className}" data-tex="${escaped}">${escaped}</span>`;
     }
+
+    function tex(source) { return mathMarkup(source, false); }
+    function texDisplay(source) { return mathMarkup(source, true); }
 
     const gameData = [
       {
@@ -521,33 +568,32 @@
         clues: [
           {
             value: 100,
-            type: "Name That Idea",
-            prompt: `On calculus’s list of usual suspects, this is the name given to an input ${tex(String.raw`c`)} in the domain of ${tex(String.raw`f`)} where ${tex(String.raw`f'(c)=0`)} or ${tex(String.raw`f'(c)`)} does not exist.`,
-            answer: `What is a critical number?`,
-            solution: `The domain condition matters: ${tex(String.raw`f(c)`)} must exist before ${tex(String.raw`c`)} can be a critical number.`
+            type: "Definition",
+            prompt: `State the definition of a critical number ${tex(String.raw`c`)} of a function ${tex(String.raw`f`)}.<br><br><strong>Answer format:</strong> Give all conditions that ${tex(String.raw`c`)} must satisfy.`,
+            answer: `${tex(String.raw`c`)} is a critical number of ${tex(String.raw`f`)} if ${tex(String.raw`c`)} is in the domain of ${tex(String.raw`f`)} and either ${tex(String.raw`f'(c)=0`)} or ${tex(String.raw`f'(c)`)} does not exist.`,
+            solution: `<ol><li>First require ${tex(String.raw`f(c)`)} to exist, so ${tex(String.raw`c`)} is in the domain of ${tex(String.raw`f`)}.</li><li>Then check the derivative at ${tex(String.raw`c`)}.</li><li>If ${tex(String.raw`f'(c)=0`)} or ${tex(String.raw`f'(c)`)} does not exist, then ${tex(String.raw`c`)} is a critical number.</li></ol>`
           },
           {
             value: 200,
-            type: "The Fine Print",
-            prompt: `A hole may look suspicious, but it cannot make the critical-number list unless this requirement is met.`,
-            answer: `What is “the input must be in the domain of ${tex(String.raw`f`)}”?`,
-            solution: `A critical number ${tex(String.raw`c`)} must satisfy ${tex(String.raw`f(c)`)} exists. Only then do we check whether ${tex(String.raw`f'(c)=0`)} or ${tex(String.raw`f'(c)`)} does not exist.`
+            type: "Domain Requirement",
+            prompt: `Suppose ${tex(String.raw`f(c)`)} is undefined. Determine whether ${tex(String.raw`c`)} can be a critical number of ${tex(String.raw`f`)}.<br><br><strong>Answer format:</strong> Write “yes” or “no” and justify your answer using the definition of a critical number.`,
+            answer: `No. If ${tex(String.raw`f(c)`)} is undefined, then ${tex(String.raw`c`)} is not in the domain of ${tex(String.raw`f`)}, so ${tex(String.raw`c`)} cannot be a critical number.`,
+            solution: `<ol><li>The definition begins by requiring ${tex(String.raw`c`)} to belong to the domain of ${tex(String.raw`f`)}.</li><li>The statement that ${tex(String.raw`f(c)`)} is undefined means ${tex(String.raw`c`)} is not in that domain.</li><li>Therefore ${tex(String.raw`c`)} fails the domain requirement, regardless of what happens to ${tex(String.raw`f'(c)`)}.</li></ol>`
           },
           {
             value: 300,
             type: "Domain Check",
             dailyDouble: true,
-            prompt: `The derivative raises an alarm at ${tex(String.raw`x=0`)}, but the original function gets the final say. Find every critical number of ${tex(String.raw`f(x)=x+\frac{4}{x}`)} and decide whether 0 makes the list.`,
+            prompt: `For the function${texDisplay(String.raw`f(x)=x+\frac{4}{x}`)}find every critical number. Determine explicitly whether ${tex(String.raw`x=0`)} is a critical number.<br><br><strong>Answer format:</strong> List all critical numbers and include a domain justification for ${tex(String.raw`x=0`)}.`,
             answer: `${tex(String.raw`x=-2`)} and ${tex(String.raw`x=2`)}. The input 0 is not a critical number.`,
-            solution: `${tex(String.raw`f'(x)=1-\frac{4}{x^2}`)}, so ${tex(String.raw`f'(x)=0`)} at ${tex(String.raw`x=\pm2`)}. The original function is undefined at 0, so 0 is not in its domain.`
+            solution: `<p>The denominator requires ${tex(String.raw`x\ne0`)}, so the domain is</p>${texDisplay(String.raw`(-\infty,0)\cup(0,\infty).`)}<p>Differentiate and solve where the derivative is zero:</p>${texDisplay(String.raw`\begin{aligned}f'(x)&=1-\frac{4}{x^2},\\[3pt]0&=1-\frac{4}{x^2},\\ \frac{4}{x^2}&=1,\\ x^2&=4,\\ x&=\pm2.\end{aligned}`)}<p>The derivative is also undefined at ${tex(String.raw`x=0`)}, but ${tex(String.raw`f(0)`)} does not exist. Therefore 0 is not a critical number.</p>`
           },
           {
             value: 400,
             type: "Error Analysis",
-            prompt: `A removable hole at ${tex(String.raw`x=1`)} tries to sneak onto the critical-number list. How many critical numbers does ${tex(String.raw`f(x)=\frac{x^2-1}{x-1}`)} actually have? Defend your answer using the domain.`,
+            prompt: `For the function${texDisplay(String.raw`f(x)=\frac{x^2-1}{x-1}`)}find every critical number.<br><br><strong>Answer format:</strong> State the set of critical numbers and explain the role of ${tex(String.raw`x=1`)} using the domain.`,
             answer: `None.`,
-            solution: `The expression simplifies to ${tex(String.raw`x+1`)} only when ${tex(String.raw`x\ne1`)}. Its derivative is 1 throughout its domain, and the hole at 1 is not a critical number.`,
-            note: `Require the domain justification. Saying only that the derivative is undefined at 1 is not sufficient.`
+            solution: `<p>Factor and simplify while preserving the domain restriction:</p>${texDisplay(String.raw`\begin{aligned}f(x)&=\frac{x^2-1}{x-1}\\ &=\frac{(x-1)(x+1)}{x-1}\\ &=x+1,\qquad x\ne1.\end{aligned}`)}<p>On the domain of ${tex(String.raw`f`)},</p>${texDisplay(String.raw`f'(x)=1,`)}<p>so the derivative is never zero. The only excluded input is ${tex(String.raw`x=1`)}, and it cannot be critical because ${tex(String.raw`f(1)`)} is undefined.</p>`
           }
         ]
       },
@@ -556,32 +602,31 @@
         clues: [
           {
             value: 100,
-            type: "Good Sign",
-            prompt: `This sign of the first derivative gives a function the green light to rise from left to right.`,
-            answer: `What is positive? In symbols, ${tex(String.raw`f'(x)>0`)}.`,
-            solution: `A positive derivative means the function’s output rises as the input moves from left to right.`
+            type: "Derivative Sign",
+            prompt: `State the derivative condition that guarantees a differentiable function ${tex(String.raw`f`)} is increasing on an interval ${tex(String.raw`I`)}.<br><br><strong>Answer format:</strong> Write an inequality involving ${tex(String.raw`f'(x)`)} and state where it must hold.`,
+            answer: `${tex(String.raw`f'(x)>0`)} for every ${tex(String.raw`x`)} in the interval ${tex(String.raw`I`)}.`,
+            solution: `<ol><li>${tex(String.raw`f'(x)`)} measures the instantaneous rate of change of ${tex(String.raw`f`)}.</li><li>When ${tex(String.raw`f'(x)>0`)} throughout ${tex(String.raw`I`)}, the function’s outputs increase as ${tex(String.raw`x`)} increases.</li><li>Therefore ${tex(String.raw`f`)} is increasing on ${tex(String.raw`I`)}.</li></ol>`
           },
           {
             value: 200,
             type: "Sign Analysis",
-            prompt: `The derivative factors nicely: ${tex(String.raw`f'(x)=(x+2)(x-1)`)}. Map out every increasing and decreasing interval.`,
+            prompt: `Suppose${texDisplay(String.raw`f'(x)=(x+2)(x-1)`)}Determine the intervals on which ${tex(String.raw`f`)} is increasing and decreasing.<br><br><strong>Answer format:</strong> Give all intervals in interval notation.`,
             answer: `Increasing on ${tex(String.raw`(-\infty,-2)\cup(1,\infty)`)}; decreasing on ${tex(String.raw`(-2,1)`)}.`,
-            solution: `The signs of ${tex(String.raw`f'`)} are ${tex(String.raw`+,-,+`)} across the critical numbers ${tex(String.raw`-2`)} and ${tex(String.raw`1`)}.`
+            solution: `<p>First find where the derivative is zero:</p>${texDisplay(String.raw`\begin{aligned}(x+2)(x-1)&=0\\ x&=-2,\ 1.\end{aligned}`)}<p>These numbers divide the real line into three test intervals:</p>${texDisplay(String.raw`\begin{array}{c|ccc}x&(-\infty,-2)&(-2,1)&(1,\infty)\\ \hline \text{test value}&-3&0&2\\ f'(x)&+&-&+\\ \text{behavior}&\text{increasing}&\text{decreasing}&\text{increasing}\end{array}`)}`
           },
           {
             value: 300,
             type: "Sign Analysis",
-            prompt: `Plot twist: multiplying a derivative by ${tex(String.raw`-1`)} reverses every sign. Use that idea—not a fresh start—to find the increasing and decreasing intervals when ${tex(String.raw`f'(x)=-x(x-3)`)}.`,
+            prompt: `Suppose${texDisplay(String.raw`f'(x)=-x(x-3)`)}Determine the intervals on which ${tex(String.raw`f`)} is increasing and decreasing.<br><br><strong>Answer format:</strong> Give all intervals in interval notation.`,
             answer: `Increasing on ${tex(String.raw`(0,3)`)}; decreasing on ${tex(String.raw`(-\infty,0)\cup(3,\infty)`)}.`,
-            solution: `Testing the intervals determined by 0 and 3 gives the sign pattern ${tex(String.raw`-,+,-`)} for ${tex(String.raw`f'`)}.`
+            solution: `<p>Find the zeros of ${tex(String.raw`f'`)}:</p>${texDisplay(String.raw`\begin{aligned}-x(x-3)&=0\\ x&=0,\ 3.\end{aligned}`)}<p>Test one value in each interval:</p>${texDisplay(String.raw`\begin{array}{c|ccc}x&(-\infty,0)&(0,3)&(3,\infty)\\ \hline \text{test value}&-1&1&4\\ f'(x)&-4&2&-4\\ \text{sign}&-&+&-\\ \text{behavior}&\text{decreasing}&\text{increasing}&\text{decreasing}\end{array}`)}`
           },
           {
             value: 400,
             type: "Repeated Root",
-            prompt: `At ${tex(String.raw`x=1`)}, the derivative touches zero and turns back around. For ${tex(String.raw`f'(x)=(x-1)^2(x+3)`)}, describe the function’s behavior on every interval determined by its critical numbers.`,
+            prompt: `Suppose${texDisplay(String.raw`f'(x)=(x-1)^2(x+3)`)}Find all critical numbers and determine the intervals on which ${tex(String.raw`f`)} is increasing and decreasing.<br><br><strong>Answer format:</strong> List the critical numbers, then give all intervals in interval notation.`,
             answer: `Decreasing on ${tex(String.raw`(-\infty,-3)`)}; increasing on ${tex(String.raw`(-3,1)`)} and ${tex(String.raw`(1,\infty)`)}.`,
-            solution: `The squared factor does not change sign at 1. The derivative changes from negative to positive at ${tex(String.raw`x=-3`)}, but remains positive on both sides of ${tex(String.raw`x=1`)}.`,
-            note: `It is also correct to summarize the increasing behavior as (-3,∞). The split form keeps both critical numbers visible.`
+            solution: `<p>Set the derivative equal to zero:</p>${texDisplay(String.raw`\begin{aligned}(x-1)^2(x+3)&=0\\ x&=1\quad\text{or}\quad x=-3.\end{aligned}`)}<p>The factor ${tex(String.raw`(x-1)^2`)} has even multiplicity, so it does not change sign at 1. The sign chart is</p>${texDisplay(String.raw`\begin{array}{c|ccc}x&(-\infty,-3)&(-3,1)&(1,\infty)\\ \hline f'(x)&-&+&+\\ \text{behavior}&\text{decreasing}&\text{increasing}&\text{increasing}\end{array}`)}`
           }
         ]
       },
@@ -590,33 +635,32 @@
         clues: [
           {
             value: 100,
-            type: "Tangent-Line Trivia",
-            prompt: `A tangent line tries to predict nearby values. When the graph is concave up, that prediction generally lands on this side of the graph.`,
-            answer: `What is below the graph?`,
-            solution: `Nearby tangent-line approximations tend to underestimate a concave-up function.`
+            type: "Tangent-Line Approximation",
+            prompt: `Suppose ${tex(String.raw`f`)} is concave up near ${tex(String.raw`x=a`)}. Determine whether the tangent-line approximation at ${tex(String.raw`x=a`)} generally overestimates or underestimates nearby values of ${tex(String.raw`f`)}.<br><br><strong>Answer format:</strong> State “overestimate” or “underestimate” and give a brief reason.`,
+            answer: `It generally underestimates nearby values because the tangent line lies below a concave-up graph near the point of tangency.`,
+            solution: `<ol><li>Concave up means the slopes of ${tex(String.raw`f`)} are increasing.</li><li>As one moves away from ${tex(String.raw`a`)}, the curve bends upward from its tangent line.</li><li>Therefore the tangent-line values are generally smaller than the function values near ${tex(String.raw`a`)}.</li></ol>`
           },
           {
             value: 200,
-            type: "Name That Idea",
-            prompt: `Solving ${tex(String.raw`f''(c)=0`)} earns a point a nomination, not the title. The point receives this title only if the graph actually changes concavity.`,
-            answer: `What is an inflection point?`,
-            solution: `A zero or undefined value of ${tex(String.raw`f''`)} gives a candidate. The concavity must change across the point.`
+            type: "Definition",
+            prompt: `State the condition that must be verified for ${tex(String.raw`(c,f(c))`)} to be an inflection point. Explain why ${tex(String.raw`f''(c)=0`)} alone is insufficient.<br><br><strong>Answer format:</strong> State the required change and the role of ${tex(String.raw`f''(c)=0`)}.`,
+            answer: `The graph must change concavity at ${tex(String.raw`x=c`)}. The equation ${tex(String.raw`f''(c)=0`)} only identifies a possible inflection input; it does not prove a concavity change.`,
+            solution: `<ol><li>Find candidates where ${tex(String.raw`f''(x)=0`)} or ${tex(String.raw`f''(x)`)} is undefined.</li><li>Check the sign of ${tex(String.raw`f''`)} on each side of every candidate.</li><li>Only a sign change in ${tex(String.raw`f''`)}—from positive to negative or negative to positive—confirms a change in concavity and hence an inflection point.</li></ol>`
           },
           {
             value: 300,
             type: "Full Analysis",
-            prompt: `This quartic changes its mind about bending twice. For ${tex(String.raw`f(x)=x^4-4x^3`)}, locate both changes and determine every concavity interval.`,
-            answer: `Concave up on ${tex(String.raw`(-\infty,0)\cup(2,\infty)`)}; concave down on ${tex(String.raw`(0,2)`)}. Inflection points: ${tex(String.raw`(0,0)`)} and ${tex(String.raw`(2,-16)`)}.`,
-            solution: `${tex(String.raw`f''(x)=12x^2-24x=12x(x-2)`)}. Its sign changes at both 0 and 2.`
+            prompt: `For the function${texDisplay(String.raw`f(x)=x^4-4x^3`)}determine all intervals of concavity and all inflection points.<br><br><strong>Answer format:</strong> Give the concavity intervals in interval notation. For each inflection point, state its ${tex(String.raw`x`)}-value and the corresponding function value.`,
+            answer: `Concave up on ${tex(String.raw`(-\infty,0)\cup(2,\infty)`)}; concave down on ${tex(String.raw`(0,2)`)}. Inflection points occur at ${tex(String.raw`x=0`)} with ${tex(String.raw`f(0)=0`)}, and at ${tex(String.raw`x=2`)} with ${tex(String.raw`f(2)=-16`)}.`,
+            solution: `<p>Differentiate twice and factor the second derivative:</p>${texDisplay(String.raw`\begin{aligned}f'(x)&=4x^3-12x^2,\\ f''(x)&=12x^2-24x\\ &=12x(x-2).\end{aligned}`)}<p>The candidates satisfy ${tex(String.raw`f''(x)=0`)}, so ${tex(String.raw`x=0,2`)}. Test the intervals:</p>${texDisplay(String.raw`\begin{array}{c|ccc}x&(-\infty,0)&(0,2)&(2,\infty)\\ \hline f''(x)&+&-&+\\ \text{concavity}&\text{up}&\text{down}&\text{up}\end{array}`)}<p>Concavity changes at both candidates. Their function values are</p>${texDisplay(String.raw`\begin{aligned}f(0)&=0,\\ f(2)&=2^4-4(2^3)=16-32=-16.\end{aligned}`)}`
           },
           {
             value: 400,
             type: "True or False",
             dailyDouble: true,
-            prompt: `This shortcut sounds convenient enough to be suspicious: “Every zero of ${tex(String.raw`f''`)} is an inflection input.” Decide whether it survives the test ${tex(String.raw`f''(x)=(x-1)^2(x+2)`)}.`,
+            prompt: `Suppose${texDisplay(String.raw`f''(x)=(x-1)^2(x+2)`)}Determine every input at which ${tex(String.raw`f`)} has an inflection point.<br><br><strong>Answer format:</strong> List all inflection inputs and justify each candidate using sign changes of ${tex(String.raw`f''`)}.`,
             answer: `False. Only ${tex(String.raw`x=-2`)} is an inflection input.`,
-            solution: `The sign of ${tex(String.raw`f''`)} changes at ${tex(String.raw`x=-2`)}. It does not change at the repeated zero ${tex(String.raw`x=1`)}.`,
-            note: `This targets the common misconception that f''(c)=0 automatically guarantees an inflection point.`
+            solution: `<p>Find the candidates:</p>${texDisplay(String.raw`\begin{aligned}(x-1)^2(x+2)&=0\\ x&=1,\ -2.\end{aligned}`)}<p>The factor ${tex(String.raw`(x-1)^2`)} has even multiplicity, so it does not change sign at 1. The sign chart is</p>${texDisplay(String.raw`\begin{array}{c|ccc}x&(-\infty,-2)&(-2,1)&(1,\infty)\\ \hline f''(x)&-&+&+\\ \text{concavity}&\text{down}&\text{up}&\text{up}\end{array}`)}<p>Concavity changes only at ${tex(String.raw`x=-2`)}.</p>`
           }
         ]
       },
@@ -626,30 +670,30 @@
           {
             value: 100,
             type: "Concept",
-            prompt: `The function climbs into ${tex(String.raw`x=c`)} and leaves going downhill. Give the critical point its proper classification.`,
+            prompt: `Suppose ${tex(String.raw`f`)} is increasing immediately to the left of ${tex(String.raw`x=c`)} and decreasing immediately to the right. Classify the local extremum at ${tex(String.raw`x=c`)}.<br><br><strong>Answer format:</strong> State “local maximum,” “local minimum,” or “neither.”`,
             answer: `A local maximum at ${tex(String.raw`x=c`)}.`,
-            solution: `The function changes from increasing to decreasing.`
+            solution: `<ol><li>Increasing to the left means ${tex(String.raw`f'(x)>0`)} there.</li><li>Decreasing to the right means ${tex(String.raw`f'(x)<0`)} there.</li><li>Because ${tex(String.raw`f'`)} changes from positive to negative, the First Derivative Test gives a local maximum at ${tex(String.raw`x=c`)}.</li></ol>`
           },
           {
             value: 200,
-            type: "Name That Test",
-            prompt: `This derivative test classifies a critical point by checking the sign of ${tex(String.raw`f'`)} immediately to its left and right.`,
-            answer: `What is the First Derivative Test?`,
-            solution: `A change from ${tex(String.raw`+`)} to ${tex(String.raw`-`)} gives a local maximum; ${tex(String.raw`-`)} to ${tex(String.raw`+`)} gives a local minimum; no sign change gives neither.`
+            type: "First Derivative Test",
+            prompt: `State the First Derivative Test for classifying a critical number ${tex(String.raw`c`)}.<br><br><strong>Answer format:</strong> Give the conclusion for each possible sign pattern of ${tex(String.raw`f'`)} across ${tex(String.raw`c`)}.`,
+            answer: `${tex(String.raw`+→-`)} gives a local maximum; ${tex(String.raw`-→+`)} gives a local minimum; no sign change gives neither.`,
+            solution: `<ol><li>If ${tex(String.raw`f'`)} changes from positive to negative, ${tex(String.raw`f`)} changes from increasing to decreasing, so ${tex(String.raw`c`)} is a local maximum.</li><li>If ${tex(String.raw`f'`)} changes from negative to positive, ${tex(String.raw`f`)} changes from decreasing to increasing, so ${tex(String.raw`c`)} is a local minimum.</li><li>If ${tex(String.raw`f'`)} has the same sign on both sides, the function does not turn, so ${tex(String.raw`c`)} is neither.</li></ol>`
           },
           {
             value: 300,
             type: "Repeated Root",
-            prompt: `One of these critical numbers is a genuine turn; the other is only a brief pause. For ${tex(String.raw`f'(x)=(x-1)^2(x+2)`)}, classify ${tex(String.raw`x=-2`)} and ${tex(String.raw`x=1`)}.`,
+            prompt: `Suppose${texDisplay(String.raw`f'(x)=(x-1)^2(x+2)`)}Find all critical numbers and classify each as a local maximum, local minimum, or neither.<br><br><strong>Answer format:</strong> List every critical number with its classification.`,
             answer: `Local minimum at ${tex(String.raw`x=-2`)}; neither a maximum nor a minimum at ${tex(String.raw`x=1`)}.`,
-            solution: `${tex(String.raw`f'`)} changes from negative to positive at ${tex(String.raw`x=-2`)} and stays positive through ${tex(String.raw`x=1`)}.`
+            solution: `<p>Find the critical numbers:</p>${texDisplay(String.raw`\begin{aligned}(x-1)^2(x+2)&=0\\ x&=1,\ -2.\end{aligned}`)}<p>Because ${tex(String.raw`(x-1)^2\ge0`)}, the squared factor does not change sign at 1:</p>${texDisplay(String.raw`\begin{array}{c|ccc}x&(-\infty,-2)&(-2,1)&(1,\infty)\\ \hline f'(x)&-&+&+\end{array}`)}<p>At −2, ${tex(String.raw`f'`)} changes from negative to positive, giving a local minimum. At 1, ${tex(String.raw`f'`)} remains positive, so the point is neither a local maximum nor a local minimum.</p>`
           },
           {
             value: 400,
             type: "Second Derivative Test",
-            prompt: `Use the Second Derivative Test to classify every critical number of ${tex(String.raw`f(x)=x^4-4x^2`)}.`,
-            answer: `Local minima at ${tex(String.raw`x=\pm\sqrt{2}`)}; local maximum at ${tex(String.raw`x=0`)}.`,
-            solution: `${tex(String.raw`f'(x)=4x(x^2-2)`)} and ${tex(String.raw`f''(x)=12x^2-8`)}. Thus ${tex(String.raw`f''(0)<0`)}, while ${tex(String.raw`f''(\pm\sqrt{2})>0`)}.`
+            prompt: `For the function${texDisplay(String.raw`f(x)=x^4-4x^2`)}find every critical number and use the Second Derivative Test to classify each. Report the value of each local extremum.<br><br><strong>Answer format:</strong> For each extremum, state its ${tex(String.raw`x`)}-value, its function value, and whether it is a local maximum or minimum.`,
+            answer: `Local maximum at ${tex(String.raw`x=0`)} with value ${tex(String.raw`f(0)=0`)}. Local minima at ${tex(String.raw`x=-\sqrt{2}`)} and ${tex(String.raw`x=\sqrt{2}`)}, each with value −4.`,
+            solution: `<p>Find the critical numbers:</p>${texDisplay(String.raw`\begin{aligned}f'(x)&=4x^3-8x\\ &=4x(x^2-2),\\ 4x(x^2-2)&=0,\\ x&=0,\ \pm\sqrt2.\end{aligned}`)}<p>Now apply the Second Derivative Test:</p>${texDisplay(String.raw`\begin{aligned}f''(x)&=12x^2-8,\\ f''(0)&=-8<0 &&\Rightarrow \text{local maximum},\\ f''(\pm\sqrt2)&=12(2)-8=16>0 &&\Rightarrow \text{local minima}.\end{aligned}`)}<p>Finally evaluate the function:</p>${texDisplay(String.raw`\begin{aligned}f(0)&=0,\\ f(\pm\sqrt2)&=(\sqrt2)^4-4(\sqrt2)^2=4-8=-4.\end{aligned}`)}`
           }
         ]
       },
@@ -659,31 +703,30 @@
           {
             value: 100,
             type: "Concept",
-            prompt: `The graph is heading downhill, but its slopes are becoming less negative. Translate that story into monotonicity and concavity.`,
+            prompt: `On an interval ${tex(String.raw`I`)}, suppose ${tex(String.raw`f'(x)<0`)} and ${tex(String.raw`f'(x)`)} is increasing. Describe the monotonicity and concavity of ${tex(String.raw`f`)} on ${tex(String.raw`I`)}.<br><br><strong>Answer format:</strong> State whether ${tex(String.raw`f`)} is increasing or decreasing and whether it is concave up or down.`,
             answer: `The graph is decreasing and concave up.`,
-            solution: `Heading downhill means ${tex(String.raw`f'(x)<0`)}. Slopes becoming less negative means ${tex(String.raw`f'`)} is increasing, so ${tex(String.raw`f''(x)>0`)}.`
+            solution: `<ol><li>${tex(String.raw`f'(x)<0`)} means ${tex(String.raw`f`)} is decreasing.</li><li>If ${tex(String.raw`f'`)} is increasing, then ${tex(String.raw`f''(x)>0`)} wherever the second derivative exists.</li><li>A positive second derivative means the graph is concave up.</li></ol>`
           },
           {
             value: 200,
             type: "Sign Interpretation",
-            prompt: `The derivative tells a three-act story: positive, then negative, then positive across ${tex(String.raw`x=-1`)} and ${tex(String.raw`x=2`)}. How does each act change classify the two critical numbers?`,
+            prompt: `Suppose the sign information for ${tex(String.raw`f'`)} is${texDisplay(String.raw`\begin{array}{c|ccc}x&(-\infty,-1)&(-1,2)&(2,\infty)\\ \hline f'(x)&+&-&+\end{array}`)}Classify the critical numbers ${tex(String.raw`x=-1`)} and ${tex(String.raw`x=2`)}.<br><br><strong>Answer format:</strong> Identify each input as a local maximum, local minimum, or neither.`,
             answer: `Local maximum at ${tex(String.raw`x=-1`)}; local minimum at ${tex(String.raw`x=2`)}.`,
-            solution: `At ${tex(String.raw`x=-1`)}, ${tex(String.raw`f'`)} changes from positive to negative. At ${tex(String.raw`x=2`)}, it changes from negative to positive.`
+            solution: `<ol><li>At ${tex(String.raw`x=-1`)}, ${tex(String.raw`f'`)} changes from positive to negative, so ${tex(String.raw`f`)} changes from increasing to decreasing. This gives a local maximum.</li><li>At ${tex(String.raw`x=2`)}, ${tex(String.raw`f'`)} changes from negative to positive, so ${tex(String.raw`f`)} changes from decreasing to increasing. This gives a local minimum.</li></ol>`
           },
           {
             value: 300,
             type: "Graph Reading",
-            prompt: `<div>You are looking at ${tex(String.raw`f'(x)`)}, not ${tex(String.raw`f(x)`)}—so read one layer deeper. Identify the original function’s critical numbers and classify each.</div>${signGraph}`,
+            prompt: `<div>The graph below is the graph of ${tex(String.raw`f'(x)`)}. Find all critical numbers of ${tex(String.raw`f`)} and classify each as a local maximum, local minimum, or neither.</div><br><strong>Answer format:</strong> List every critical number with its classification.${signGraph}`,
             answer: `Critical numbers: ${tex(String.raw`x=-2`)} and ${tex(String.raw`x=1`)}. Local minimum at ${tex(String.raw`x=-2`)}; local maximum at ${tex(String.raw`x=1`)}.`,
-            solution: `The graph of ${tex(String.raw`f'`)} crosses from negative to positive at ${tex(String.raw`x=-2`)}, then from positive to negative at ${tex(String.raw`x=1`)}.`
+            solution: `<ol><li>The zeros of the displayed graph of ${tex(String.raw`f'`)} occur at ${tex(String.raw`x=-2`)} and ${tex(String.raw`x=1`)}, so these are the critical numbers.</li><li>At −2, the graph of ${tex(String.raw`f'`)} crosses from below the axis to above it. Thus ${tex(String.raw`f'`)} changes ${tex(String.raw`-→+`)}, giving a local minimum of ${tex(String.raw`f`)}.</li><li>At 1, ${tex(String.raw`f'`)} crosses from above the axis to below it. Thus ${tex(String.raw`f'`)} changes ${tex(String.raw`+→-`)}, giving a local maximum of ${tex(String.raw`f`)}.</li></ol>`
           },
           {
             value: 400,
             type: "Test Selection",
-            prompt: `The Second Derivative Test gives two verdicts and refuses the third: ${tex(String.raw`f''(-2)=5`)}, ${tex(String.raw`f''(1)=0`)}, and ${tex(String.raw`f''(3)=-4`)}. What can it conclude at each critical number?`,
+            prompt: `Suppose ${tex(String.raw`x=-2,1,3`)} are critical numbers of ${tex(String.raw`f`)} and${texDisplay(String.raw`f''(-2)=5,\qquad f''(1)=0,\qquad f''(3)=-4.`)}State the conclusion of the Second Derivative Test at each critical number.<br><br><strong>Answer format:</strong> Give one conclusion—local maximum, local minimum, or inconclusive—for each input.`,
             answer: `Local minimum at ${tex(String.raw`x=-2`)}; inconclusive at ${tex(String.raw`x=1`)}; local maximum at ${tex(String.raw`x=3`)}.`,
-            solution: `A positive second derivative gives a local minimum, a negative value gives a local maximum, and zero gives no conclusion. A different test is needed at 1.`,
-            note: `Do not accept “neither” at x=1. The Second Derivative Test is inconclusive there.`
+            solution: `<p>Apply the Second Derivative Test separately at each critical number:</p>${texDisplay(String.raw`\begin{aligned}f''(-2)=5>0&\Rightarrow \text{local minimum at }x=-2,\\ f''(1)=0&\Rightarrow \text{test is inconclusive at }x=1,\\ f''(3)=-4<0&\Rightarrow \text{local maximum at }x=3.\end{aligned}`)}<p>A zero value of ${tex(String.raw`f''`)} does not mean “neither”; it means another test is required.</p>`
           }
         ]
       }
@@ -692,12 +735,12 @@
     const practiceClue = {
       category: "Practice Round",
       value: 0,
-      type: "No Points — Learn the Buttons",
+      type: "No Points — Learn the Controls",
       unscored: true,
       seconds: 60,
-      prompt: `A function approaches ${tex(String.raw`x=c`)} while decreasing and leaves while increasing. Without calculating ${tex(String.raw`f(c)`)}, what can you conclude?`,
+      prompt: `Suppose ${tex(String.raw`f`)} is decreasing immediately to the left of ${tex(String.raw`x=c`)} and increasing immediately to the right. Classify the local extremum at ${tex(String.raw`x=c`)}.<br><br><strong>Answer format:</strong> State “local maximum,” “local minimum,” or “neither.”`,
       answer: `The function has a local minimum at ${tex(String.raw`x=c`)}.`,
-      solution: `${tex(String.raw`f'`)} changes from negative to positive, which is the First Derivative Test pattern for a local minimum.`
+      solution: `<ol><li>Decreasing to the left gives ${tex(String.raw`f'(x)<0`)}.</li><li>Increasing to the right gives ${tex(String.raw`f'(x)>0`)}.</li><li>Since ${tex(String.raw`f'`)} changes from negative to positive, the First Derivative Test gives a local minimum at ${tex(String.raw`x=c`)}.</li></ol>`
     };
 
     const suddenDeathClues = [
@@ -708,9 +751,9 @@
         unscored: true,
         suddenDeath: true,
         seconds: 45,
-        prompt: `True or false: if ${tex(String.raw`f'(c)=0`)}, then ${tex(String.raw`f`)} must have a local extremum at ${tex(String.raw`x=c`)}.`,
+        prompt: `Determine whether the following statement is true or false: If ${tex(String.raw`f'(c)=0`)}, then ${tex(String.raw`f`)} must have a local extremum at ${tex(String.raw`x=c`)}.<br><br><strong>Answer format:</strong> Write “true” or “false” and give one sentence of justification.`,
         answer: `False.`,
-        solution: `A critical point can be neither a maximum nor a minimum; ${tex(String.raw`f'`)} may keep the same sign on both sides of ${tex(String.raw`c`)}.`
+        solution: `${tex(String.raw`f'(c)=0`)} only makes ${tex(String.raw`c`)} a critical number. If ${tex(String.raw`f'`)} has the same sign on both sides of ${tex(String.raw`c`)}, then ${tex(String.raw`f`)} continues in the same direction and has no local extremum there. For example, ${tex(String.raw`f(x)=x^3`)} has ${tex(String.raw`f'(0)=0`)} but no local extremum at 0.`
       },
       {
         category: "Sudden Death",
@@ -719,9 +762,9 @@
         unscored: true,
         suddenDeath: true,
         seconds: 45,
-        prompt: `On an interval, ${tex(String.raw`f'(x)<0`)} and ${tex(String.raw`f''(x)<0`)}. Describe the graph in four words or fewer.`,
+        prompt: `On an interval, ${tex(String.raw`f'(x)<0`)} and ${tex(String.raw`f''(x)<0`)}. Describe the monotonicity and concavity of ${tex(String.raw`f`)}.<br><br><strong>Answer format:</strong> Use the words increasing/decreasing and concave up/concave down.`,
         answer: `Decreasing and concave down.`,
-        solution: `${tex(String.raw`f'<0`)} gives decreasing; ${tex(String.raw`f''<0`)} gives concave down.`
+        solution: `${tex(String.raw`f'(x)<0`)} means the function is decreasing, and ${tex(String.raw`f''(x)<0`)} means the graph is concave down.`
       },
       {
         category: "Sudden Death",
@@ -730,9 +773,9 @@
         unscored: true,
         suddenDeath: true,
         seconds: 45,
-        prompt: `${tex(String.raw`c`)} is a critical number and ${tex(String.raw`f''(c)>0`)}. What is the verdict?`,
+        prompt: `Suppose ${tex(String.raw`c`)} is a critical number and ${tex(String.raw`f''(c)>0`)}. Use the Second Derivative Test to classify ${tex(String.raw`x=c`)}.<br><br><strong>Answer format:</strong> State “local maximum” or “local minimum.”`,
         answer: `A local minimum at ${tex(String.raw`x=c`)}.`,
-        solution: `The graph is concave up at the critical point, so the Second Derivative Test gives a local minimum.`
+        solution: `Because ${tex(String.raw`c`)} is critical and ${tex(String.raw`f''(c)>0`)}, the graph is concave up at ${tex(String.raw`c`)}. The Second Derivative Test therefore gives a local minimum.`
       },
       {
         category: "Sudden Death",
@@ -741,9 +784,9 @@
         unscored: true,
         suddenDeath: true,
         seconds: 45,
-        prompt: `Yes or no: can ${tex(String.raw`c`)} be a critical number when ${tex(String.raw`f'(c)`)} does not exist?`,
+        prompt: `Can ${tex(String.raw`c`)} be a critical number when ${tex(String.raw`f'(c)`)} does not exist?<br><br><strong>Answer format:</strong> Write “yes” or “no” and state the required domain condition.`,
         answer: `Yes—provided ${tex(String.raw`f(c)`)} exists.`,
-        solution: `A critical number lies in the domain of ${tex(String.raw`f`)} and makes ${tex(String.raw`f'`)} zero or undefined.`
+        solution: `Yes. The definition allows ${tex(String.raw`f'(c)`)} to be zero or undefined, but it always requires ${tex(String.raw`f(c)`)} to exist. Thus ${tex(String.raw`c`)} must be in the domain of ${tex(String.raw`f`)}.`
       },
       {
         category: "Sudden Death",
@@ -752,9 +795,9 @@
         unscored: true,
         suddenDeath: true,
         seconds: 45,
-        prompt: `${tex(String.raw`f`)} is continuous at ${tex(String.raw`c`)}, and ${tex(String.raw`f''`)} changes from positive to negative there. What happens at ${tex(String.raw`x=c`)}?`,
+        prompt: `Suppose ${tex(String.raw`f`)} is continuous at ${tex(String.raw`c`)} and ${tex(String.raw`f''`)} changes from positive to negative at ${tex(String.raw`x=c`)}. State what happens to the graph at ${tex(String.raw`x=c`)}.<br><br><strong>Answer format:</strong> Name the type of point and describe the concavity change.`,
         answer: `There is an inflection point; the graph changes from concave up to concave down.`,
-        solution: `A change in the sign of ${tex(String.raw`f''`)} signals a change in concavity.`
+        solution: `Positive ${tex(String.raw`f''`)} means concave up and negative ${tex(String.raw`f''`)} means concave down. Since the sign changes at ${tex(String.raw`c`)} and ${tex(String.raw`f`)} is continuous there, ${tex(String.raw`(c,f(c))`)} is an inflection point.`
       },
       {
         category: "Sudden Death",
@@ -763,9 +806,9 @@
         unscored: true,
         suddenDeath: true,
         seconds: 45,
-        prompt: `${tex(String.raw`f'(c)=0`)}, but ${tex(String.raw`f'`)} is positive immediately before and after ${tex(String.raw`c`)}. Classify the critical point.`,
+        prompt: `Suppose ${tex(String.raw`f'(c)=0`)} and ${tex(String.raw`f'(x)>0`)} immediately before and after ${tex(String.raw`c`)}. Classify the critical point at ${tex(String.raw`x=c`)}.<br><br><strong>Answer format:</strong> State “local maximum,” “local minimum,” or “neither.”`,
         answer: `Neither a local maximum nor a local minimum.`,
-        solution: `The function is increasing on both sides, so it does not turn at ${tex(String.raw`c`)}.`
+        solution: `The positive derivative shows that ${tex(String.raw`f`)} is increasing on both sides of ${tex(String.raw`c`)}. Since the sign of ${tex(String.raw`f'`)} does not change, the First Derivative Test classifies the point as neither a local maximum nor a local minimum.`
       }
     ];
 
@@ -774,9 +817,9 @@
       value: 0,
       type: "Synthesis",
       final: true,
-      prompt: `Put everything together. For ${tex(String.raw`f(x)=\frac{1}{3}x^3-x^2`)}, determine:<br><br>increasing and decreasing intervals, all local extrema, concavity intervals, and the inflection point.`,
-      answer: `Increasing on ${tex(String.raw`(-\infty,0)\cup(2,\infty)`)}; decreasing on ${tex(String.raw`(0,2)`)}.<br>Local maximum: ${tex(String.raw`(0,0)`)}. Local minimum: ${tex(String.raw`(2,-\frac{4}{3})`)}.<br>Concave down on ${tex(String.raw`(-\infty,1)`)}; concave up on ${tex(String.raw`(1,\infty)`)}.<br>Inflection point: ${tex(String.raw`(1,-\frac{2}{3})`)}.`,
-      solution: `${tex(String.raw`f'(x)=x(x-2)`)} and ${tex(String.raw`f''(x)=2x-2`)}. Use their signs, then evaluate ${tex(String.raw`f`)} at 0, 1, and 2.`
+      prompt: `For the function${texDisplay(String.raw`f(x)=\frac{1}{3}x^3-x^2`)}determine:<br><br>1. all intervals on which ${tex(String.raw`f`)} is increasing or decreasing;<br>2. every local maximum and minimum, including its function value;<br>3. all intervals of concavity; and<br>4. every inflection point.<br><br><strong>Answer format:</strong> Give intervals in interval notation. For each extremum and inflection point, state its ${tex(String.raw`x`)}-value and the corresponding function value.`,
+      answer: `Increasing on ${tex(String.raw`(-\infty,0)\cup(2,\infty)`)}; decreasing on ${tex(String.raw`(0,2)`)}.<br>Local maximum at ${tex(String.raw`x=0`)} with value ${tex(String.raw`f(0)=0`)}. Local minimum at ${tex(String.raw`x=2`)} with value ${tex(String.raw`f(2)=-\frac{4}{3}`)}.<br>Concave down on ${tex(String.raw`(-\infty,1)`)}; concave up on ${tex(String.raw`(1,\infty)`)}.<br>Inflection point at ${tex(String.raw`x=1`)} with value ${tex(String.raw`f(1)=-\frac{2}{3}`)}.`,
+      solution: `<p><strong>First derivative analysis.</strong></p>${texDisplay(String.raw`\begin{aligned}f'(x)&=x^2-2x\\ &=x(x-2),\\ f'(x)=0&\Rightarrow x=0,\ 2.\end{aligned}`)}${texDisplay(String.raw`\begin{array}{c|ccc}x&(-\infty,0)&(0,2)&(2,\infty)\\ \hline f'(x)&+&-&+\\ \text{behavior}&\text{increasing}&\text{decreasing}&\text{increasing}\end{array}`)}<p>The sign change ${tex(String.raw`+\to-`)} at 0 gives a local maximum, and ${tex(String.raw`-\to+`)} at 2 gives a local minimum. Their values are</p>${texDisplay(String.raw`\begin{aligned}f(0)&=0,\\ f(2)&=\frac13(2)^3-(2)^2=\frac83-4=-\frac43.\end{aligned}`)}<p><strong>Second derivative analysis.</strong></p>${texDisplay(String.raw`\begin{aligned}f''(x)&=2x-2=2(x-1),\\ f''(x)<0&\text{ for }x<1,\\ f''(x)>0&\text{ for }x>1.\end{aligned}`)}<p>Thus the graph is concave down on ${tex(String.raw`(-\infty,1)`)} and concave up on ${tex(String.raw`(1,\infty)`)}. Since concavity changes at 1, evaluate</p>${texDisplay(String.raw`f(1)=\frac13-1=-\frac23.`)}`
     };
 
     const defaultTeams = [
@@ -792,8 +835,9 @@
     let activeSeconds = 90;
     let defaultSeconds = 90;
     let timerHandle = null;
-    let isDailyWagerLocked = false;
-    let activeWager = 0;
+    let isWagerLocked = true;
+    let activeWagers = [];
+    let activeStartingScores = [];
     let activeChooser = 0;
 
     const board = document.getElementById("board");
@@ -804,13 +848,14 @@
     const clueTypeElement = document.getElementById("clueType");
     const promptElement = document.getElementById("prompt");
     const answerPanel = document.getElementById("answerPanel");
-    const answerElement = document.getElementById("answer");
     const solutionElement = document.getElementById("solution");
-    const teacherNote = document.getElementById("teacherNote");
     const awardGrid = document.getElementById("awardGrid");
     const dailyBadge = document.getElementById("dailyBadge");
     const wagerPanel = document.getElementById("wagerPanel");
-    const wagerInput = document.getElementById("wagerInput");
+    const wagerGrid = document.getElementById("wagerGrid");
+    const wagerScoreboard = document.getElementById("wagerScoreboard");
+    const wagerHeading = document.getElementById("wagerHeading");
+    const wagerInstructions = document.getElementById("wagerInstructions");
     const clueContent = document.getElementById("clueContent");
 
     function loadState() {
@@ -941,35 +986,91 @@
       activeChooser = state.control;
       activeSeconds = clue.seconds || (clue.final ? 180 : 90);
       defaultSeconds = activeSeconds;
-      isDailyWagerLocked = !clue.dailyDouble;
-      activeWager = clue.value;
+      const requiresWagers = Boolean(clue.dailyDouble || clue.final);
+      isWagerLocked = !requiresWagers;
+      activeStartingScores = state.teams.map(team => team.score);
+      activeWagers = state.teams.map(() => clue.dailyDouble ? clue.value : 0);
       clueHeading.textContent = clue.final ? category : `${category} · $${clue.value}`;
       clueTypeElement.textContent = clue.type || "Mixed Practice";
       promptElement.innerHTML = clue.prompt;
-      answerElement.innerHTML = clue.answer;
-      solutionElement.innerHTML = clue.solution;
+      solutionElement.innerHTML = `${clue.solution}<div class="solution-result"><strong>Conclusion:</strong> ${clue.answer}</div>`;
       renderMath(promptElement);
-      renderMath(answerElement);
       renderMath(solutionElement);
       attachTrailingPunctuation(promptElement);
-      attachTrailingPunctuation(answerElement);
       attachTrailingPunctuation(solutionElement);
-      teacherNote.hidden = !clue.note;
-      teacherNote.innerHTML = clue.note ? `<strong>Facilitator note:</strong> ${clue.note}` : "";
       answerPanel.hidden = true;
-      document.getElementById("revealButton").textContent = "Reveal Answer";
-      dailyBadge.hidden = !clue.dailyDouble;
-      wagerPanel.hidden = !clue.dailyDouble;
-      clueContent.hidden = clue.dailyDouble;
-      wagerInput.value = Math.max(clue.value, Math.min(Math.max(state.teams[activeChooser].score, 0), 1000));
+      document.getElementById("revealButton").textContent = "Reveal Worked Solution";
+      dailyBadge.hidden = !requiresWagers;
+      dailyBadge.textContent = clue.final
+        ? "FINAL JEOPARDY — WAGER BEFORE THE PROBLEM"
+        : "DAILY DOUBLE — ONE WAGER APPLIES TO ALL TEAMS";
+      wagerPanel.hidden = !requiresWagers;
+      clueContent.hidden = requiresWagers;
+      if (requiresWagers) renderWagerInputs();
       renderTimer();
       renderAwards();
       clueDialog.showModal();
     }
 
+    function renderWagerInputs() {
+      wagerHeading.textContent = currentClue?.final ? "Final Jeopardy Wagers" : "Daily Double Wagers";
+      wagerInstructions.textContent = currentClue?.final
+        ? "Enter and lock every team's wager before showing the problem. Every trailing team may wager enough to finish $50 above the current leader."
+        : `${state.teams[activeChooser].name} chooses one wager. That wager applies to every team.`;
+      renderWagerScoreboard();
+      wagerGrid.innerHTML = "";
+      const highestScore = Math.max(...activeStartingScores);
+      const teamIndexes = currentClue?.dailyDouble
+        ? [activeChooser]
+        : state.teams.map((_, index) => index);
+      teamIndexes.forEach(index => {
+        const team = state.teams[index];
+        const normalMaximum = Math.max(0, team.score);
+        const comebackMaximum = team.score < highestScore ? highestScore - team.score + 50 : 0;
+        const limit = currentClue?.final
+          ? Math.max(normalMaximum, comebackMaximum)
+          : Math.max(1000, normalMaximum);
+        const card = document.createElement("div");
+        card.className = "wager-card";
+        const label = document.createElement("label");
+        label.setAttribute("for", `wager-${index}`);
+        label.textContent = `${team.name} (${formatScore(team.score)})`;
+        const input = document.createElement("input");
+        input.id = `wager-${index}`;
+        input.type = "number";
+        input.min = "0";
+        input.max = String(limit);
+        input.step = "50";
+        input.value = String(Math.min(activeWagers[index] || 0, limit));
+        input.dataset.teamIndex = String(index);
+        input.setAttribute("aria-label", `${team.name} wager, maximum ${limit}`);
+        const help = document.createElement("small");
+        help.textContent = currentClue?.final && team.score < highestScore && comebackMaximum >= normalMaximum
+          ? `Win-by-$50 maximum: ${formatScore(limit)}`
+          : `Maximum: ${formatScore(limit)}`;
+        card.append(label, input, help);
+        wagerGrid.appendChild(card);
+      });
+    }
+
+    function renderWagerScoreboard() {
+      wagerScoreboard.innerHTML = "";
+      state.teams.forEach((team, index) => {
+        const card = document.createElement("div");
+        card.className = `wager-score-card${index === activeChooser ? " control" : ""}`;
+        const name = document.createElement("strong");
+        name.textContent = team.name;
+        const score = document.createElement("span");
+        score.textContent = formatScore(team.score);
+        card.append(name, score);
+        wagerScoreboard.appendChild(card);
+      });
+    }
+
     function renderMath(root) {
       root.querySelectorAll(".tex-math").forEach(element => {
         katex.render(element.dataset.tex, element, {
+          displayMode: element.classList.contains("display-math"),
           throwOnError: false,
           strict: "ignore",
           output: "htmlAndMathml"
@@ -1000,40 +1101,35 @@
         return;
       }
       state.teams.forEach((team, index) => {
-        const base = currentClue?.dailyDouble && index === activeChooser
-          ? activeWager
-          : currentClue?.value || 0;
+        const startingScore = activeStartingScores[index] ?? team.score;
+        const wager = activeWagers[index] || 0;
         const card = document.createElement("div");
         card.className = "award-card";
         const label = document.createElement("strong");
-        label.textContent = team.name;
+        label.textContent = `${team.name}: ${formatScore(team.score)}`;
         card.appendChild(label);
 
-        if (currentClue?.final) {
-          const input = document.createElement("input");
-          input.type = "number";
-          input.min = "0";
-          input.step = "100";
-          input.value = "0";
-          input.style.width = "90px";
-          input.style.padding = ".4rem";
-          input.setAttribute("aria-label", `${team.name} final wager`);
-          const plus = makeAwardButton("Correct", "positive", () => adjustScore(index, Math.abs(Number(input.value) || 0)));
-          const minus = makeAwardButton("Wrong", "negative", () => adjustScore(index, -Math.abs(Number(input.value) || 0)));
-          card.append(input, plus, minus);
+        const suggestion = document.createElement("div");
+        suggestion.className = "score-suggestion";
+        if (currentClue?.final || currentClue?.dailyDouble) {
+          suggestion.textContent = `Wager: ${formatScore(wager)}`;
         } else {
-          const plus = makeAwardButton(`+${base}`, "positive", () => adjustScore(index, base));
-          const partial = makeAwardButton(`+${Math.round(base / 2)}`, "secondary", () => adjustScore(index, Math.round(base / 2)));
-          const minus = makeAwardButton(`−${base}`, "negative", () => adjustScore(index, -base));
-          plus.title = "Full-value correct response";
-          partial.title = "Half value for a substantially correct explanation";
-          minus.title = currentClue?.dailyDouble && index === activeChooser
-            ? "Incorrect Daily Double wager"
-            : "Optional manual correction";
-          card.append(plus, partial, minus);
+          suggestion.textContent = `Score before problem: ${formatScore(startingScore)}`;
         }
+        const input = document.createElement("input");
+        input.type = "number";
+        input.step = "50";
+        input.value = String(team.score);
+        input.className = "score-input";
+        input.dataset.teamIndex = String(index);
+        input.setAttribute("aria-label", `Set exact score for ${team.name}`);
+        card.append(suggestion, input);
         awardGrid.appendChild(card);
       });
+      const submit = makeAwardButton("Submit All Scores", "primary", submitAllScores);
+      submit.classList.add("submit-scores");
+      submit.title = "Save every displayed team score at once";
+      awardGrid.appendChild(submit);
     }
 
     function makeAwardButton(text, className, handler) {
@@ -1046,6 +1142,16 @@
 
     function adjustScore(index, amount) {
       state.teams[index].score += amount;
+      saveState();
+      renderScoreboard();
+      renderAwards();
+    }
+
+    function submitAllScores() {
+      awardGrid.querySelectorAll(".score-input").forEach(input => {
+        const index = Number(input.dataset.teamIndex);
+        state.teams[index].score = Math.round(Number(input.value) || 0);
+      });
       saveState();
       renderScoreboard();
       renderAwards();
@@ -1086,7 +1192,7 @@
       }
       saveState();
       renderBoard();
-      document.getElementById("revealButton").textContent = "Answer Revealed";
+      document.getElementById("revealButton").textContent = "Worked Solution Revealed";
       answerPanel.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
@@ -1139,8 +1245,17 @@
     document.getElementById("resetTimer").addEventListener("click", () => { stopTimer(); activeSeconds = defaultSeconds; renderTimer(); });
     document.getElementById("revealButton").addEventListener("click", revealAnswer);
     document.getElementById("lockWagerButton").addEventListener("click", () => {
-      activeWager = Math.max(0, Number(wagerInput.value) || 0);
-      isDailyWagerLocked = true;
+      if (currentClue?.dailyDouble) {
+        const input = wagerGrid.querySelector("input");
+        const wager = Math.min(Number(input.max), Math.max(0, Number(input.value) || 0));
+        activeWagers = state.teams.map(() => wager);
+      } else {
+        activeWagers = state.teams.map((_, index) => {
+          const input = wagerGrid.querySelector(`input[data-team-index="${index}"]`);
+          return Math.min(Number(input.max), Math.max(0, Number(input.value) || 0));
+        });
+      }
+      isWagerLocked = true;
       wagerPanel.hidden = true;
       clueContent.hidden = false;
       renderAwards();
@@ -1159,7 +1274,7 @@
     });
 
     clueDialog.addEventListener("cancel", event => {
-      if (currentClue?.dailyDouble && !isDailyWagerLocked) {
+      if ((currentClue?.dailyDouble || currentClue?.final) && !isWagerLocked) {
         event.preventDefault();
         return;
       }

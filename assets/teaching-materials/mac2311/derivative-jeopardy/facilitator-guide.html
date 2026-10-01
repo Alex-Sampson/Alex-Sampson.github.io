@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MAC2311 Derivative Jeopardy — Facilitator Guide</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
   <script defer src="https://cloud.umami.is/script.js"
           data-website-id="ff37b074-f0e9-472b-9c3c-b3c5193bd75c"
           data-tag="teaching-materials"></script>
@@ -18,13 +17,10 @@
     .meta { margin:.15rem 0 1rem; color:#5b4d42; }
     .clue { break-inside:avoid; margin:.55rem 0; padding:.55rem .7rem; border-left:4px solid var(--gold); background:#faf7f0; }
     .value { color:var(--garnet); font-weight:bold; }
-    .answer { margin-top:.3rem; font-weight:bold; }
     .solution { margin-top:.2rem; }
     .note { margin-top:.25rem; color:#5a3b00; font-style:italic; }
     .schedule { display:grid; grid-template-columns:auto 1fr; gap:.2rem .8rem; }
     .screen-only { text-align:right; }
-    .tex-math { font-style:normal; letter-spacing:normal; }
-    .katex { font-size:1em; }
     @media print { body { padding:0; } .screen-only { display:none; } h2 { break-after:avoid; } }
   </style>
 </head>
@@ -46,74 +42,65 @@
   <ol>
     <li>Build balanced teams when possible, spreading students with previous calculus experience across the room.</li>
     <li>Every team writes a response and reveals it simultaneously when time is called. Every correct team earns full value.</li>
-    <li>Require a brief justification. Award half value for a substantially correct idea with incomplete justification; do not deduct points on ordinary clues.</li>
+    <li>Require the answer form stated on each problem. After revealing the solution, enter all exact team totals and click Submit All Scores once.</li>
     <li>The team marked NEXT PICK chooses the clue. The pick rotates automatically after every revealed clue, regardless of correctness.</li>
     <li>Rotate spokespersons every four clues, with no repeats until everyone has spoken. Work sheets provide the attendance record.</li>
-    <li>On a Daily Double, the chooser wagers; other teams still play for the printed clue value.</li>
+    <li>Every wager screen displays the current scoreboard so teams can evaluate the risk before wagering.</li>
+    <li>On a Daily Double, the NEXT PICK team chooses one wager before the problem appears. The same wager applies to every team.</li>
+    <li>Final Jeopardy opens with a wager screen for every team. Every trailing team may wager enough to finish $50 above the current leader.</li>
   </ol>
 
   <h2>Practice Clue</h2>
   <section class="clue">
     <h3>Unscored · 60 seconds</h3>
-    <div>A function approaches <span class="tex-math" data-tex="x=c">x=c</span> while decreasing and leaves while increasing. Without calculating <span class="tex-math" data-tex="f(c)">f(c)</span>, what can you conclude?</div>
-    <div class="answer">Answer: The function has a local minimum at <span class="tex-math" data-tex="x=c">x=c</span>.</div>
-    <div class="solution">The sign of <span class="tex-math" data-tex="f'">f′</span> changes from negative to positive. Use this clue to demonstrate the timer, reveal, and return-to-board controls; it does not rotate NEXT PICK.</div>
+    <div>Suppose f is decreasing immediately to the left of x=c and increasing immediately to the right. Classify the local extremum at x=c. <strong>Answer format:</strong> local maximum, local minimum, or neither.</div>
+    <div class="solution"><strong>Worked solution:</strong><ol><li>Decreasing to the left gives f′&lt;0.</li><li>Increasing to the right gives f′&gt;0.</li><li>The change from negative to positive gives a local minimum by the First Derivative Test.</li></ol><strong>Conclusion:</strong> The function has a local minimum at x=c. Use this problem to demonstrate the timer, reveal, scoring, and return-to-board controls; it does not rotate NEXT PICK.</div>
   </section>
 
   <h2>Sudden Death Bank</h2>
   <p>Only tied teams respond. Correct teams survive and incorrect teams are eliminated. If all remaining teams are correct or all are incorrect, nobody is eliminated; use the next question. These questions are unscored and allow 45 seconds each.</p>
   <ol>
-    <li><strong>True or false:</strong> If <span class="tex-math" data-tex="f'(c)=0">f′(c)=0</span>, then <span class="tex-math" data-tex="f">f</span> must have a local extremum at <span class="tex-math" data-tex="x=c">x=c</span>. <em>Answer: False.</em></li>
-    <li>If <span class="tex-math" data-tex="f'&lt;0">f′&lt;0</span> and <span class="tex-math" data-tex="f''&lt;0">f″&lt;0</span> on an interval, describe the graph. <em>Answer: Decreasing and concave down.</em></li>
-    <li><span class="tex-math" data-tex="c">c</span> is a critical number and <span class="tex-math" data-tex="f''(c)&gt;0">f″(c)&gt;0</span>. What is the verdict? <em>Answer: A local minimum at <span class="tex-math" data-tex="x=c">x=c</span>.</em></li>
-    <li>Can <span class="tex-math" data-tex="c">c</span> be a critical number when <span class="tex-math" data-tex="f'(c)">f′(c)</span> does not exist? <em>Answer: Yes, provided <span class="tex-math" data-tex="f(c)">f(c)</span> exists.</em></li>
-    <li><span class="tex-math" data-tex="f">f</span> is continuous at <span class="tex-math" data-tex="c">c</span>, and <span class="tex-math" data-tex="f''">f″</span> changes from positive to negative there. What happens? <em>Answer: An inflection point; concavity changes from up to down.</em></li>
-    <li><span class="tex-math" data-tex="f'(c)=0">f′(c)=0</span>, but <span class="tex-math" data-tex="f'">f′</span> is positive immediately before and after <span class="tex-math" data-tex="c">c</span>. Classify the point. <em>Answer: Neither a local maximum nor a local minimum.</em></li>
+    <li><strong>True or false:</strong> If f′(c)=0, then f must have a local extremum at x=c. <em>Answer: False.</em></li>
+    <li>If f′&lt;0 and f″&lt;0 on an interval, describe the graph. <em>Answer: Decreasing and concave down.</em></li>
+    <li>c is a critical number and f″(c)&gt;0. What is the verdict? <em>Answer: A local minimum at x=c.</em></li>
+    <li>Can c be a critical number when f′(c) does not exist? <em>Answer: Yes, provided f(c) exists.</em></li>
+    <li>f is continuous at c, and f″ changes from positive to negative there. What happens? <em>Answer: An inflection point; concavity changes from up to down.</em></li>
+    <li>f′(c)=0, but f′ is positive immediately before and after c. Classify the point. <em>Answer: Neither a local maximum nor a local minimum.</em></li>
   </ol>
 
   <div id="guide"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
   <script>
-    function tex(source) {
-      const escaped = source
-        .replaceAll("&", "&amp;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;");
-      return `<span class="tex-math" data-tex="${escaped}">${escaped}</span>`;
-    }
-
     const questions = [
       ["Critical Encounters", [
-        [100, `On calculus’s list of usual suspects, this is the name given to an input ${tex(String.raw`c`)} in the domain of ${tex(String.raw`f`)} where ${tex(String.raw`f'(c)=0`)} or ${tex(String.raw`f'(c)`)} does not exist.`, `What is a critical number?`, `The input must be in the domain of ${tex(String.raw`f`)}.`],
-        [200, `A hole may look suspicious, but it cannot make the critical-number list unless this requirement is met.`, `What is “the input must be in the domain of ${tex(String.raw`f`)}”?`, `First require that ${tex(String.raw`f(c)`)} exists; then check whether ${tex(String.raw`f'(c)=0`)} or ${tex(String.raw`f'(c)`)} does not exist.`],
-        [300, `The derivative raises an alarm at ${tex(String.raw`x=0`)}, but the original function gets the final say. Find every critical number of ${tex(String.raw`f(x)=x+\frac{4}{x}`)} and decide whether 0 makes the list.`, `${tex(String.raw`x=-2`)} and ${tex(String.raw`x=2`)}; 0 is not critical.`, `${tex(String.raw`f'(x)=1-\frac{4}{x^2}`)}. The original function is undefined at 0.`, "Daily Double · Domain Trap"],
-        [400, `A removable hole at ${tex(String.raw`x=1`)} tries to sneak onto the critical-number list. How many critical numbers does ${tex(String.raw`f(x)=\frac{x^2-1}{x-1}`)} actually have?`, `None.`, `The function is ${tex(String.raw`x+1`)} for ${tex(String.raw`x\ne1`)}. Its derivative is 1 on its domain; the hole is not critical.`]
+        [100,"State the definition of a critical number c of f. <strong>Answer format:</strong> Give all required conditions.","c is in the domain of f and either f′(c)=0 or f′(c) does not exist.","<ol><li>Require f(c) to exist.</li><li>Then check whether f′(c)=0 or f′(c) is undefined.</li><li>Both the domain condition and one derivative condition are necessary.</li></ol>"],
+        [200,"Suppose f(c) is undefined. Can c be a critical number? <strong>Answer format:</strong> yes/no with a definition-based justification.","No; c is not in the domain of f.","<ol><li>A critical number must lie in the domain of f.</li><li>If f(c) is undefined, c is outside the domain.</li><li>Therefore c cannot be critical, regardless of f′.</li></ol>"],
+        [300,"For f(x)=x+4/x, find every critical number and decide explicitly whether x=0 is critical. <strong>Answer format:</strong> list all critical numbers and include a domain justification.","x=−2 and x=2; 0 is not critical.","<ol><li>The domain excludes 0.</li><li>f′(x)=1−4/x².</li><li>Solving f′=0 gives x²=4, hence x=±2.</li><li>Although f′ is undefined at 0, f is also undefined there, so 0 is not critical.</li></ol>","Daily Double · all teams wager"],
+        [400,"For f(x)=(x²−1)/(x−1), find every critical number. <strong>Answer format:</strong> state the set and explain the role of x=1.","There are no critical numbers.","<ol><li>For x≠1, f(x)=x+1.</li><li>Thus f′(x)=1 everywhere in the domain.</li><li>x=1 is excluded from the domain, so it cannot be critical.</li></ol>"]
       ]],
       ["On the Rise (and Fall)", [
-        [100, `This sign of the first derivative gives a function the green light to rise from left to right.`, `What is positive? ${tex(String.raw`f'(x)>0`)}.`, `A positive derivative means the output rises as the input moves left to right.`],
-        [200, `The derivative factors nicely: ${tex(String.raw`f'(x)=(x+2)(x-1)`)}. Map out every increasing and decreasing interval.`, `Increasing on ${tex(String.raw`(-\infty,-2)\cup(1,\infty)`)}; decreasing on ${tex(String.raw`(-2,1)`)}.`, `Signs are ${tex(String.raw`+,-,+`)}.`],
-        [300, `Plot twist: multiplying a derivative by ${tex(String.raw`-1`)} reverses every sign. Use that idea to analyze ${tex(String.raw`f'(x)=-x(x-3)`)}.`, `Increasing on ${tex(String.raw`(0,3)`)}; decreasing on ${tex(String.raw`(-\infty,0)\cup(3,\infty)`)}.`, `Signs are ${tex(String.raw`-,+,-`)}.`],
-        [400, `At ${tex(String.raw`x=1`)}, the derivative touches zero and turns back around. For ${tex(String.raw`f'(x)=(x-1)^2(x+3)`)}, describe the behavior.`, `Decreasing on ${tex(String.raw`(-\infty,-3)`)}; increasing on ${tex(String.raw`(-3,1)`)} and ${tex(String.raw`(1,\infty)`)}.`, `No sign change occurs at the repeated zero ${tex(String.raw`x=1`)}.`]
+        [100,"State the derivative condition that guarantees f is increasing on an interval I. <strong>Answer format:</strong> an inequality and where it holds.","f′(x)>0 for every x in I.","f′ gives the instantaneous rate of change. A positive rate throughout I means f increases as x increases."],
+        [200,"If f′(x)=(x+2)(x−1), determine all increasing and decreasing intervals. <strong>Answer format:</strong> interval notation.","Increasing on (−∞,−2)∪(1,∞); decreasing on (−2,1).","<ol><li>f′=0 at −2 and 1.</li><li>Test values −3, 0, and 2 to obtain signs +, −, +.</li><li>Positive derivative gives increasing; negative gives decreasing.</li></ol>"],
+        [300,"If f′(x)=−x(x−3), determine all increasing and decreasing intervals. <strong>Answer format:</strong> interval notation.","Increasing on (0,3); decreasing on (−∞,0)∪(3,∞).","<ol><li>f′=0 at 0 and 3.</li><li>f′(−1)=−4, f′(1)=2, and f′(4)=−4.</li><li>The sign pattern −,+,− gives the stated intervals.</li></ol>"],
+        [400,"If f′(x)=(x−1)²(x+3), find all critical numbers and increasing/decreasing intervals. <strong>Answer format:</strong> list critical numbers and intervals.","Critical numbers −3 and 1. Decreasing on (−∞,−3); increasing on (−3,1) and (1,∞).","<ol><li>Zeros occur at −3 and 1.</li><li>The squared factor does not change sign at 1.</li><li>The sign pattern is −,+,+, so there is no monotonicity change at 1.</li></ol>"]
       ]],
       ["Curve Appeal", [
-        [100, `A tangent line tries to predict nearby values. When the graph is concave up, that prediction generally lands on this side of the graph.`, `What is below the graph?`, `Tangent-line approximations tend to underestimate a concave-up function.`],
-        [200, `Solving ${tex(String.raw`f''(c)=0`)} earns a point a nomination, not the title. The point receives this title only if the graph actually changes concavity.`, `What is an inflection point?`, `A zero or undefined ${tex(String.raw`f''`)} gives a candidate; concavity must actually change.`],
-        [300, `This quartic changes its mind about bending twice. For ${tex(String.raw`f(x)=x^4-4x^3`)}, locate both changes and determine every concavity interval.`, `Up on ${tex(String.raw`(-\infty,0)\cup(2,\infty)`)}; down on ${tex(String.raw`(0,2)`)}; points ${tex(String.raw`(0,0)`)} and ${tex(String.raw`(2,-16)`)}.`, `${tex(String.raw`f''(x)=12x(x-2)`)}.`],
-        [400, `This shortcut sounds convenient enough to be suspicious: every zero of ${tex(String.raw`f''`)} is an inflection input. Test it on ${tex(String.raw`f''(x)=(x-1)^2(x+2)`)}.`, `Only ${tex(String.raw`x=-2`)}.`, `The sign does not change at the repeated zero ${tex(String.raw`x=1`)}.`, "Daily Double · True or False"]
+        [100,"If f is concave up near x=a, does its tangent line at a generally overestimate or underestimate nearby values? Give a reason.","It underestimates; the tangent line lies below the curve.","Concave up means slopes increase, so the curve bends upward away from the tangent line. Nearby function values are therefore generally above the tangent-line values."],
+        [200,"State what must be verified for (c,f(c)) to be an inflection point, and explain why f″(c)=0 alone is insufficient.","Concavity must change at c; f″(c)=0 only identifies a candidate.","<ol><li>Find candidates where f″ is zero or undefined.</li><li>Check the sign of f″ on both sides.</li><li>Only a sign change confirms an inflection point.</li></ol>"],
+        [300,"For f(x)=x⁴−4x³, determine all concavity intervals and inflection points. <strong>Answer format:</strong> give the intervals, then state each inflection point’s x-value and function value.","Up on (−∞,0)∪(2,∞); down on (0,2). Inflection points occur at x=0 with f(0)=0 and x=2 with f(2)=−16.","<ol><li>f′=4x³−12x² and f″=12x²−24x=12x(x−2).</li><li>Candidates are 0 and 2; signs are +,−,+.</li><li>Concavity changes at both.</li><li>f(0)=0 and f(2)=−16.</li></ol>"],
+        [400,"If f″(x)=(x−1)²(x+2), find every inflection input and justify with sign changes. <strong>Answer format:</strong> list inputs with justification.","Only x=−2.","<ol><li>Candidates are −2 and 1.</li><li>The factor x+2 changes sign at −2.</li><li>The squared factor does not change sign at 1.</li><li>Thus f″ has signs −,+,+ and concavity changes only at −2.</li></ol>","Daily Double · all teams wager"]
       ]],
       ["Peak, Valley, or Neither?", [
-        [100, `The function climbs into ${tex(String.raw`x=c`)} and leaves going downhill. Give the critical point its proper classification.`, `Local maximum.`, `The function changes from increasing to decreasing.`],
-        [200, `This derivative test classifies a critical point by checking the sign of ${tex(String.raw`f'`)} immediately to its left and right.`, `What is the First Derivative Test?`, `${tex(String.raw`+\to-`)} gives a maximum; ${tex(String.raw`-\to+`)} gives a minimum; no sign change gives neither.`],
-        [300, `One critical number is a genuine turn; the other is only a brief pause. Classify ${tex(String.raw`x=-2`)} and ${tex(String.raw`x=1`)} for ${tex(String.raw`f'(x)=(x-1)^2(x+2)`)}.`, `Minimum at ${tex(String.raw`x=-2`)}; neither at ${tex(String.raw`x=1`)}.`, `The derivative changes ${tex(String.raw`-\to+`)} at ${tex(String.raw`x=-2`)} and does not change sign at ${tex(String.raw`x=1`)}.`],
-        [400, `Use the Second Derivative Test for ${tex(String.raw`f(x)=x^4-4x^2`)}.`, `Minima at ${tex(String.raw`x=\pm\sqrt2`)}; maximum at ${tex(String.raw`x=0`)}.`, `${tex(String.raw`f'(x)=4x(x^2-2)`)} and ${tex(String.raw`f''(x)=12x^2-8`)}.`]
+        [100,"If f increases immediately left of c and decreases immediately right of c, classify x=c. <strong>Answer format:</strong> maximum, minimum, or neither.","Local maximum at x=c.","The derivative changes from positive to negative, so the First Derivative Test gives a local maximum."],
+        [200,"State the First Derivative Test. <strong>Answer format:</strong> give the conclusion for every sign pattern of f′ across c.","+ to −: maximum; − to +: minimum; no sign change: neither.","Translate f′>0 as increasing and f′<0 as decreasing. A turn from increasing to decreasing produces a maximum, the reverse produces a minimum, and no turn produces neither."],
+        [300,"If f′(x)=(x−1)²(x+2), find and classify every critical number. <strong>Answer format:</strong> each input with maximum/minimum/neither.","Minimum at −2; neither at 1.","<ol><li>Zeros are −2 and 1.</li><li>The sign pattern is −,+,+.</li><li>The − to + change at −2 gives a minimum; no sign change at 1 gives neither.</li></ol>"],
+        [400,"For f(x)=x⁴−4x², find all critical numbers and use the Second Derivative Test. Report each extremum value. <strong>Answer format:</strong> state each x-value, function value, and classification.","Maximum at x=0 with f(0)=0; minima at x=±√2 with f(±√2)=−4.","<ol><li>f′=4x(x²−2), so x=0,±√2.</li><li>f″=12x²−8.</li><li>f″(0)=−8, so x=0 is a maximum and f(0)=0.</li><li>f″(±√2)=16, so both are minima and f(±√2)=−4.</li></ol>"]
       ]],
       ["Read Between the Curves", [
-        [100, `The graph is heading downhill, but its slopes are becoming less negative. Translate that story into monotonicity and concavity.`, `Decreasing and concave up.`, `Heading downhill means ${tex(String.raw`f'<0`)}; slopes becoming less negative means ${tex(String.raw`f'`)} is increasing, so ${tex(String.raw`f''>0`)}.`],
-        [200, `The derivative tells a three-act story: positive, then negative, then positive across ${tex(String.raw`x=-1`)} and ${tex(String.raw`x=2`)}. Classify both critical numbers.`, `Maximum at ${tex(String.raw`x=-1`)}; minimum at ${tex(String.raw`x=2`)}.`, `Use the First Derivative Test.`],
-        [300, `You are looking at ${tex(String.raw`f'`)}, not ${tex(String.raw`f`)}—so read one layer deeper. Its graph crosses from ${tex(String.raw`-\to+`)} at ${tex(String.raw`x=-2`)} and from ${tex(String.raw`+\to-`)} at ${tex(String.raw`x=1`)}. Classify both.`, `Minimum at ${tex(String.raw`x=-2`)}; maximum at ${tex(String.raw`x=1`)}.`, `Read the sign changes from the derivative graph.`],
-        [400, `The Second Derivative Test gives two verdicts and refuses the third: ${tex(String.raw`f''(-2)=5`)}, ${tex(String.raw`f''(1)=0`)}, and ${tex(String.raw`f''(3)=-4`)}. What can it conclude?`, `Minimum at ${tex(String.raw`x=-2`)}; inconclusive at ${tex(String.raw`x=1`)}; maximum at ${tex(String.raw`x=3`)}.`, `A zero second derivative does not establish “neither.”`]
+        [100,"On I, suppose f′(x)<0 and f′ is increasing. Describe the monotonicity and concavity of f. <strong>Answer format:</strong> one monotonicity and one concavity term.","Decreasing and concave up.","f′<0 gives decreasing. An increasing f′ means f″>0, which gives concave up."],
+        [200,"Suppose f′ is positive, then negative, then positive across x=−1 and x=2. Classify both critical numbers.","Maximum at −1; minimum at 2.","At −1 the derivative changes + to −, giving a maximum. At 2 it changes − to +, giving a minimum."],
+        [300,"The graph of f′ crosses from negative to positive at x=−2 and from positive to negative at x=1. Find and classify the critical numbers of f.","Minimum at −2; maximum at 1.","Zeros of f′ give the critical numbers. The − to + crossing gives a minimum at −2; the + to − crossing gives a maximum at 1."],
+        [400,"Critical numbers are −2,1,3, and f″(−2)=5, f″(1)=0, f″(3)=−4. State the Second Derivative Test conclusion at each.","Minimum at −2; inconclusive at 1; maximum at 3.","<ol><li>Positive f″ at −2 gives a minimum.</li><li>Zero f″ at 1 makes the test inconclusive.</li><li>Negative f″ at 3 gives a maximum.</li></ol>"]
       ]]
     ];
 
@@ -125,22 +112,14 @@
       for (const [value, prompt, answer, solution, note] of clues) {
         const card = document.createElement("section");
         card.className = "clue";
-        card.innerHTML = `<h3><span class="value">$${value}</span> ${prompt}</h3><div class="answer">Answer: ${answer}</div><div class="solution">${solution}</div>${note ? `<div class="note">${note}</div>` : ""}`;
+        card.innerHTML = `<h3><span class="value">$${value}</span> ${prompt}</h3><div class="solution"><strong>Worked solution:</strong> ${solution}<p><strong>Conclusion:</strong> ${answer}</p></div>${note ? `<div class="note">${note}</div>` : ""}`;
         guide.appendChild(card);
       }
     }
 
     const final = document.createElement("section");
-    final.innerHTML = `<h2>Final Jeopardy</h2><div class="clue"><h3>For ${tex(String.raw`f(x)=\frac13x^3-x^2`)}, determine increasing/decreasing intervals, local extrema, concavity, and the inflection point.</h3><div class="answer">Answer: Increasing on ${tex(String.raw`(-\infty,0)\cup(2,\infty)`)}; decreasing on ${tex(String.raw`(0,2)`)}. Local maximum ${tex(String.raw`(0,0)`)}; local minimum ${tex(String.raw`(2,-\frac43)`)}. Concave down on ${tex(String.raw`(-\infty,1)`)}; concave up on ${tex(String.raw`(1,\infty)`)}. Inflection point ${tex(String.raw`(1,-\frac23)`)}.</div><div class="solution">${tex(String.raw`f'(x)=x(x-2)`)} and ${tex(String.raw`f''(x)=2x-2`)}.</div></div>`;
+    final.innerHTML = `<h2>Final Jeopardy</h2><p>Collect and lock every team’s wager before showing this problem.</p><div class="clue"><h3>For f(x)=⅓x³−x², determine all increasing/decreasing intervals, every local extremum with its value, all concavity intervals, and every inflection point. <strong>Answer format:</strong> give intervals in interval notation; for each extremum and inflection point, state its x-value and function value.</h3><div class="solution"><strong>Worked solution:</strong><ol><li>f′(x)=x²−2x=x(x−2), so the critical numbers are 0 and 2.</li><li>The signs of f′ are +,−,+, giving increasing on (−∞,0) and (2,∞), and decreasing on (0,2).</li><li>The + to − change at 0 gives a maximum with f(0)=0. The − to + change at 2 gives a minimum with f(2)=−4/3.</li><li>f″(x)=2x−2. It is negative for x&lt;1 and positive for x&gt;1, so the graph changes from concave down to concave up.</li><li>Since f(1)=−2/3, the inflection point occurs at x=1 with function value −2/3.</li></ol><p><strong>Conclusion:</strong> Increasing on (−∞,0)∪(2,∞); decreasing on (0,2). Local maximum at x=0 with f(0)=0; local minimum at x=2 with f(2)=−4/3. Concave down on (−∞,1); concave up on (1,∞). Inflection point at x=1 with f(1)=−2/3.</p></div></div>`;
     guide.appendChild(final);
-
-    document.querySelectorAll(".tex-math").forEach(element => {
-      katex.render(element.dataset.tex, element, {
-        throwOnError: false,
-        strict: "ignore",
-        displayMode: false
-      });
-    });
   </script>
 </body>
 </html>
