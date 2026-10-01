@@ -14,6 +14,14 @@ Teaching has been one of the most meaningful parts of my graduate experience. Be
 
 In my first year at FSU, I served as a lab proctor for both Pre-Calculus and College Algebra, supporting students both in lecture through problem sessions as well as outside of lecture while proctoring computer lab quizzes and practice sessions. These duties did not necessitate the development of teaching material.
 
+### Classroom Materials
+
+#### Calculus I — Derivative Jeopardy
+
+An interactive team review covering critical numbers, increasing and decreasing intervals, local extrema, concavity, and inflection points. The activity includes fully worked solutions, flexible scoring, Daily Doubles, and a Final Jeopardy round.
+
+[Launch the game](/teaching/mac2311/derivative-jeopardy/) · [View the facilitator guide](/teaching/mac2311/derivative-jeopardy/facilitator-guide.html)
+
 ---
 
 ## University of Nevada, Las Vegas
